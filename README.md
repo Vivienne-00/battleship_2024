@@ -9,8 +9,13 @@ Portfolio Auftrag Schiffe versenken
 
 ---
 ## ToDo
-- [ ] Wireframe ertellen
+> - [ToDos](https://github.com/EMCninja3/DTP_Battleship/issues/7#issue-2070782625)
 ---
+
+> [!IMPORTANT]
+> ### Portfolio
+> - [Portfolio Auftrag](Dokumente/PortfolioAuftrag/2023-02-11-OOP%20Blockwoche%20-%20Portfolioauftrag.pdf)
+> - [Anleitung Battleship](Dokumente/PortfolioAuftrag/2023-02-11-Portfolio%20Modulübergreifendes%20Projekt%20Battleship.pdf)
 
 > [!TIP]
 > ### Hilfreiche Links
@@ -19,5 +24,4 @@ Portfolio Auftrag Schiffe versenken
 > - [Git delete commit history](Dokumente/Anleitungen/git%20-%20how%20to%20delete%20all%20commit%20history%20in%20github_%20-%20Stack%20Overflow.pdf)
 
 
-> [!IMPORTANT]
->:+1:Hi Hi Vivienne, I freu mi mega uf üses erste gemeinsame Projekt. 
+
