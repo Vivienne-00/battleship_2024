@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Battleship.Model {
-    internal class SeaSquare : Button{
+    public class SeaSquare : Button{
         public Coordinate position;
         public ShipSquare ShipSquare { get; set; }
         public bool IsSpaceAroundShip { get; set; }

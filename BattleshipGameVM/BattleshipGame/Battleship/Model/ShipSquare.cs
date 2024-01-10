@@ -11,9 +11,15 @@ namespace Battleship.Model {
         public int PartNumber { get; }
         public bool IsDamaged { get; set; }
 
-        public ShipSquare(int partNumber) {
+        public ShipSquare(int partNumber)
+        {
             PartNumber = partNumber;
 
+        }
+
+        public void drawYourSelf(SeaSquare square)
+        {
+            ship.DrawMe(square);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Battleship.Model;
 
 namespace Battleship.Model.ShipModel
 {
@@ -16,6 +17,15 @@ namespace Battleship.Model.ShipModel
         public string shipType { get; protected set; }
         private List<ShipSquare> shipParts = new List<ShipSquare>();
         public int DamagedParts {get;}
+        public Color ShipColor { get; protected set; }
+
+        /// <summary>
+        /// Selbstdarstellung
+        /// </summary>
+        public void DrawMe(SeaSquare s)
+        {
+            s.BackColor = Color.White;
+        }
 
         public bool AddShipSquare(ShipSquare shipSquare)
         {
@@ -40,12 +50,5 @@ namespace Battleship.Model.ShipModel
 
 
 
-        /// <summary>
-        /// Selbstdarstellung
-        /// </summary>
-        public void Draw()
-        {
-
-        }
     }
 }
