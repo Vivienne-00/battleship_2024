@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Battleship.Model {
     public class ShipSquare {
+
     }
 }

@@ -22,8 +22,10 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             tableLayoutPanel1 = new TableLayoutPanel();
+            panel2 = new Panel();
             panel1 = new Panel();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -41,6 +43,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel1.Controls.Add(panel2, 0, 9);
             tableLayoutPanel1.Controls.Add(panel1, 3, 6);
             tableLayoutPanel1.Location = new Point(45, 31);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -57,6 +60,16 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel1.Size = new Size(300, 300);
             tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ActiveBorder;
+            panel2.Location = new Point(3, 273);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(24, 24);
+            panel2.TabIndex = 1;
+            panel2.MouseClick += panel1_MouseClick;
             // 
             // panel1
             // 
@@ -82,5 +95,7 @@
 
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel1;
+        private Panel panel2;
+        
     }
 }

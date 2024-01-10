@@ -10,18 +10,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Battleship.View {
-    public partial class GameBoardControlView : UserControl, IGameView {
-        public GameBoardControlView() {
+    public partial class GameBoardControlView : UserControl, IGameView
+    {
+        public GameBoardControlView()
+        {
             InitializeComponent();
         }
 
-        public void Update(BattleshipGame game) {
+        public void Update(BattleshipGame game)
+        {
 
         }
 
-        private void panel1_MouseClick(object sender, MouseEventArgs e) {
+        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        {
             var pos = this.tableLayoutPanel1.GetCellPosition((Panel)sender);
             Console.WriteLine($"Shoot at ({pos.Column}/{pos.Row})");
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
