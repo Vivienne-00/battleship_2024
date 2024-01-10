@@ -13,7 +13,7 @@ namespace Battleship.Model.ShipModel
         // Theorie: LinkedList = Cruiser
         //          Node = ShipSquare
         public bool IsHorizontal { get; set; }
-        protected int shipLength;
+        public int ShipLength { get; set; }
         public string shipType { get; protected set; }
         private List<ShipSquare> shipParts = new List<ShipSquare>();
         public int DamagedParts {get;}
@@ -24,12 +24,12 @@ namespace Battleship.Model.ShipModel
         /// </summary>
         public void DrawMe(SeaSquare s)
         {
-            s.BackColor = Color.White;
+            s.BackColor = ShipColor;
         }
 
         public bool AddShipSquare(ShipSquare shipSquare)
         {
-            if (shipParts.Count <= shipLength)
+            if (shipParts.Count <= ShipLength)
             {
                 shipParts.Add(shipSquare);
                 return true;
@@ -41,7 +41,7 @@ namespace Battleship.Model.ShipModel
         }
 
         public bool IsShipSunken() { 
-            return DamagedParts == shipLength;}
+            return DamagedParts == ShipLength;}
 
         public void ShootShipPart(int partNumber)
         {

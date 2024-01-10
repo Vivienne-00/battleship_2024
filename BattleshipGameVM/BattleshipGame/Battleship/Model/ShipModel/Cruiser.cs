@@ -11,7 +11,7 @@ namespace Battleship.Model.ShipModel
         // Theorie: LinkedList = Cruiser
         //          Node = ShipSquare
         public Cruiser() {
-            this.shipLength = 4;
+            this.ShipLength = 4;
             this.shipType = "Cruiser";
             this.ShipColor = Color.DarkBlue;
         }

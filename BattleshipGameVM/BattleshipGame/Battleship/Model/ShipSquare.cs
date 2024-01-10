@@ -11,10 +11,10 @@ namespace Battleship.Model {
         public int PartNumber { get; }
         public bool IsDamaged { get; set; }
 
-        public ShipSquare(int partNumber)
+        public ShipSquare(int partNumber, Ship ship)
         {
             PartNumber = partNumber;
-
+            this.ship = ship;
         }
 
         public void drawYourSelf(SeaSquare square)
