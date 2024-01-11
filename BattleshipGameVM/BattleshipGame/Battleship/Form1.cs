@@ -26,7 +26,7 @@ namespace Battleship
                     SeaSquare b = new SeaSquare(new Coordinate(row, col));
                     b.Text = row.ToString() + ", " + col.ToString();
                     b.Location = new Point(2 * cellWidth + col * cellWidth, 2 * cellWidth + row * cellWidth);
-                    b.Size = new Size(cellWidth, cellWidth);
+                    b.Size = new Size(cellWidth + 4, cellWidth + 4);
                     b.Click += new System.EventHandler(SeaSquareClicked);
                     b.MouseEnter += new System.EventHandler(MouseEnterSeaSquare);
                     b.MouseLeave += new System.EventHandler(MouseLeaveOverSeaSquare);
