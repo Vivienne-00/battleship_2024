@@ -68,7 +68,10 @@ namespace Battleship
                     {
                         isSelectionAllowed = false;
                     }
-                    seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToSelected();
+                    else
+                    {
+                        seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToSelected();
+                    }
                     actualSelectedSeaSquaresList.Add(seaSquares[seaSquare.position.X + i, seaSquare.position.Y]);
                 }
 
@@ -80,8 +83,10 @@ namespace Battleship
                 {
                     if (seaSquare.position.X + actualShip.ShipLength < fieldSize)
                     {
-                        //seaSquares[seaSquare.position.X + i, seaSquare.position.Y].BackColor = Color.Red;|
-                        seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToInvalid();
+                        if (!seaSquares[seaSquare.position.X + i, seaSquare.position.Y].IsOccupiedByShipSquare())
+                        {
+                            seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToInvalid();
+                        }
                     }
                 }
             }
