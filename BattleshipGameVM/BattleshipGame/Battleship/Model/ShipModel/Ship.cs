@@ -19,7 +19,8 @@
         /// </summary>
         public void DrawMe(SeaSquare s)
         {
-            s.BackColor = ShipColor;
+            s.BackgroundImage = ShipImage;
+            s.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
         public bool AddShipSquare(ShipSquare shipSquare)

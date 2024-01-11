@@ -13,6 +13,7 @@
             ShipSquare = shipSquare;
             //this.BackColor = Color.LightBlue;
             this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.sea));
+            this.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
         public bool IsOccupiedByShipSquare()

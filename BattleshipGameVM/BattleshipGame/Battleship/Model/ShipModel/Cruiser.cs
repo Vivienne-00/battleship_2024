@@ -9,7 +9,7 @@
         {
             this.ShipLength = 4;
             this.shipType = "Cruiser";
-            this.ShipColor = Color.DarkBlue;
+            this.ShipImage = Properties.Resources.ship;
         }
     }
 }
