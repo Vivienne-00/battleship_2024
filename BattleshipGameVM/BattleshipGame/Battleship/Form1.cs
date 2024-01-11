@@ -54,15 +54,7 @@ namespace Battleship
             actualSelectedSeaSquaresList.Clear();
             SeaSquare seaSquare = (SeaSquare)sender;
             Console.WriteLine(seaSquare.Text);
-            if (seaSquare.IsOccupiedByShipSquare())
-            {
-                seaSquare.BackColor = Color.Red;
-            }
-            else
-            {
-                SetSelected(seaSquare);
-                //seaSquare.BackColor = Color.LightGreen;
-            }
+            SetSelected(seaSquare);
         }
 
         private bool SetSelected(SeaSquare seaSquare)
@@ -70,7 +62,7 @@ namespace Battleship
             bool isSelectionAllowed = true;
             for (int i = 0; i < actualShip.ShipLength; i++)
             {
-                if (seaSquare.position.X + actualShip.ShipLength < fieldSize)
+                if (seaSquare.position.X + actualShip.ShipLength <= fieldSize)
                 {
                     if (seaSquares[seaSquare.position.X + i, seaSquare.position.Y].IsOccupiedByShipSquare())
                     {
@@ -79,6 +71,8 @@ namespace Battleship
                     seaSquares[seaSquare.position.X + i, seaSquare.position.Y].BackColor = Color.Green;
                     actualSelectedSeaSquaresList.Add(seaSquares[seaSquare.position.X + i, seaSquare.position.Y]);
                 }
+
+
             }
             if (!isSelectionAllowed)
             {
