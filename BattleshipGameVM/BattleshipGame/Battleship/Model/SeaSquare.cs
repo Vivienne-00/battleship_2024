@@ -19,5 +19,20 @@
         {
             return ShipSquare != null;
         }
+
+        public void SetBackgroundToStandard()
+        {
+            this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.sea));
+        }
+
+        public void SetBackgroundToSelected()
+        {
+            this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.seaSelected));
+        }
+
+        public void SetBackgroundToInvalid()
+        {
+            this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.seaInvalid));
+        }
     }
 }
