@@ -60,19 +60,29 @@ namespace Battleship
         private bool SetSelected(SeaSquare seaSquare)
         {
             bool isSelectionAllowed = true;
+
+            int actualPosX = seaSquare.position.X;
+            int actualPosY = seaSquare.position.Y;
             for (int i = 0; i < actualShip.ShipLength; i++)
             {
-                if (seaSquare.position.X + actualShip.ShipLength <= fieldSize)
+                if (actualPosX + actualShip.ShipLength <= fieldSize)
                 {
-                    if (seaSquares[seaSquare.position.X + i, seaSquare.position.Y].IsOccupiedByShipSquare())
-                    {
-                        isSelectionAllowed = false;
-                    }
-                    else
-                    {
-                        seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToSelected();
-                    }
-                    actualSelectedSeaSquaresList.Add(seaSquares[seaSquare.position.X + i, seaSquare.position.Y]);
+                    isSelectionAllowed = CheckForShips(actualPosX, actualPosY, i);
+
+                }
+                else
+                {
+                    actualPosX = fieldSize - actualShip.ShipLength;
+                    isSelectionAllowed = CheckForShips(actualPosX, actualPosY, i);
+                    //if (seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
+                    //{
+                    //    isSelectionAllowed = false;
+                    //}
+                    //else
+                    //{
+                    //    seaSquares[actualPosX + i, actualPosY].SetBackgroundToSelected();
+                    //}
+                    //actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + i, actualPosY]);
                 }
 
 
@@ -81,15 +91,30 @@ namespace Battleship
             {
                 for (int i = 0; i < actualShip.ShipLength; i++)
                 {
-                    if (seaSquare.position.X + actualShip.ShipLength < fieldSize)
+                    if (actualPosX + actualShip.ShipLength < fieldSize)
                     {
-                        if (!seaSquares[seaSquare.position.X + i, seaSquare.position.Y].IsOccupiedByShipSquare())
+                        if (!seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
                         {
-                            seaSquares[seaSquare.position.X + i, seaSquare.position.Y].SetBackgroundToInvalid();
+                            seaSquares[actualPosX + i, actualPosY].SetBackgroundToInvalid();
                         }
                     }
                 }
             }
+            return isSelectionAllowed;
+        }
+
+        public bool CheckForShips(int actualPosX, int actualPosY, int i)
+        {
+            bool isSelectionAllowed = true;
+            if (seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
+            {
+                isSelectionAllowed = false;
+            }
+            else
+            {
+                seaSquares[actualPosX + i, actualPosY].SetBackgroundToSelected();
+            }
+            actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + i, actualPosY]);
             return isSelectionAllowed;
         }
 
