@@ -5,6 +5,7 @@
         Standard,
         Selected,
         Occupied,
-        Wave
+        Wave,
+        Foam
     }
 }
