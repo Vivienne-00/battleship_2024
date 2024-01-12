@@ -88,6 +88,22 @@ namespace Battleship
                     partIndex++;
                 }
             }
+            SetFoamAroundShip(seaSquare);
+        }
+
+        private void SetFoamAroundShip(SeaSquare sq)
+        {
+            int[,] aroundIndex = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 }, { -1, -1 }, { -1, 1 }, { 1, -1 }, { 1, 1 } };
+            for (int i = 0; i < aroundIndex.GetLength(0); i++)
+            {
+                int x = sq.position.X + aroundIndex[i, 0];
+                int y = sq.position.Y + aroundIndex[i, 1];
+                if (x >= 0 && x < fieldSize && y >= 0 && y < fieldSize)
+                {
+                    seaSquares[x, y].SetSquareState(SeaSquareState.Occupied);
+                }
+                Console.WriteLine("x = " + x + "y = " + y);
+            }
         }
 
         private void MouseEnterSeaSquare(object sender, System.EventArgs e)
