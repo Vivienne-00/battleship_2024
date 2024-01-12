@@ -14,6 +14,7 @@ namespace Battleship
         SeaSquare[,] seaSquares;
 
         List<SeaSquare> actualSelectedSeaSquaresList = new List<SeaSquare>();
+        bool isActualOrientationHorizontally = true;
 
         public Form1()
         {
@@ -75,45 +76,45 @@ namespace Battleship
 
             int actualPosX = seaSquare.position.X;
             int actualPosY = seaSquare.position.Y;
+
+
+            int iX = 0;
+            int iY = 0;
+            int actualPosIndex = 0;
             for (int i = 0; i < actualShip.ShipLength; i++)
             {
-                if (actualPosX + actualShip.ShipLength <= fieldSize)
+                SetIXIYForOrientation(i, seaSquare, out iX, out iY, out actualPosIndex);
+                bool valid = true;
+                if (actualPosIndex + actualShip.ShipLength <= fieldSize)
                 {
-                    isSelectionAllowed = CheckForShips(actualPosX, actualPosY, i);
-
-
+                    valid = CheckForShips(actualPosX, actualPosY, iX, iY);
                 }
                 else
                 {
-                    actualPosX = fieldSize - actualShip.ShipLength;
-                    isSelectionAllowed = CheckForShips(actualPosX, actualPosY, i);
-                    //if (seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
-                    //{
-                    //    isSelectionAllowed = false;
-                    //}
-                    //else
-                    //{
-                    //    seaSquares[actualPosX + i, actualPosY].SetBackgroundToSelected();
-                    //}
-                    //actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + i, actualPosY]);
+                    if (isActualOrientationHorizontally)
+                    {
+                        actualPosY = fieldSize - actualShip.ShipLength;
+                    }
+                    else
+                    {
+                        actualPosX = fieldSize - actualShip.ShipLength;
+                    }
+                    //actualPosX = fieldSize - actualShip.ShipLength;
+                    valid = CheckForShips(actualPosX, actualPosY, iX, iY);
                 }
-                if (!isSelectionAllowed)
-                {
-                    break;
-                }
+                isSelectionAllowed = valid && isSelectionAllowed;
 
             }
             if (!isSelectionAllowed)
             {
                 for (int i = 0; i < actualShip.ShipLength; i++)
                 {
-                    if (actualPosX + actualShip.ShipLength < fieldSize)
+                    SetIXIYForOrientation(i, seaSquare, out iX, out iY, out actualPosIndex);
+                    if (actualPosIndex + actualShip.ShipLength < fieldSize)
                     {
-                        if (!seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
+                        if (!seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
                         {
-                            seaSquares[actualPosX + i, actualPosY].SetBackgroundToInvalid();
-
-
+                            seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToInvalid();
                         }
                     }
 
@@ -122,18 +123,34 @@ namespace Battleship
             return isSelectionAllowed;
         }
 
-        public bool CheckForShips(int actualPosX, int actualPosY, int i)
+        public void SetIXIYForOrientation(int i, SeaSquare seaSquare, out int iX, out int iY, out int actualPosIndex)
+        {
+            if (isActualOrientationHorizontally)
+            {
+                iX = 0;
+                iY = i;
+                actualPosIndex = seaSquare.position.Y;
+            }
+            else
+            {
+                iX = i;
+                iY = 0;
+                actualPosIndex = seaSquare.position.X;
+            }
+        }
+
+        public bool CheckForShips(int actualPosX, int actualPosY, int iX, int iY)
         {
             bool isSelectionAllowed = true;
-            if (seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
+            if (seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
             {
                 isSelectionAllowed = false;
             }
             else
             {
-                seaSquares[actualPosX + i, actualPosY].SetBackgroundToSelected();
+                seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToSelected();
             }
-            actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + i, actualPosY]);
+            actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + iX, actualPosY + iY]);
             return isSelectionAllowed;
         }
 
