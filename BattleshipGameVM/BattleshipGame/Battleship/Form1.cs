@@ -1,5 +1,6 @@
 using Battleship.Model;
 using Battleship.Model.ShipModel;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Battleship
 {
@@ -41,6 +42,17 @@ namespace Battleship
             square.ShipSquare = sp;
 
 
+            Timer timer1 = new Timer
+            {
+                Interval = 300
+            };
+            timer1.Enabled = true;
+            timer1.Tick += new System.EventHandler(OnTimerEvent);
+        }
+
+        private void OnTimerEvent(object sender, System.EventArgs e)
+        {
+            Console.WriteLine("Test timer");
         }
 
         private void SeaSquareClicked(object sender, System.EventArgs e)
@@ -69,6 +81,7 @@ namespace Battleship
                 {
                     isSelectionAllowed = CheckForShips(actualPosX, actualPosY, i);
 
+
                 }
                 else
                 {
@@ -84,7 +97,10 @@ namespace Battleship
                     //}
                     //actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + i, actualPosY]);
                 }
-
+                if (!isSelectionAllowed)
+                {
+                    break;
+                }
 
             }
             if (!isSelectionAllowed)
@@ -96,8 +112,11 @@ namespace Battleship
                         if (!seaSquares[actualPosX + i, actualPosY].IsOccupiedByShipSquare())
                         {
                             seaSquares[actualPosX + i, actualPosY].SetBackgroundToInvalid();
+
+
                         }
                     }
+
                 }
             }
             return isSelectionAllowed;
