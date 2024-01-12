@@ -32,11 +32,14 @@ namespace Battleship
                     b.Click += new System.EventHandler(SeaSquareClicked);
                     b.MouseEnter += new System.EventHandler(MouseEnterSeaSquare);
                     b.MouseLeave += new System.EventHandler(MouseLeaveOverSeaSquare);
+                    b.KeyPress += new System.Windows.Forms.KeyPressEventHandler(PressedKeyCheck);
                     this.Controls.Add(b);
                     seaSquares[row, col] = b;
+
                 }
             }
-
+            //this.OnKeyPress(OnTimerEvent);
+            ;
             SeaSquare square = seaSquares[3, 7];
             Ship ship = new Cruiser();
             ShipSquare sp = new ShipSquare(0, ship);
@@ -47,14 +50,27 @@ namespace Battleship
             {
                 Interval = 300
             };
-            timer1.Enabled = true;
+            //timer1.Enabled = true;
+
             timer1.Tick += new System.EventHandler(OnTimerEvent);
+            //this.Focus();
+        }
+
+        public void PressedKeyCheck(object sender, KeyPressEventArgs e)
+        {
+            //Console.WriteLine("Pressed Key = " + e.KeyChar);
+            if (e.KeyChar.Equals(' '))
+            {
+                Console.WriteLine("Ich bin die Spacetaste");
+                isActualOrientationHorizontally = !isActualOrientationHorizontally;
+            }
         }
 
         private void OnTimerEvent(object sender, System.EventArgs e)
         {
             Console.WriteLine("Test timer");
         }
+
 
         private void SeaSquareClicked(object sender, System.EventArgs e)
         {
@@ -101,8 +117,10 @@ namespace Battleship
                     }
                     //actualPosX = fieldSize - actualShip.ShipLength;
                     valid = CheckForShips(actualPosX, actualPosY, iX, iY);
+                    Console.WriteLine("" + valid);
                 }
                 isSelectionAllowed = valid && isSelectionAllowed;
+                Console.WriteLine("isSelectionAllowed = " + isSelectionAllowed);
 
             }
             if (!isSelectionAllowed)
@@ -110,12 +128,21 @@ namespace Battleship
                 for (int i = 0; i < actualShip.ShipLength; i++)
                 {
                     SetIXIYForOrientation(i, seaSquare, out iX, out iY, out actualPosIndex);
-                    if (actualPosIndex + actualShip.ShipLength < fieldSize)
+                    if (actualPosIndex + actualShip.ShipLength > fieldSize)
                     {
-                        if (!seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
+                        if (isActualOrientationHorizontally)
                         {
-                            seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToInvalid();
+                            actualPosY = fieldSize - actualShip.ShipLength;
                         }
+                        else
+                        {
+                            actualPosX = fieldSize - actualShip.ShipLength;
+                        }
+
+                    }
+                    if (!seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
+                    {
+                        seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToInvalid();
                     }
 
                 }
