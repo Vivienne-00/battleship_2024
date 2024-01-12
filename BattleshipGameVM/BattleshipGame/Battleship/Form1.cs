@@ -76,6 +76,18 @@ namespace Battleship
         {
             SeaSquare seaSquare = (SeaSquare)sender;
             Console.WriteLine(seaSquare.Text);
+            int partIndex = 0;
+            foreach (SeaSquare sq in actualSelectedSeaSquaresList)
+            {
+                if (sq.seaSquareState == SeaSquareState.Selected)
+                {
+                    Console.WriteLine("set ship here");
+                    Ship ship = new Cruiser();
+                    ShipSquare sp = new ShipSquare(partIndex, ship);
+                    sq.ShipSquare = sp;
+                    partIndex++;
+                }
+            }
         }
 
         private void MouseEnterSeaSquare(object sender, System.EventArgs e)
@@ -142,7 +154,7 @@ namespace Battleship
                     }
                     if (!seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
                     {
-                        seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToInvalid();
+                        seaSquares[actualPosX + iX, actualPosY + iY].SetSquareState(SeaSquareState.Occupied);
                     }
 
                 }
@@ -175,7 +187,7 @@ namespace Battleship
             }
             else
             {
-                seaSquares[actualPosX + iX, actualPosY + iY].SetBackgroundToSelected();
+                seaSquares[actualPosX + iX, actualPosY + iY].SetSquareState(SeaSquareState.Selected);
             }
             actualSelectedSeaSquaresList.Add(seaSquares[actualPosX + iX, actualPosY + iY]);
             return isSelectionAllowed;
@@ -191,7 +203,7 @@ namespace Battleship
                 }
                 else
                 {
-                    sq.SetBackgroundToStandard();
+                    sq.SetSquareState(SeaSquareState.Standard);
                 }
             }
 
