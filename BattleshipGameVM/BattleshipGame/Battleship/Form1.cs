@@ -74,21 +74,22 @@ namespace Battleship
 
         private void SeaSquareClicked(object sender, System.EventArgs e)
         {
-            SeaSquare seaSquare = (SeaSquare)sender;
-            Console.WriteLine(seaSquare.Text);
+            //SeaSquare seaSquare = (SeaSquare)sender;
+            //Console.WriteLine(seaSquare.Text);
             int partIndex = 0;
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
-                if (sq.seaSquareState == SeaSquareState.Selected)
+                if (sq.seaSquareState == SeaSquareState.Selected || sq.seaSquareState == SeaSquareState.Occupied)
                 {
                     Console.WriteLine("set ship here");
                     Ship ship = new Cruiser();
                     ShipSquare sp = new ShipSquare(partIndex, ship);
                     sq.ShipSquare = sp;
                     partIndex++;
+                    SetFoamAroundShip(sq);
                 }
             }
-            SetFoamAroundShip(seaSquare);
+
         }
 
         private void SetFoamAroundShip(SeaSquare sq)
@@ -100,7 +101,10 @@ namespace Battleship
                 int y = sq.position.Y + aroundIndex[i, 1];
                 if (x >= 0 && x < fieldSize && y >= 0 && y < fieldSize)
                 {
-                    seaSquares[x, y].SetSquareState(SeaSquareState.Occupied);
+                    if (!seaSquares[x, y].IsOccupiedByShipSquare())
+                    {
+                        seaSquares[x, y].SetSquareState(SeaSquareState.Occupied);
+                    }
                 }
                 Console.WriteLine("x = " + x + "y = " + y);
             }
