@@ -29,7 +29,10 @@
                     this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.seaInvalid));
                     break;
                 case SeaSquareState.Wave:
-                    // TODO: Welle
+                    this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.wave));
+                    break;
+                case SeaSquareState.Foam:
+                    this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.foam));
                     break;
                 default:
                     this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.sea));
