@@ -79,16 +79,23 @@ namespace Battleship
             int partIndex = 0;
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
-                if (sq.seaSquareState == SeaSquareState.Selected || sq.seaSquareState == SeaSquareState.Occupied)
+                if (sq.seaSquareState == SeaSquareState.Selected)
                 {
                     Console.WriteLine("set ship here");
                     Ship ship = new Cruiser();
                     ShipSquare sp = new ShipSquare(partIndex, ship);
                     sq.ShipSquare = sp;
                     partIndex++;
+                }
+            }
+            foreach (SeaSquare sq in actualSelectedSeaSquaresList)
+            {
+                if (sq.seaSquareState == SeaSquareState.Selected)
+                {
                     SetFoamAroundShip(sq);
                 }
             }
+
 
         }
 
@@ -103,7 +110,7 @@ namespace Battleship
                 {
                     if (!seaSquares[x, y].IsOccupiedByShipSquare())
                     {
-                        seaSquares[x, y].SetSquareState(SeaSquareState.Occupied);
+                        seaSquares[x, y].SetSquareState(SeaSquareState.Foam);
                     }
                 }
                 Console.WriteLine("x = " + x + "y = " + y);
@@ -136,6 +143,7 @@ namespace Battleship
                 if (actualPosIndex + actualShip.ShipLength <= fieldSize)
                 {
                     valid = CheckForShips(actualPosX, actualPosY, iX, iY);
+                    //valid = valid && CheckForSpaceAroundShip(actualPosX, actualPosY, iX, iY);
                 }
                 else
                 {
@@ -151,6 +159,7 @@ namespace Battleship
                     valid = CheckForShips(actualPosX, actualPosY, iX, iY);
                     Console.WriteLine("" + valid);
                 }
+                valid = valid && CheckForSpaceAroundShip(actualPosX, actualPosY, iX, iY);
                 isSelectionAllowed = valid && isSelectionAllowed;
                 Console.WriteLine("isSelectionAllowed = " + isSelectionAllowed);
 
@@ -197,6 +206,15 @@ namespace Battleship
                 actualPosIndex = seaSquare.position.X;
             }
         }
+        public bool CheckForSpaceAroundShip(int actualPosX, int actualPosY, int iX, int iY)
+        {
+            bool isPlaceAroundShip = true;
+            if (seaSquares[actualPosX + iX, actualPosY + iY].seaSquareState == SeaSquareState.Foam)
+            {
+                isPlaceAroundShip = false;
+            }
+            return isPlaceAroundShip;
+        }
 
         public bool CheckForShips(int actualPosX, int actualPosY, int iX, int iY)
         {
@@ -220,6 +238,10 @@ namespace Battleship
                 if (sq.IsOccupiedByShipSquare())
                 {
                     sq.ShipSquare.drawYourSelf(sq);
+                }
+                else if (sq.seaSquareState == SeaSquareState.Foam)
+                {
+
                 }
                 else
                 {
