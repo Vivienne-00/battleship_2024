@@ -1,5 +1,5 @@
 ﻿namespace Battleship {
-    partial class Form1 {
+    partial class GameScreen {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -28,17 +28,14 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1253, 847);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            ClientSize = new Size(1096, 635);
+            Name = "GameScreen";
+            Text = "BattleShipVM GameScreen";
             ResumeLayout(false);
         }
 
         #endregion
-
     }
 }

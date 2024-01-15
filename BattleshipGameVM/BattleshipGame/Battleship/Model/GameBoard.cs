@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Battleship.Model {
-    public class GameBoard {
-        private int size;
+﻿namespace Battleship.Model
+{
+    public class GameBoard
+    {
+        private int fieldSize;
         private SeaSquare[,] internalBoard;
-        public GameBoard(int size) {
-            this.size = size;
-            this.internalBoard = new SeaSquare[size, size];
+        public String BoardName { get; }
+        public GameBoard(int fieldSize, String BoardName)
+        {
+            this.fieldSize = fieldSize;
+            this.internalBoard = new SeaSquare[fieldSize, fieldSize];
+            this.BoardName = BoardName;
+        }
+
+        public SeaSquare[,] GetBoard()
+        {
+            return internalBoard;
+        }
+        public int GetFieldSize()
+        {
+            return fieldSize;
         }
     }
 }
