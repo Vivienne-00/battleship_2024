@@ -14,6 +14,8 @@ namespace Battleship
         SeaSquare[,] seaSquares;
 
         List<SeaSquare> actualSelectedSeaSquaresList = new List<SeaSquare>();
+        List<SeaSquareState> oldSelectedSeaSquareStates = new List<SeaSquareState>();
+
         bool isActualOrientationHorizontally = true;
 
         public Form1()
@@ -39,11 +41,22 @@ namespace Battleship
                 }
             }
             //this.OnKeyPress(OnTimerEvent);
-            ;
-            SeaSquare square = seaSquares[3, 7];
-            Ship ship = new Cruiser();
-            ShipSquare sp = new ShipSquare(0, ship);
-            square.ShipSquare = sp;
+            //SeaSquare square = seaSquares[3, 7];
+            //Ship ship = new Cruiser();
+            //ShipSquare sp = new ShipSquare(0, ship);
+            //square.ShipSquare = sp;
+
+            //Manuelles hinzufügen von Schiffen
+            actualShip = new Cruiser();
+            // SelectSeaSquareOnMouseEnter gibt einen bool zurück, wenn es möglich ist
+            // dann ist es true, wenn besetzt dann liefert es false
+            bool valid = SelectSeaSquareOnMouseEnter(seaSquares[0, 1]);
+            Console.WriteLine("test = " + valid);
+            SetShipsToSelectedSquares();
+            // valid2 wird auf false gesetzt, weil da schon ein Schiff ist und es nicht möglich ist.
+            bool valid2 = SelectSeaSquareOnMouseEnter(seaSquares[1, 1]);
+            ResetOldSelectedSquares();
+            Console.WriteLine("test2 = " + valid2);
 
 
             Timer timer1 = new Timer
@@ -54,6 +67,9 @@ namespace Battleship
 
             timer1.Tick += new System.EventHandler(OnTimerEvent);
             //this.Focus();
+
+
+            ResetField();
         }
 
         public void PressedKeyCheck(object sender, KeyPressEventArgs e)
@@ -61,7 +77,11 @@ namespace Battleship
             //Console.WriteLine("Pressed Key = " + e.KeyChar);
             if (e.KeyChar.Equals(' '))
             {
-                Console.WriteLine("Ich bin die Spacetaste");
+
+            }
+            if (e.KeyChar.Equals('r'))
+            {
+                Console.WriteLine("Ich bin die r-Taste");
                 isActualOrientationHorizontally = !isActualOrientationHorizontally;
             }
         }
@@ -76,27 +96,37 @@ namespace Battleship
         {
             //SeaSquare seaSquare = (SeaSquare)sender;
             //Console.WriteLine(seaSquare.Text);
+            SetShipsToSelectedSquares();
+        }
+
+        /// <summary>
+        /// Auf die ausgewählten SeaSquares werden Schiffe gesetzt falls der SeaSquareState == Selected
+        /// Nachfolgend wird rundherum Foam gesetzt um den Rand eines Schiffes zu markieren.
+        /// </summary>
+        private void SetShipsToSelectedSquares()
+        {
             int partIndex = 0;
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
                 if (sq.seaSquareState == SeaSquareState.Selected)
                 {
-                    Console.WriteLine("set ship here");
-                    Ship ship = new Cruiser();
-                    ShipSquare sp = new ShipSquare(partIndex, ship);
-                    sq.ShipSquare = sp;
-                    partIndex++;
+                    if (!sq.IsOccupiedByShipSquare())
+                    {
+                        Console.WriteLine("set ship here");
+                        Ship ship = new Cruiser();
+                        ShipSquare sp = new ShipSquare(partIndex, ship);
+                        sq.ShipSquare = sp;
+                        partIndex++;
+                    }
                 }
             }
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
-                if (sq.seaSquareState == SeaSquareState.Selected)
+                if (sq.IsOccupiedByShipSquare())
                 {
                     SetFoamAroundShip(sq);
                 }
             }
-
-
         }
 
         private void SetFoamAroundShip(SeaSquare sq)
@@ -113,16 +143,26 @@ namespace Battleship
                         seaSquares[x, y].SetSquareState(SeaSquareState.Foam);
                     }
                 }
-                Console.WriteLine("x = " + x + "y = " + y);
+                //Console.WriteLine("x = " + x + "y = " + y);
             }
         }
 
         private void MouseEnterSeaSquare(object sender, System.EventArgs e)
         {
+            SelectSeaSquareOnMouseEnter((SeaSquare)sender);
+        }
+
+        /// <summary>
+        /// selektiert die Anzahl Felder des aktuellen Schiffes
+        /// </summary>
+        /// <param name="sq"></param>
+        private bool SelectSeaSquareOnMouseEnter(SeaSquare sq)
+        {
             actualSelectedSeaSquaresList.Clear();
-            SeaSquare seaSquare = (SeaSquare)sender;
+            oldSelectedSeaSquareStates.Clear();
+            SeaSquare seaSquare = sq;
             Console.WriteLine(seaSquare.Text);
-            SetSelected(seaSquare);
+            return SetSelected(seaSquare);
         }
 
         private bool SetSelected(SeaSquare seaSquare)
@@ -159,7 +199,7 @@ namespace Battleship
                     valid = CheckForShips(actualPosX, actualPosY, iX, iY);
                     Console.WriteLine("" + valid);
                 }
-                valid = valid && CheckForSpaceAroundShip(actualPosX, actualPosY, iX, iY);
+                valid = valid && !IsThisSpaceAroundShip(actualPosX, actualPosY, iX, iY);
                 isSelectionAllowed = valid && isSelectionAllowed;
                 Console.WriteLine("isSelectionAllowed = " + isSelectionAllowed);
 
@@ -206,12 +246,12 @@ namespace Battleship
                 actualPosIndex = seaSquare.position.X;
             }
         }
-        public bool CheckForSpaceAroundShip(int actualPosX, int actualPosY, int iX, int iY)
+        public bool IsThisSpaceAroundShip(int actualPosX, int actualPosY, int iX, int iY)
         {
-            bool isPlaceAroundShip = true;
+            bool isPlaceAroundShip = false;
             if (seaSquares[actualPosX + iX, actualPosY + iY].seaSquareState == SeaSquareState.Foam)
             {
-                isPlaceAroundShip = false;
+                isPlaceAroundShip = true;
             }
             return isPlaceAroundShip;
         }
@@ -219,7 +259,12 @@ namespace Battleship
         public bool CheckForShips(int actualPosX, int actualPosY, int iX, int iY)
         {
             bool isSelectionAllowed = true;
+            oldSelectedSeaSquareStates.Add(seaSquares[actualPosX + iX, actualPosY + iY].seaSquareState);
             if (seaSquares[actualPosX + iX, actualPosY + iY].IsOccupiedByShipSquare())
+            {
+                isSelectionAllowed = false;
+            }
+            else if (seaSquares[actualPosX + iX, actualPosY + iY].seaSquareState == SeaSquareState.Foam)
             {
                 isSelectionAllowed = false;
             }
@@ -233,24 +278,38 @@ namespace Battleship
 
         private void MouseLeaveOverSeaSquare(object sender, System.EventArgs e)
         {
+            ResetOldSelectedSquares();
+        }
+
+        private void ResetOldSelectedSquares()
+        {
+            int i = 0;
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
                 if (sq.IsOccupiedByShipSquare())
                 {
                     sq.ShipSquare.drawYourSelf(sq);
                 }
-                else if (sq.seaSquareState == SeaSquareState.Foam)
-                {
-
-                }
                 else
                 {
-                    sq.SetSquareState(SeaSquareState.Standard);
+                    sq.SetSquareState(oldSelectedSeaSquareStates[i]);
+                }
+                i++;
+            }
+        }
+        /// <summary>
+        /// Um die Schiffe zu Beginn anzuzeigen.
+        /// </summary>
+        private void ResetField()
+        {
+            foreach (SeaSquare sq in seaSquares)
+            {
+                if (sq.IsOccupiedByShipSquare())
+                {
+                    sq.ShipSquare.drawYourSelf(sq);
                 }
             }
-
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
