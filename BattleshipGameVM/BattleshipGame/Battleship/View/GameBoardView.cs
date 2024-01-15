@@ -80,7 +80,21 @@ namespace Battleship.View
 
             ResetField();
         }
-
+        private void StartBacktracking()
+        {
+            List<Ship> shipList = new List<Ship>();
+            shipList.Add(new );
+            for (int i = 0; i < 4; i++)
+            {
+                shipList.Add(new Submarine());
+            }
+            BackTracking(shipList);
+        }
+        private bool BackTracking(List<Ship> ships)
+        {
+            bool valid = false;
+            return valid;
+        }
 
         public void PressedKeyCheck(object sender, KeyPressEventArgs e)
         {
