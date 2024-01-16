@@ -8,10 +8,5 @@
             this.shipType = "Battleship";
             this.ShipColor = Color.DarkBlue;
         }
-
-        public static Ship GetShip()
-        {
-            return new Battleship();
-        }
     }
 }

@@ -44,7 +44,6 @@ namespace Battleship.View
                     seaSquare.KeyPress += new System.Windows.Forms.KeyPressEventHandler(PressedKeyCheck);
                     this.form.Controls.Add(seaSquare);
                     this.internalBoard[row, col] = seaSquare;
-
                 }
             }
             //this.OnKeyPress(OnTimerEvent);
@@ -79,19 +78,33 @@ namespace Battleship.View
 
 
             ResetField();
+            StartBacktracking();
         }
         private void StartBacktracking()
         {
             List<Ship> shipList = new List<Ship>();
-            shipList.Add(new );
-            for (int i = 0; i < 4; i++)
-            {
-                shipList.Add(new Submarine());
-            }
+
+            AddShipsTo(new Submarine(), shipList, 4);
+            AddShipsTo(new Destroyer(), shipList, 3);
+            AddShipsTo(new Cruiser(), shipList, 2);
+            AddShipsTo(new Model.ShipModel.Battleship(), shipList, 1);
+
             BackTracking(shipList);
+        }
+
+        private void AddShipsTo(Ship ship, List<Ship> list, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(ShipCreator.GetNewShip(ship));
+            }
+
         }
         private bool BackTracking(List<Ship> ships)
         {
+            Random rnd = new Random();
+            int index = rnd.Next(ships.Count);
+            Console.WriteLine("zufälliges Schiff = " + ships[index]);
             bool valid = false;
             return valid;
         }

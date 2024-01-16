@@ -8,11 +8,6 @@
             this.shipType = "Submarine";
             this.ShipColor = Color.DarkBlue;
         }
-
-        public static Ship GetShip()
-        {
-            return new Submarine();
-        }
     }
 
 }

@@ -12,8 +12,6 @@
         public int DamagedParts { get; }
         public Color ShipColor { get; protected set; }
         public Image ShipImage { get; protected set; }
-
-
         /// <summary>
         /// Selbstdarstellung
         /// </summary>

@@ -11,10 +11,5 @@
             this.shipType = "Cruiser";
             this.ShipImage = Properties.Resources.ship;
         }
-
-        public static Ship GetShip()
-        {
-            return new Cruiser();
-        }
     }
 }

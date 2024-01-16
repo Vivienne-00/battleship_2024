@@ -8,11 +8,5 @@
             this.shipType = "Destroyer";
             this.ShipColor = Color.DarkBlue;
         }
-
-
-        public static Ship GetShip()
-        {
-            return new Destroyer();
-        }
     }
 }
