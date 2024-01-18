@@ -33,6 +33,20 @@ namespace Battleship
 
             controller.InitializeGame();
 
+            Button b = new Button();
+            b.Text = "Neuer Backtracking";
+            b.Location = new Point(30, 400);
+            b.Size = new Size(90, 40);
+            b.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
+            this.Controls.Add(b);
+
+            Button c = new Button();
+            c.Text = "Neuer Backtracking";
+            c.Location = new Point(30, 450);
+            b.Size = new Size(80, 40);
+            c.Click += new System.EventHandler(player1GameBoardView.ClearBoard);
+            this.Controls.Add(c);
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //Application.Run(this);

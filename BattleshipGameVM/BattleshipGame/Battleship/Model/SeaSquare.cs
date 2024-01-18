@@ -7,6 +7,7 @@
         public ShipSquare ShipSquare { get; set; }
         public bool IsSpaceAroundShip { get; set; }
         public SeaSquareState seaSquareState { get; set; }
+        public bool Visited = false;
 
         public SeaSquare(Coordinate position, ShipSquare shipSquare = null)
         {

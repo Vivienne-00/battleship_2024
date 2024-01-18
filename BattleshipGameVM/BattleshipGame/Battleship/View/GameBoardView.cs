@@ -78,18 +78,44 @@ namespace Battleship.View
 
 
             ResetField();
-            StartBacktracking();
+            //StartThreadedBacktracking();
+        }
+
+        private void StartThreadedBacktracking()
+        {
+            Thread backtracking = new Thread(StartBacktracking);
+            backtracking.Start();
+        }
+
+        public void StartBacktracking(object sender, System.EventArgs e)
+        {
+            StartThreadedBacktracking();
         }
         private void StartBacktracking()
         {
             List<Ship> shipList = new List<Ship>();
-
+            //Schiffe zur Liste hinzufügen
             AddShipsTo(new Submarine(), shipList, 4);
             AddShipsTo(new Destroyer(), shipList, 3);
             AddShipsTo(new Cruiser(), shipList, 2);
             AddShipsTo(new Model.ShipModel.Battleship(), shipList, 1);
+            Random rand = new Random();
+            shipList = shipList.OrderBy(_ => rand.Next()).ToList();
+            int index = 0;
+            foreach (Ship ship in shipList)
+            {
+                Console.WriteLine("schiff nr. " + index++ + " " + ship.GetType());
+            }
 
-            BackTracking(shipList);
+            if (BackTracking(shipList))
+            {
+                Console.WriteLine("Erfolgreiches Backtracking!");
+            }
+            else
+            {
+                Console.WriteLine("Backtracking fehlgeschlagen!");
+            }
+            ResetField();
         }
 
         private void AddShipsTo(Ship ship, List<Ship> list, int count)
@@ -100,13 +126,94 @@ namespace Battleship.View
             }
 
         }
-        private bool BackTracking(List<Ship> ships)
+
+        private SeaSquare GetNextFreeRandomField()
+        {
+            List<SeaSquare> list = new List<SeaSquare>();
+            foreach (SeaSquare sq in this.internalBoard)
+            {
+                if (sq.seaSquareState == SeaSquareState.Foam)
+                {
+                    continue;
+                }
+                if (sq.IsOccupiedByShipSquare())
+                {
+                    continue;
+                }
+                list.Add(sq);
+            }
+            Random random = new Random();
+            SeaSquare randomSquare = list[random.Next(list.Count)];
+            //list.Remove(randomSquare);
+            //randomSquare.Visited = true;
+            return randomSquare;
+        }
+
+        private Ship GetRandomShip(List<Ship> list)
         {
             Random rnd = new Random();
-            int index = rnd.Next(ships.Count);
-            Console.WriteLine("zufälliges Schiff = " + ships[index]);
-            bool valid = false;
-            return valid;
+            int index = rnd.Next(list.Count);
+            Ship randomShip = list[index];
+            list.RemoveAt(index);//Ship wird aus der Liste gelöscht
+            return randomShip;
+        }
+        private bool BackTracking(List<Ship> ships)
+        {
+            if (ships.Count == 0)
+            {
+                return true;
+            }
+            //List<Ship> shipsToTry = new List<Ship>(ships);
+            SeaSquare randomSeaSquare = GetNextFreeRandomField();
+            while (randomSeaSquare != null)
+            {
+                List<Ship> shipsToTry = new List<Ship>(ships);
+                Ship randomShip = GetRandomShip(shipsToTry);
+                this.actualShip = randomShip;
+                //SeaSquare randomSeaSquare = GetNextFreeRandomField();
+                //if (randomSeaSquare == null) return false;
+                Thread.Sleep(1000);
+                Random rand = new Random();
+                isActualOrientationHorizontally = rand.Next(1) == 0 ? true : false;
+                bool valid = SelectSeaSquareOnMouseEnter(randomSeaSquare);
+                if (valid)
+                {
+                    SetShipsToSelectedSquares();
+                    ships.Remove(randomShip);
+                    if (BackTracking(ships))
+                    {
+                        return true;
+                    }
+                    this.actualShip = randomShip;
+                    RemoveShipFromBoard();
+                    ships.Add(randomShip);
+                }
+                else
+                {
+                    ResetOldSelectedSquares();
+                }
+
+                isActualOrientationHorizontally = !isActualOrientationHorizontally;
+                valid = SelectSeaSquareOnMouseEnter(randomSeaSquare);
+                if (valid)
+                {
+                    SetShipsToSelectedSquares();
+                    ships.Remove(randomShip);
+                    if (BackTracking(ships))
+                    {
+                        return true;
+                    }
+                    this.actualShip = randomShip;
+                    RemoveShipFromBoard();
+                    ships.Add(randomShip);
+                }
+                else { ResetOldSelectedSquares(); }
+                ResetField();
+                randomSeaSquare = GetNextFreeRandomField();
+            }
+            return false;
+            //Console.WriteLine("zufälliges Schiff = " + ships[index]);
+            //bool valid = false;
         }
 
         public void PressedKeyCheck(object sender, KeyPressEventArgs e)
@@ -335,6 +442,33 @@ namespace Battleship.View
                 i++;
             }
         }
+
+        /// <summary>
+        /// Nimmt den Schiff zurück
+        /// </summary>
+        private void RemoveShipFromBoard()
+        {
+            int i = 0;
+            foreach (SeaSquare sq in actualSelectedSeaSquaresList)
+            {
+                sq.ShipSquare = null;
+                sq.SetSquareState(SeaSquareState.Standard);
+            }
+            foreach (SeaSquare sq in this.internalBoard)
+            {
+                if (!sq.IsOccupiedByShipSquare())
+                {
+                    sq.SetSquareState(SeaSquareState.Standard);
+                }
+            }
+            foreach (SeaSquare sq in this.internalBoard)
+            {
+                if (sq.IsOccupiedByShipSquare())
+                {
+                    SetFoamAroundShip(sq);
+                }
+            }
+        }
         /// <summary>
         /// Um die Schiffe zu Beginn anzuzeigen.
         /// </summary>
@@ -348,6 +482,14 @@ namespace Battleship.View
                 }
             }
         }
+        public void ClearBoard(object sender, System.EventArgs e)
+        {
+            foreach (SeaSquare sq in this.internalBoard)
+            {
+                sq.SetSquareState(SeaSquareState.Standard);
+                sq.ShipSquare = null;
+            }
+        }
 
         public void SetController(BattleshipGameController controller)
         {
@@ -358,5 +500,6 @@ namespace Battleship.View
         {
             Debug.WriteLine($"GameBoardView: New gamestate: {game.CurrentState}");
         }
+
     }
 }
