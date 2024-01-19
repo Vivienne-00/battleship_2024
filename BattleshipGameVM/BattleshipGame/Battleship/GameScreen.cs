@@ -17,7 +17,7 @@ namespace Battleship
             this.Size = new Size(800, 400);
 
             // Grösse des Boardes schon ausgewählt.
-            int fieldSize = 10;
+            int fieldSize = 4;
             game.Player1Board = new GameBoard(fieldSize, "EMC");
             game.Player2Board = new GameBoard(fieldSize, "MV");
 
