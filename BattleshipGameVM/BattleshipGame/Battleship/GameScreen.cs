@@ -1,5 +1,6 @@
 using Battleship.Controller;
 using Battleship.Model;
+using Battleship.Model.ShipModel;
 using Battleship.View;
 
 namespace Battleship
@@ -17,7 +18,7 @@ namespace Battleship
             this.Size = new Size(800, 400);
 
             // Grösse des Boardes schon ausgewählt.
-            int fieldSize = 4;
+            int fieldSize = 8;
             game.Player1Board = new GameBoard(fieldSize, "EMC");
             game.Player2Board = new GameBoard(fieldSize, "MV");
 
@@ -40,8 +41,15 @@ namespace Battleship
             b.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
             this.Controls.Add(b);
 
+
+
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(4);
+            List<Ship> ships = btbs.SetEasyCountShips();
+            btbs.Backtracking(ships);
+            btbs.PrintField();
+
             Button c = new Button();
-            c.Text = "Neuer Backtracking";
+            c.Text = "New Backtracking";
             c.Location = new Point(30, 450);
             b.Size = new Size(80, 40);
             c.Click += new System.EventHandler(player1GameBoardView.ClearBoard);

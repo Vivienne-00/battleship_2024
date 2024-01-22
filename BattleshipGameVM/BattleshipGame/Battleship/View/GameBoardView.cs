@@ -108,13 +108,13 @@ namespace Battleship.View
 
             List<Ship> shipList = new List<Ship>();
             //Schiffe zur Liste hinzufügen
-            //AddShipsTo(new Submarine(), shipList, 4);
-            //AddShipsTo(new Destroyer(), shipList, 3);
-            //AddShipsTo(new Cruiser(), shipList, 2);
-            //AddShipsTo(new Model.ShipModel.Battleship(), shipList, 1);
+            AddShipsTo(new Submarine(), shipList, 4);
+            AddShipsTo(new Destroyer(), shipList, 3);
+            AddShipsTo(new Cruiser(), shipList, 2);
+            AddShipsTo(new Model.ShipModel.Battleship(), shipList, 1);
 
             //Test for 3x3
-            AddShipsTo(new Submarine(), shipList, 4);
+            //AddShipsTo(new Submarine(), shipList, 4);
             //AddShipsTo(new Destroyer(), shipList, 1);
 
             Random rand = new Random();
@@ -125,7 +125,7 @@ namespace Battleship.View
                 Console.WriteLine("schiff nr. " + index++ + " " + ship.GetType());
             }
 
-            if (BackTracking2(shipList))
+            if (BackTracking(shipList))
             {
                 Console.WriteLine("Erfolgreiches Backtracking!");
             }
@@ -171,6 +171,10 @@ namespace Battleship.View
                     continue;
                 }
                 list.Add(sq);
+            }
+            if (list.Count == 0)
+            {
+                numberOfFreeSpace = 0; return null;
             }
             Random random = new Random();
             SeaSquare randomSquare = list[random.Next(list.Count)];
