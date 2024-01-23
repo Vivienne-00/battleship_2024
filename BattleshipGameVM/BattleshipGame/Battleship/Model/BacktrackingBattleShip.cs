@@ -1,4 +1,5 @@
 ﻿using Battleship.Model.ShipModel;
+using System.Collections;
 
 namespace Battleship.Model
 {
@@ -10,11 +11,16 @@ namespace Battleship.Model
         private SeaSquare[,] seaSquares;
 
         private long roundCounter = 0;
+        private Random rand;
+
+        private Hashtable shipHistory;
 
         public BacktrackingBattleShip(int size)
         {
             field = new String[size, size];
             ships = new String[size, size];
+            rand = new Random();
+            shipHistory = new Hashtable();
 
             for (int row = 0; row < size; row++)
             {
@@ -25,17 +31,21 @@ namespace Battleship.Model
             }
 
             // Tests
-            //Console.WriteLine(IsOccupied(new Coordinate(0, 0)));
-            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 0), true));
-            //CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 0), true);
-            //PlaceShip(new Submarine(), new Coordinate(0, 0), true);
-            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 0), true));
+            //Console.WriteLine(IsOccupied(new Coordinate(0, 8)));
+            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 8), false));
+            ////CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 0), true);
+            //PlaceShip(new Submarine(), new Coordinate(0, 8), false);
+            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(0, 8), false));
+            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(1, 7), true));
+            //Console.WriteLine(CheckForShipAtPlaceIsPossible(new Submarine(), new Coordinate(2, 7), true));
+
+            //PlaceShip(new Submarine(), new Coordinate(2, 7), true);
             //List<Coordinate> places = GetFreeFields();
             //foreach (Coordinate coord in places)
             //{
             //    Console.WriteLine(coord.X + " " + coord.Y);
             //}
-            //PrintField();
+            PrintField();
         }
 
         public void SetSeaSquareBoard(SeaSquare[,] seaSquares)
@@ -67,6 +77,12 @@ namespace Battleship.Model
             return shipList;
         }
 
+        /// <summary>
+        /// Fügt die Anzahl Schiffe der Liste hinzu.
+        /// </summary>
+        /// <param name="ship"></param>
+        /// <param name="list"></param>
+        /// <param name="count"></param>
         private void AddShipsTo(Ship ship, List<Ship> list, int count)
         {
             for (int i = 0; i < count; i++)
@@ -82,47 +98,32 @@ namespace Battleship.Model
             if (shipList.Count == 0) return true;
             List<Coordinate> coordinates = GetFreeFields();
             if (coordinates.Count == 0) return false;
+            if (GetNumberOfShipsPartsTotal(shipList) > coordinates.Count) return false;
 
+            if (rand.Next(10) < 5)
+            {
+                coordinates.Reverse();
+            }
             foreach (Coordinate coord in coordinates)
             {
+                shipList = shipList.OrderBy(_ => rand.Next()).ToList();
+
                 foreach (Ship ship in shipList)
                 {
-                    if (roundCounter++ % 100000 == 0)
+                    bool randomDirection = rand.Next(10) < 5 ? true : false;
+                    if (roundCounter++ % 10000000 == 0)
                     {
                         Console.WriteLine("Ships to place = " + shipList.Count);
                         PrintField();
                     }
-                    if (CheckForShipAtPlaceIsPossible(ship, coord, true))
+                    if (CheckForShipAtPlaceIsPossible(ship, coord, randomDirection))
                     {
-                        if (BacktrackingHelper(ship, coord, true, shipList)) return true;
-                        //List<Ship> nextShips = new List<Ship>(shipList);
-                        //nextShips.Remove(ship);
-                        //String[,] oldField = this.field.Clone() as String[,];
-                        //PlaceShip(ship, coord, true);
-                        //if (Backtracking(nextShips))
-                        //{
-                        //    return true;
-                        //}
-                        //else
-                        //{
-                        //    this.field = oldField;
-                        //}
+                        if (BacktrackingHelper(ship, coord, randomDirection, shipList)) return true;
                     }
-                    if (CheckForShipAtPlaceIsPossible(ship, coord, false))
+                    randomDirection = !randomDirection;
+                    if (CheckForShipAtPlaceIsPossible(ship, coord, randomDirection))
                     {
-                        if (BacktrackingHelper(ship, coord, false, shipList)) return true;
-                        //List<Ship> nextShips = new List<Ship>(shipList);
-                        //nextShips.Remove(ship);
-                        //String[,] oldField = this.field.Clone() as String[,];
-                        //PlaceShip(ship, coord, false);
-                        //if (Backtracking(nextShips))
-                        //{
-                        //    return true;
-                        //}
-                        //else
-                        //{
-                        //    this.field = oldField;
-                        //}
+                        if (BacktrackingHelper(ship, coord, randomDirection, shipList)) return true;
                     }
                 }
             }
@@ -135,18 +136,39 @@ namespace Battleship.Model
             nextShips.Remove(ship);
             String[,] oldField = this.field.Clone() as String[,];
             PlaceShip(ship, coord, isHorizontal);
+            SaveHistoryOfPlaceShips(ship, coord, isHorizontal);
             if (Backtracking(nextShips))
             {
                 return true;
             }
             else
             {
+                RemoveShipFromHistory(coord, isHorizontal);
                 this.field = oldField;
                 return false;
             }
 
         }
 
+        private void SaveHistoryOfPlaceShips(Ship ship, Coordinate coordinate, bool isHorizontal)
+        {
+            this.shipHistory.Add(coordinate.ToString() + " " + (isHorizontal ? "h" : "v"), ship);
+        }
+
+        private void RemoveShipFromHistory(Coordinate coord, bool isHorizontal)
+        {
+            this.shipHistory.Remove(coord.ToString() + " " + (isHorizontal ? "h" : "v"));
+        }
+
+        public void PrintHistory()
+        {
+            foreach (DictionaryEntry h in this.shipHistory)
+            {
+                String c = (String)h.Key;
+                Ship ship = (Ship)h.Value;
+                Console.WriteLine(ship.shipType + "  -> " + c);
+            }
+        }
 
         private List<Coordinate> GetFreeFields()
         {
@@ -162,6 +184,16 @@ namespace Battleship.Model
                 }
             }
             return fields;
+        }
+
+        private int GetNumberOfShipsPartsTotal(List<Ship> ships)
+        {
+            int sum = 0;
+            foreach (Ship ship in ships)
+            {
+                sum += ship.ShipLength;
+            }
+            return sum;
         }
 
         private bool CheckForShipAtPlaceIsPossible(Ship ship, Coordinate coordinate, bool isHorizontal)

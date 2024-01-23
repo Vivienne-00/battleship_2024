@@ -140,7 +140,7 @@ namespace Battleship.View
         private List<Ship> ShuffleList(List<Ship> ships)
         {
             Random rand = new Random();
-            return ships.OrderBy(_ => rand.Next()).ToList(); ;
+            return ships.OrderBy(_ => rand.Next()).ToList();
         }
         private List<SeaSquare> ShuffleList(List<SeaSquare> seaSquare)
         {
