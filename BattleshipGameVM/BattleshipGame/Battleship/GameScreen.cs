@@ -43,9 +43,9 @@ namespace Battleship
 
 
 
-            BacktrackingBattleShip btbs = new BacktrackingBattleShip(4);
-            List<Ship> ships = btbs.SetEasyCountShips();
-            btbs.Backtracking(ships);
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(8);
+            List<Ship> ships = btbs.SetNormalCountShips();
+            Console.WriteLine("Backtracking " + (btbs.Backtracking(ships) ? "erfolgreich" : "fehlgeschlagen"));
             btbs.PrintField();
 
             Button c = new Button();

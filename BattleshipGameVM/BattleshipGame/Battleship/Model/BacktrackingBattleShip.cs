@@ -7,6 +7,10 @@ namespace Battleship.Model
         private String[,] field;
         private String[,] ships;
 
+        private SeaSquare[,] seaSquares;
+
+        private long roundCounter = 0;
+
         public BacktrackingBattleShip(int size)
         {
             field = new String[size, size];
@@ -32,6 +36,16 @@ namespace Battleship.Model
             //    Console.WriteLine(coord.X + " " + coord.Y);
             //}
             //PrintField();
+        }
+
+        public void SetSeaSquareBoard(SeaSquare[,] seaSquares)
+        {
+            this.seaSquares = seaSquares;
+        }
+
+        private void MapperFieldToSeaSquares()
+        {
+
         }
 
         public List<Ship> SetNormalCountShips()
@@ -64,31 +78,75 @@ namespace Battleship.Model
 
         public bool Backtracking(List<Ship> shipList)
         {
-            if (shipList == null) return true;
+            //PrintField();
+            if (shipList.Count == 0) return true;
             List<Coordinate> coordinates = GetFreeFields();
             if (coordinates.Count == 0) return false;
+
             foreach (Coordinate coord in coordinates)
             {
                 foreach (Ship ship in shipList)
                 {
+                    if (roundCounter++ % 100000 == 0)
+                    {
+                        Console.WriteLine("Ships to place = " + shipList.Count);
+                        PrintField();
+                    }
                     if (CheckForShipAtPlaceIsPossible(ship, coord, true))
                     {
-                        List<Ship> nextShips = new List<Ship>(shipList);
-                        nextShips.Remove(ship);
-                        String[,] oldField = this.field.Clone() as String[,];
-                        if (Backtracking(nextShips))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            this.field = oldField;
-                        }
+                        if (BacktrackingHelper(ship, coord, true, shipList)) return true;
+                        //List<Ship> nextShips = new List<Ship>(shipList);
+                        //nextShips.Remove(ship);
+                        //String[,] oldField = this.field.Clone() as String[,];
+                        //PlaceShip(ship, coord, true);
+                        //if (Backtracking(nextShips))
+                        //{
+                        //    return true;
+                        //}
+                        //else
+                        //{
+                        //    this.field = oldField;
+                        //}
+                    }
+                    if (CheckForShipAtPlaceIsPossible(ship, coord, false))
+                    {
+                        if (BacktrackingHelper(ship, coord, false, shipList)) return true;
+                        //List<Ship> nextShips = new List<Ship>(shipList);
+                        //nextShips.Remove(ship);
+                        //String[,] oldField = this.field.Clone() as String[,];
+                        //PlaceShip(ship, coord, false);
+                        //if (Backtracking(nextShips))
+                        //{
+                        //    return true;
+                        //}
+                        //else
+                        //{
+                        //    this.field = oldField;
+                        //}
                     }
                 }
             }
             return false;
         }
+
+        private bool BacktrackingHelper(Ship ship, Coordinate coord, bool isHorizontal, List<Ship> shipList)
+        {
+            List<Ship> nextShips = new List<Ship>(shipList);
+            nextShips.Remove(ship);
+            String[,] oldField = this.field.Clone() as String[,];
+            PlaceShip(ship, coord, isHorizontal);
+            if (Backtracking(nextShips))
+            {
+                return true;
+            }
+            else
+            {
+                this.field = oldField;
+                return false;
+            }
+
+        }
+
 
         private List<Coordinate> GetFreeFields()
         {
@@ -128,7 +186,7 @@ namespace Battleship.Model
             {
                 for (int i = 0; i < ship.ShipLength; i++)
                 {
-                    Coordinate c = new Coordinate(this.field.GetLength(0) - ship.ShipLength + i + indexCol * (coordinate.X - 1), this.field.GetLength(0) - ship.ShipLength + indexCol * i + indexRow * (coordinate.Y - 1));
+                    Coordinate c = new Coordinate((this.field.GetLength(0) - ship.ShipLength + i) * indexRow + indexCol * coordinate.X, (this.field.GetLength(0) - ship.ShipLength + i) * indexCol + indexRow * coordinate.Y);
                     if (IsOccupied(c))
                     {
                         return false;
@@ -156,7 +214,7 @@ namespace Battleship.Model
             {
                 for (int i = 0; i < ship.ShipLength; i++)
                 {
-                    Coordinate c = new Coordinate(this.field.GetLength(0) - ship.ShipLength + i + indexCol * coordinate.X, this.field.GetLength(0) - ship.ShipLength + indexCol * i + indexRow * coordinate.Y);
+                    Coordinate c = new Coordinate((this.field.GetLength(0) - ship.ShipLength + i) * indexRow + indexCol * coordinate.X, (this.field.GetLength(0) - ship.ShipLength + i) * indexCol + indexRow * coordinate.Y);
                     this.field[c.X, c.Y] = "S";
                 }
             }
@@ -204,6 +262,7 @@ namespace Battleship.Model
 
         public void PrintField()
         {
+            Console.WriteLine(roundCounter + ")");
             //String[,] oldField = field.Clone() as String[,];
             for (int row = 0; row < field.GetLength(0); row++)
             {
@@ -213,6 +272,8 @@ namespace Battleship.Model
                 }
                 Console.WriteLine("");
             }
+            Console.WriteLine("");
+            Console.WriteLine("==========");
         }
     }
 }
