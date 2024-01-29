@@ -26,5 +26,15 @@
         {
 
         }
+
+        private void buttonMenuScreen_Click(object sender, EventArgs e)
+        {
+            MenuScreen menuScreen = new MenuScreen();
+            menuScreen.StartPosition = FormStartPosition.Manual;
+            menuScreen.Location = new Point(0, 0);
+            this.Hide();
+            menuScreen.ShowDialog();
+            this.Close();
+        }
     }
 }

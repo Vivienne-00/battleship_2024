@@ -32,6 +32,7 @@
             buttonGerman = new Button();
             buttonSpanish = new Button();
             buttonJapanese = new Button();
+            buttonMenuScreen = new Button();
             SuspendLayout();
             // 
             // buttonEnglish
@@ -76,11 +77,23 @@
             buttonJapanese.Text = "Japanisch";
             buttonJapanese.UseVisualStyleBackColor = true;
             // 
+            // buttonMenuScreen
+            // 
+            buttonMenuScreen.Font = new Font("Segoe UI", 18F);
+            buttonMenuScreen.Location = new Point(365, 417);
+            buttonMenuScreen.Name = "buttonMenuScreen";
+            buttonMenuScreen.Size = new Size(197, 62);
+            buttonMenuScreen.TabIndex = 7;
+            buttonMenuScreen.Text = "Hauptmenü";
+            buttonMenuScreen.UseVisualStyleBackColor = true;
+            buttonMenuScreen.Click += buttonMenuScreen_Click;
+            // 
             // SettingsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 501);
+            Controls.Add(buttonMenuScreen);
             Controls.Add(buttonEnglish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonSpanish);
@@ -96,5 +109,6 @@
         private Button buttonGerman;
         private Button buttonSpanish;
         private Button buttonJapanese;
+        private Button buttonMenuScreen;
     }
 }
