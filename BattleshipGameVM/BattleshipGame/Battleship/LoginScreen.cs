@@ -58,11 +58,11 @@ namespace Battleship
             // File.WriteAllText(filePath, json);
             // MessageBox.Show("Data saved to " + filePath);
 
-            GameScreen gameScreen = new GameScreen();
-            gameScreen.StartPosition = FormStartPosition.Manual;
-            gameScreen.Location = new Point(0, 0);
+            GameBoardSizeScreen gameBoardSizeScreen = new GameBoardSizeScreen();
+            gameBoardSizeScreen.StartPosition = FormStartPosition.Manual;
+            gameBoardSizeScreen.Location = new Point(0, 0);
             this.Hide();
-            gameScreen.ShowDialog();
+            gameBoardSizeScreen.ShowDialog();
             this.Close();
         }
     }
