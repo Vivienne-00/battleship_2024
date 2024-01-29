@@ -28,18 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
+            buttonGameModeHuman = new Button();
+            buttonGameModeComputer = new Button();
+            labelGameMode = new Label();
             SuspendLayout();
+            // 
+            // buttonGameModeHuman
+            // 
+            buttonGameModeHuman.BackColor = Color.FromArgb(180, 210, 255);
+            buttonGameModeHuman.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
+            buttonGameModeHuman.Font = new Font("Segoe UI", 20F);
+            buttonGameModeHuman.Location = new Point(336, 276);
+            buttonGameModeHuman.Name = "buttonGameModeHuman";
+            buttonGameModeHuman.Size = new Size(275, 85);
+            buttonGameModeHuman.TabIndex = 5;
+            buttonGameModeHuman.Text = "Mensch";
+            buttonGameModeHuman.UseVisualStyleBackColor = false;
+            buttonGameModeHuman.Click += buttonGameModeHuman_Click;
+            // 
+            // buttonGameModeComputer
+            // 
+            buttonGameModeComputer.BackColor = Color.FromArgb(180, 210, 255);
+            buttonGameModeComputer.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
+            buttonGameModeComputer.Font = new Font("Segoe UI", 20F);
+            buttonGameModeComputer.Location = new Point(336, 395);
+            buttonGameModeComputer.Name = "buttonGameModeComputer";
+            buttonGameModeComputer.Size = new Size(275, 85);
+            buttonGameModeComputer.TabIndex = 6;
+            buttonGameModeComputer.Text = "Computer";
+            buttonGameModeComputer.UseVisualStyleBackColor = false;
+            buttonGameModeHuman.Click += buttonGameModeHuman_Click;
+            // 
+            // labelGameMode
+            // 
+            labelGameMode.AutoSize = true;
+            labelGameMode.Font = new Font("Segoe UI", 20F);
+            labelGameMode.Location = new Point(378, 209);
+            labelGameMode.Name = "labelGameMode";
+            labelGameMode.Size = new Size(194, 46);
+            labelGameMode.TabIndex = 7;
+            labelGameMode.Text = "Spielmodus";
+            labelGameMode.Click += labelGameMode_Click;
             // 
             // MenuScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(951, 548);
+            Controls.Add(labelGameMode);
+            Controls.Add(buttonGameModeComputer);
+            Controls.Add(buttonGameModeHuman);
             Name = "MenuScreen";
             Text = "MenuScreen";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button buttonGameModeHuman;
+        private Button buttonGameModeComputer;
+        private Label labelGameMode;
     }
 }
