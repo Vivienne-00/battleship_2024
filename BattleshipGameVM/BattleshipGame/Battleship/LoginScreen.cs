@@ -21,5 +21,15 @@
             gameScreen.ShowDialog();
             this.Close();
         }
+
+        private void textBoxBenutzername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelBenutzername_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
