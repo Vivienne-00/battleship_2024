@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             buttonEnter = new Button();
-            textBoxBenutzername = new TextBox();
-            labelBenutzername = new Label();
+            textBoxUserName = new TextBox();
+            labelUserName = new Label();
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
@@ -51,25 +51,25 @@
             buttonEnter.UseVisualStyleBackColor = false;
             buttonEnter.Click += buttonNext_Click;
             // 
-            // textBoxBenutzername
+            // textBoxUserName
             // 
-            textBoxBenutzername.Font = new Font("Segoe UI", 20F);
-            textBoxBenutzername.Location = new Point(263, 287);
-            textBoxBenutzername.Name = "textBoxBenutzername";
-            textBoxBenutzername.Size = new Size(466, 52);
-            textBoxBenutzername.TabIndex = 1;
-            textBoxBenutzername.TextChanged += textBoxBenutzername_TextChanged;
+            textBoxUserName.Font = new Font("Segoe UI", 20F);
+            textBoxUserName.Location = new Point(263, 287);
+            textBoxUserName.Name = "textBoxBenutzername";
+            textBoxUserName.Size = new Size(466, 52);
+            textBoxUserName.TabIndex = 1;
+            textBoxUserName.TextChanged += textBoxUserName_TextChanged;
             // 
-            // labelBenutzername
+            // labelUserName
             // 
-            labelBenutzername.AutoSize = true;
-            labelBenutzername.Font = new Font("Segoe UI", 20F);
-            labelBenutzername.Location = new Point(263, 232);
-            labelBenutzername.Name = "labelBenutzername";
-            labelBenutzername.Size = new Size(235, 46);
-            labelBenutzername.TabIndex = 2;
-            labelBenutzername.Text = "Benutzername";
-            labelBenutzername.Click += labelBenutzername_Click;
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 20F);
+            labelUserName.Location = new Point(263, 232);
+            labelUserName.Name = "labelBenutzername";
+            labelUserName.Size = new Size(235, 46);
+            labelUserName.TabIndex = 2;
+            labelUserName.Text = "Benutzername";
+            labelUserName.Click += labelUserName_Click;
             // 
             // buttonEnglish
             // 
@@ -124,8 +124,8 @@
             Controls.Add(buttonSpanish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonEnglish);
-            Controls.Add(labelBenutzername);
-            Controls.Add(textBoxBenutzername);
+            Controls.Add(labelUserName);
+            Controls.Add(textBoxUserName);
             Controls.Add(buttonEnter);
             Margin = new Padding(3, 4, 3, 4);
             Name = "LoginScreen";
@@ -138,8 +138,8 @@
         #endregion
 
         private Button buttonEnter;
-        private TextBox textBoxBenutzername;
-        private Label labelBenutzername;
+        private TextBox textBoxUserName;
+        private Label labelUserName;
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
