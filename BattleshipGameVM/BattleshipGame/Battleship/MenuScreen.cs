@@ -27,6 +27,11 @@
             this.Close();
         }
 
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void labelGameMode_Click(object sender, EventArgs e)
         {
 

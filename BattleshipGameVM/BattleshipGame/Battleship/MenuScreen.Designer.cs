@@ -31,6 +31,7 @@
             buttonGameModeHuman = new Button();
             buttonGameModeComputer = new Button();
             labelGameMode = new Label();
+            buttonSettings = new Button();
             SuspendLayout();
             // 
             // buttonGameModeHuman
@@ -57,7 +58,6 @@
             buttonGameModeComputer.TabIndex = 6;
             buttonGameModeComputer.Text = "Computer";
             buttonGameModeComputer.UseVisualStyleBackColor = false;
-            buttonGameModeHuman.Click += buttonGameModeHuman_Click;
             // 
             // labelGameMode
             // 
@@ -70,11 +70,21 @@
             labelGameMode.Text = "Spielmodus";
             labelGameMode.Click += labelGameMode_Click;
             // 
+            // buttonSettings
+            // 
+            buttonSettings.Location = new Point(831, 12);
+            buttonSettings.Name = "buttonSettings";
+            buttonSettings.Size = new Size(95, 95);
+            buttonSettings.TabIndex = 8;
+            buttonSettings.UseVisualStyleBackColor = true;
+            buttonSettings.Click += buttonSettings_Click;
+            // 
             // MenuScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(951, 548);
+            Controls.Add(buttonSettings);
             Controls.Add(labelGameMode);
             Controls.Add(buttonGameModeComputer);
             Controls.Add(buttonGameModeHuman);
@@ -89,5 +99,6 @@
         private Button buttonGameModeHuman;
         private Button buttonGameModeComputer;
         private Label labelGameMode;
+        private Button buttonSettings;
     }
 }
