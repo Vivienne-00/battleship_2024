@@ -9,22 +9,22 @@
 
         private void buttonEnglish_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonGerman_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonSpanish_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonJapanese_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonMenuScreen_Click(object sender, EventArgs e)

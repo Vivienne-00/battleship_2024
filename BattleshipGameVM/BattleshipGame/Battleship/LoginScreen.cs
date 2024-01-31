@@ -5,7 +5,7 @@ namespace Battleship
     public class UserData
     {
         public string UserName { get; set; }
-
+        //Wird mit noch mit dem Feature Highscore ergänzt.
     }
     public partial class LoginScreen : Form
     {
@@ -22,22 +22,22 @@ namespace Battleship
 
         private void buttonEnglish_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonGerman_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonSpanish_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void buttonJapanese_Click(object sender, EventArgs e)
         {
-
+            //Benötigt noch die restlichen Textlabels des Spiels
         }
 
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
