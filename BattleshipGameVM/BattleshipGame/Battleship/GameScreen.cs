@@ -6,7 +6,9 @@ namespace Battleship
 {
     public partial class GameScreen : Form
     {
-        public GameScreen()
+        private int fieldSize;
+
+        public GameScreen(int fieldSize)
         {
             InitializeComponent();
 
@@ -14,10 +16,8 @@ namespace Battleship
             var controller = new BattleshipGameController(game);
 
             //Form form = new GameScreen();
-            this.Size = new Size(800, 400);
+            this.Size = new Size(800, 600);
 
-            // Grösse des Boardes schon ausgewählt.
-            int fieldSize = 10;
             game.Player1Board = new GameBoard(fieldSize, "EMC");
             game.Player2Board = new GameBoard(fieldSize, "MV");
 
