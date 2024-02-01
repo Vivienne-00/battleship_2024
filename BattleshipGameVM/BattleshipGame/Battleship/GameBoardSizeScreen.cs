@@ -56,12 +56,21 @@
 
         private void OpenGameScreenWithFieldSize(int fieldSize)
         {
+            SetShipsScreen setShipsScreen = new SetShipsScreen(fieldSize);
+            setShipsScreen.StartPosition = FormStartPosition.Manual;
+            setShipsScreen.Location = new Point(0, 0);
+            this.Hide();
+            setShipsScreen.ShowDialog();
+            this.Close();
+
+            /*
             GameScreen gameScreen = new GameScreen(fieldSize);
             gameScreen.StartPosition = FormStartPosition.Manual;
             gameScreen.Location = new Point(0, 0);
             this.Hide();
             gameScreen.ShowDialog();
             this.Close();
+            */
         }
 
         private void GameBoardSizeScreen_Load(object sender, EventArgs e)
