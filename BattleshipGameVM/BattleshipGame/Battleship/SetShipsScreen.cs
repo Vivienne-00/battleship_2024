@@ -14,7 +14,7 @@ namespace Battleship
             var controller = new BattleshipGameController(game);
 
             //Form form = new GameScreen();
-            this.Size = new Size(800, 600);
+            this.Size = new Size(890, 600);
 
             game.Player1Board = new GameBoard(fieldSize, "EMC");
 
@@ -27,24 +27,39 @@ namespace Battleship
 
             controller.InitializeGame();
 
-            Button b = new Button();
-            b.Text = "Neuer Backtracking";
-            b.Location = new Point(30, 400);
-            b.Size = new Size(90, 40);
-            b.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
-            this.Controls.Add(b);
+            Button buttonResetShips = new Button();
+            buttonResetShips.Text = "Zurücksetzen";
+            buttonResetShips.Location = new Point(30, 450);
+            buttonResetShips.Size = new Size(110, 40);
+            buttonResetShips.Click += new System.EventHandler(player1GameBoardView.ClearBoard);
+            this.Controls.Add(buttonResetShips);
 
             Button c = new Button();
-            c.Text = "Neuer Backtracking";
-            c.Location = new Point(30, 450);
-            b.Size = new Size(80, 40);
-            c.Click += new System.EventHandler(player1GameBoardView.ClearBoard);
+            c.Text = "Automatisch";
+            c.Location = new Point(30, 400);
+            c.Size = new Size(110, 40);
+            c.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
             this.Controls.Add(c);
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //Application.Run(this);
             ;
+        }
+
+        private void buttonStartGame_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonQuitGame_Click(object sender, EventArgs e)
+        {
+            MenuScreen menuScreen = new MenuScreen();
+            menuScreen.StartPosition = FormStartPosition.Manual;
+            menuScreen.Location = new Point(0, 0);
+            this.Hide();
+            menuScreen.ShowDialog();
+            this.Close();
         }
     }
 }
