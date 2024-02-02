@@ -10,6 +10,8 @@ namespace Battleship.Model
         public GameBoard Player2Board { get; set; }
         public Form ActualForm { get; set; }
 
+        private int highscore = 0;
+
         public BattleshipGame()
         {
             TransitionToState(new UninitializedState());
@@ -36,6 +38,11 @@ namespace Battleship.Model
             newState.EnterState(this);
             this.NotifyObservers();
             newState.AfterEnterState(this);
+        }
+
+        public int Highscore
+        {
+            get { return highscore; }
         }
 
         private List<IGameView> gameObservers = new List<IGameView>();

@@ -24,6 +24,7 @@ namespace Battleship.Model.StateMachine
             else
             {
                 game.TransitionToState(new Players2TurnState());
+                game.Highscore++;
             }
         }
     }
