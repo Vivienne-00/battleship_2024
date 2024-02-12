@@ -15,11 +15,11 @@
         private void button1_Click(object sender, EventArgs e)
         {
 
-            GameScreen gameScreen = new GameScreen();
-            gameScreen.StartPosition = FormStartPosition.Manual;
-            gameScreen.Location = new Point(0, 0);
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.StartPosition = FormStartPosition.Manual;
+            loginScreen.Location = new Point(0, 0);
             this.Hide();
-            gameScreen.ShowDialog();
+            loginScreen.ShowDialog();
             this.Close();
             //this.Size = new Size(10, 10);
         }
