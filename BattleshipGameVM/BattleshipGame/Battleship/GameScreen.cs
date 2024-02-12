@@ -1,5 +1,6 @@
 using Battleship.Controller;
 using Battleship.Model;
+using Battleship.Model.ShipModel;
 using Battleship.View;
 
 namespace Battleship
@@ -40,8 +41,17 @@ namespace Battleship
             b.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
             this.Controls.Add(b);
 
+
+
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(9);
+            List<Ship> ships = btbs.SetNormalCountShips();
+            Console.WriteLine("Backtracking " + (btbs.Backtracking(ships) ? "erfolgreich" : "fehlgeschlagen"));
+            btbs.PrintField();
+            Console.WriteLine("");
+            btbs.PrintHistory();
+
             Button c = new Button();
-            c.Text = "Neuer Backtracking";
+            c.Text = "New Backtracking";
             c.Location = new Point(30, 450);
             b.Size = new Size(80, 40);
             c.Click += new System.EventHandler(player1GameBoardView.ClearBoard);
