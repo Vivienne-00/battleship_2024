@@ -61,5 +61,10 @@ namespace Battleship
             menuScreen.ShowDialog();
             this.Close();
         }
+
+        private void SetShipsScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

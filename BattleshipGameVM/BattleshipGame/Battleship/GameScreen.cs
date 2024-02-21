@@ -52,5 +52,10 @@ namespace Battleship
             //Application.Run(this);
 
         }
+
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
