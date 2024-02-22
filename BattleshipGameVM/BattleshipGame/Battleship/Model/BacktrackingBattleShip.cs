@@ -1,4 +1,5 @@
 ﻿using Battleship.Model.ShipModel;
+using Battleship.View;
 using System.Collections;
 
 namespace Battleship.Model
@@ -14,6 +15,7 @@ namespace Battleship.Model
         private Random rand;
 
         private Hashtable shipHistory;
+        private List<Ship> placedShips;
 
         public BacktrackingBattleShip(int size)
         {
@@ -21,7 +23,7 @@ namespace Battleship.Model
             ships = new String[size, size];
             rand = new Random();
             shipHistory = new Hashtable();
-
+            placedShips = new List<Ship>();
             for (int row = 0; row < size; row++)
             {
                 for (int col = 0; col < size; col++)
@@ -53,9 +55,13 @@ namespace Battleship.Model
             this.seaSquares = seaSquares;
         }
 
-        private void MapperFieldToSeaSquares()
+        public void MapperFieldToSeaSquares(GameBoardView gbView)
         {
-
+            // TODO MApper
+            foreach (Ship ship in placedShips)
+            {
+                gbView.PlaceShipToBoard(ship);
+            }
         }
 
         public List<Ship> SetNormalCountShips()
@@ -136,6 +142,7 @@ namespace Battleship.Model
             nextShips.Remove(ship);
             String[,] oldField = this.field.Clone() as String[,];
             ship.IsHorizontal = isHorizontal;
+            ship.coordinate = coord;
             PlaceShip(ship, coord);
             SaveHistoryOfPlacedShips(ship, coord);
             if (Backtracking(nextShips))
@@ -145,6 +152,7 @@ namespace Battleship.Model
             else
             {
                 RemoveShipFromHistory(coord, isHorizontal);
+                this.placedShips.Remove(ship);
                 this.field = oldField;
                 return false;
             }
@@ -154,6 +162,7 @@ namespace Battleship.Model
         private void SaveHistoryOfPlacedShips(Ship ship, Coordinate coordinate)
         {
             this.shipHistory.Add(coordinate.ToString() + " " + (ship.IsHorizontal ? "h" : "v"), ship);
+            this.placedShips.Add(ship);
         }
 
         private void RemoveShipFromHistory(Coordinate coord, bool isHorizontal)
@@ -168,6 +177,12 @@ namespace Battleship.Model
                 String c = (String)h.Key;
                 Ship ship = (Ship)h.Value;
                 Console.WriteLine(ship.shipType + "  -> " + c);
+            }
+
+            Console.WriteLine("Second List:");
+            foreach (Ship ship in this.placedShips)
+            {
+                Console.WriteLine($"{ship.coordinate} {ship.IsHorizontal} {ship.shipType}");
             }
         }
 

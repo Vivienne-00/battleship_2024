@@ -691,5 +691,20 @@ namespace Battleship.View
             Debug.WriteLine($"GameBoardView: New gamestate: {game.CurrentState}");
         }
 
+        public void PlaceShipToBoard(Ship ship)
+        {
+            // TODO schiffe aus Backtracking setzen
+
+            this.actualShip = ship;
+            Coordinate c = ship.coordinate;
+            // SelectSeaSquareOnMouseEnter gibt einen bool zurück, wenn es möglich ist
+            // dann ist es true, wenn besetzt dann liefert es false
+            isActualOrientationHorizontally = ship.IsHorizontal;
+            bool valid = SelectSeaSquareOnMouseEnter(this.internalBoard[c.X, c.Y]);
+            Console.WriteLine("test = " + valid);
+            SetShipsToSelectedSquares();
+            ResetField();
+        }
+
     }
 }
