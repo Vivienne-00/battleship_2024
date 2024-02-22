@@ -31,11 +31,11 @@
             buttonStartGame = new Button();
             buttonQuitGame = new Button();
             buttonBattleship = new Button();
-            buttonCruiser = new Button();
             buttonDestroyer = new Button();
+            buttonCruiser = new Button();
             buttonSubmarine = new Button();
             button4 = new Button();
-            button5 = new Button();
+            buttonCruiser = new Button();
             SuspendLayout();
             // 
             // buttonStartGame
@@ -64,69 +64,52 @@
             buttonQuitGame.UseVisualStyleBackColor = false;
             buttonQuitGame.Click += buttonQuitGame_Click;
             // 
-            // ButtonBattleship
+            // buttonBattleship
             // 
             buttonBattleship.BackColor = Color.Gray;
             buttonBattleship.Location = new Point(682, 151);
-            buttonBattleship.Name = "ButtonBattleship";
+            buttonBattleship.Name = "buttonBattleship";
             buttonBattleship.Size = new Size(35, 175);
             buttonBattleship.TabIndex = 8;
             buttonBattleship.UseVisualStyleBackColor = false;
+            buttonBattleship.Click += buttonBattleship_Click;
             // 
-            // button1
-            // 
-            buttonCruiser.BackColor = Color.Gray;
-            buttonCruiser.Location = new Point(810, 151);
-            buttonCruiser.Name = "button1";
-            buttonCruiser.Size = new Size(35, 105);
-            buttonCruiser.TabIndex = 9;
-            buttonCruiser.UseVisualStyleBackColor = false;
-            // 
-            // button2
+            // buttonDestroyer
             // 
             buttonDestroyer.BackColor = Color.Gray;
-            buttonDestroyer.Location = new Point(683, 358);
-            buttonDestroyer.Name = "button2";
-            buttonDestroyer.Size = new Size(35, 70);
-            buttonDestroyer.TabIndex = 10;
+            buttonDestroyer.Location = new Point(810, 151);
+            buttonDestroyer.Name = "buttonCruiser";
+            buttonDestroyer.Size = new Size(35, 105);
+            buttonDestroyer.TabIndex = 9;
             buttonDestroyer.UseVisualStyleBackColor = false;
+            buttonDestroyer.Click += buttonDestroyer_Click;
             // 
-            // button3
+            // buttonSubmarine
             // 
             buttonSubmarine.BackColor = Color.Gray;
-            buttonSubmarine.Location = new Point(810, 325);
-            buttonSubmarine.Name = "button3";
-            buttonSubmarine.Size = new Size(0, 0);
-            buttonSubmarine.TabIndex = 11;
+            buttonSubmarine.Location = new Point(683, 358);
+            buttonSubmarine.Name = "buttonDestroyer";
+            buttonSubmarine.Size = new Size(35, 70);
+            buttonSubmarine.TabIndex = 10;
             buttonSubmarine.UseVisualStyleBackColor = false;
+            //  
+            // buttonCruiser
             // 
-            // button4
-            // 
-            button4.BackColor = Color.Gray;
-            button4.Location = new Point(683, 342);
-            button4.Name = "button4";
-            button4.Size = new Size(0, 0);
-            button4.TabIndex = 12;
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = Color.Gray;
-            button5.Location = new Point(746, 151);
-            button5.Name = "button5";
-            button5.Size = new Size(35, 140);
-            button5.TabIndex = 13;
-            button5.UseVisualStyleBackColor = false;
+            buttonCruiser.BackColor = Color.Gray;
+            buttonCruiser.Location = new Point(746, 151);
+            buttonCruiser.Name = "button5";
+            buttonCruiser.Size = new Size(35, 140);
+            buttonCruiser.TabIndex = 13;
+            buttonCruiser.UseVisualStyleBackColor = false;
             // 
             // SetShipsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(872, 553);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(buttonDestroyer);
             Controls.Add(buttonCruiser);
+            Controls.Add(buttonSubmarine);
+            Controls.Add(buttonDestroyer);
             Controls.Add(buttonBattleship);
             Controls.Add(buttonQuitGame);
             Controls.Add(buttonStartGame);
@@ -141,10 +124,9 @@
         private Button buttonStartGame;
         private Button buttonQuitGame;
         private Button buttonBattleship;
-        private Button buttonCruiser;
         private Button buttonDestroyer;
         private Button buttonSubmarine;
         private Button button4;
-        private Button button5;
+        private Button buttonCruiser;
     }
 }

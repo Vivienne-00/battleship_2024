@@ -59,7 +59,7 @@ namespace Battleship
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            userData.Highscore = game.Highscore;
+            //userData.Highscore = game.Highscore;
 
             string json = JsonConvert.SerializeObject(userData);
             Console.WriteLine(json);

@@ -62,6 +62,26 @@ namespace Battleship
             this.Close();
         }
 
+        private void buttonBattleship_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCruiser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDestroyer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSubmarine_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void SetShipsScreen_Load(object sender, EventArgs e)
         {
 
