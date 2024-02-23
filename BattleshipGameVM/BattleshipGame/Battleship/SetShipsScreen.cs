@@ -6,11 +6,13 @@ namespace Battleship
 {
     public partial class SetShipsScreen : Form
     {
+        private GameBoardView player1GameBoardView;
+        private BattleshipGame game;
         public SetShipsScreen(int fieldSize)
         {
             InitializeComponent();
 
-            var game = new BattleshipGame();
+            game = new BattleshipGame();
             var controller = new BattleshipGameController(game);
 
             //Form form = new GameScreen();
@@ -18,14 +20,14 @@ namespace Battleship
 
             game.Player1Board = new GameBoard(fieldSize, "EMC");
 
-            var player1GameBoardView = new GameBoardView(game.Player1Board, 30, 30, 350, this);
+            player1GameBoardView = new GameBoardView(game.Player1Board, 30, 30, 350, this);
             player1GameBoardView.SetController(controller);
-            var gameStatusView = new GameStatusView(controller);
+            //var gameStatusView = new GameStatusView(controller);
 
-            controller.RegisterView(player1GameBoardView);
-            controller.RegisterView(gameStatusView);
+            //controller.RegisterView(player1GameBoardView);
+            //controller.RegisterView(gameStatusView);
 
-            controller.InitializeGame();
+            //controller.InitializeGame();
 
             Button buttonResetShips = new Button();
             buttonResetShips.Text = "Zurücksetzen";
