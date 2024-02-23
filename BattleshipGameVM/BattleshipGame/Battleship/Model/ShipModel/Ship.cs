@@ -6,6 +6,7 @@
         // Theorie: LinkedList = Cruiser
         //          Node = ShipSquare
         public bool IsHorizontal { get; set; }
+        public Coordinate coordinate { get; set; }
         public int ShipLength { get; set; }
         public string shipType { get; protected set; }
         private List<ShipSquare> shipParts = new List<ShipSquare>();
