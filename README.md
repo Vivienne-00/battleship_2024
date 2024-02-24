@@ -3,7 +3,7 @@ Portfolio Auftrag Schiffe versenken
 
 
 # Projektarbeit :ship::boom: Schiffe Versenken 
-## Authoren
+## Autoren
 - [Vivienne](https://github.com/Vivienne-00)
 - [Miguel](https://github.com/EMCninja3)
 
