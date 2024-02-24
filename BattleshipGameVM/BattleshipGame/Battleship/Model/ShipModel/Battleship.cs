@@ -7,6 +7,7 @@
             this.ShipLength = 5;
             this.shipType = "Battleship";
             this.ShipColor = Color.DarkBlue;
+            this.ShipImage = Properties.Resources.ship;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Battleship
             buttonResetShips.Text = "Zurücksetzen";
             buttonResetShips.Location = new Point(30, 450);
             buttonResetShips.Size = new Size(110, 40);
-            buttonResetShips.Click += new System.EventHandler(player1GameBoardView.ClearBoard);
+            buttonResetShips.Click += new System.EventHandler(ResetPlacingShips);
             this.Controls.Add(buttonResetShips);
 
             Button c = new Button();
@@ -142,6 +142,17 @@ namespace Battleship
             BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
             btbs.Backtracking(shipList);
             btbs.MapperFieldToSeaSquares(player1GameBoardView);
+        }
+
+        private void ResetPlacingShips(object sender, EventArgs e)
+        {
+            player1GameBoardView.ClearBoard(sender, e);
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
+            shipList = btbs.SetNormalCountShips();
+            player1GameBoardView.shipList = shipList;
+
+            UpdateShips();
+
         }
     }
 }

@@ -450,6 +450,7 @@ namespace Battleship.View
                 return;
             }
             int partIndex = 0;
+
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
                 if (sq.seaSquareState == SeaSquareState.Selected)
@@ -457,12 +458,20 @@ namespace Battleship.View
                     if (!sq.IsOccupiedByShipSquare())
                     {
                         //Console.WriteLine("set ship here");
-                        Ship ship = new Cruiser();
-                        ShipSquare sp = new ShipSquare(partIndex, ship);
+                        //Ship ship = new Cruiser();
+                        ShipSquare sp = new ShipSquare(partIndex, actualShip);
                         sq.ShipSquare = sp;
                         partIndex++;
                     }
                 }
+                else
+                {
+                    canSet = false;
+                }
+            }
+            if (!canSet)
+            {
+                return;
             }
 
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
