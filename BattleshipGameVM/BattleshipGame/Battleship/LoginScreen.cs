@@ -5,11 +5,18 @@ namespace Battleship
     public class UserData
     {
         public string UserName { get; set; }
-        //Wird mit noch mit dem Feature Highscore ergänzt.
+        public int Highscore { get; set; }
+
+        //Konstruktor
+        public UserData()
+        {
+            Highscore = 0;
+        }
     }
     public partial class LoginScreen : Form
     {
         private UserData userData = new UserData();
+
         public LoginScreen()
         {
             InitializeComponent();
@@ -52,6 +59,8 @@ namespace Battleship
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
+            //userData.Highscore = game.Highscore;
+
             string json = JsonConvert.SerializeObject(userData);
             Console.WriteLine(json);
             // string filePath = "user_data.json";

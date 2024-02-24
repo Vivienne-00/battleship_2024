@@ -73,6 +73,7 @@ namespace Battleship
 
         }
 
+
         private void StartBacktracking(object sender, EventArgs e)
         {
             this.player1GameBoardView.ClearBoard(sender, e);
