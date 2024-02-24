@@ -138,8 +138,10 @@ namespace Battleship
         }
         private void StartBacktracking(object sender, EventArgs e)
         {
-            player1GameBoardView.ClearBoard(sender, e);
+            //player1GameBoardView.ClearBoard(sender, e);
+            if (shipList.Count == 0) ResetPlacingShips(sender, e);
             BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
+            btbs.MapperSeaSquaresToField(player1GameBoardView);
             btbs.Backtracking(shipList);
             btbs.MapperFieldToSeaSquares(player1GameBoardView);
         }

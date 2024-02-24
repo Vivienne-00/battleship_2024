@@ -18,7 +18,7 @@ namespace Battleship.View
         List<SeaSquareState> oldSelectedSeaSquareStates = new List<SeaSquareState>();
         public bool isActualOrientationHorizontally = true;
         public List<Ship> shipList;
-        private SeaSquare[,] internalBoard;
+        public SeaSquare[,] internalBoard;
 
         public SetShipsScreen shipScreen;
         private Random rand = new Random();

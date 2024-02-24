@@ -64,6 +64,21 @@ namespace Battleship.Model
             }
         }
 
+        public void MapperSeaSquaresToField(GameBoardView gbView)
+        {
+            seaSquares = gbView.internalBoard;
+            for (int row = 0; row < seaSquares.GetLength(0); row++)
+            {
+                for (int col = 0; col < seaSquares.GetLength(0); col++)
+                {
+                    if (seaSquares[row, col].IsOccupiedByShipSquare())
+                    {
+                        field[row, col] = "S";
+                    }
+                }
+            }
+        }
+
         public List<Ship> SetNormalCountShips()
         {
             List<Ship> shipList = new List<Ship>();
@@ -110,6 +125,12 @@ namespace Battleship.Model
             {
                 coordinates.Reverse();
             }
+            // Wenn das Board grösser ist dann zufälliges Feld auswählen, bei kleineren Boards wird es ineffizient. 
+            if (field.GetLength(0) > 10)
+            {
+                coordinates = coordinates.OrderBy(_ => rand.Next()).ToList();
+            }
+
             foreach (Coordinate coord in coordinates)
             {
                 shipList = shipList.OrderBy(_ => rand.Next()).ToList();
