@@ -436,6 +436,19 @@ namespace Battleship.View
         /// </summary>
         private void SetShipsToSelectedSquares()
         {
+            bool canSet = false;
+            foreach (var ship in shipList)
+            {
+                if (ship.shipType.Equals(actualShip.shipType))
+                {
+                    canSet = true;
+                    break;
+                }
+            }
+            if (!canSet)
+            {
+                return;
+            }
             int partIndex = 0;
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
@@ -464,6 +477,17 @@ namespace Battleship.View
                 sq.SetSquareState(SeaSquareState.Occupied);
             }
             // TODO Schiffe von der Liste wegnehmen
+            foreach (var ship in shipList)
+            {
+                if (ship.shipType.Equals(actualShip.shipType))
+                {
+                    shipList.Remove(ship);
+                    shipScreen.UpdateShips();
+                    break;
+                }
+            }
+            Console.WriteLine("Schiffliste = " + shipList.Count);
+            ResetField();
         }
 
         private void SetFoamAroundShip(SeaSquare sq)

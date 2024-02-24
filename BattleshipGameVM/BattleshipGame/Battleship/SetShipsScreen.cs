@@ -103,5 +103,36 @@ namespace Battleship
         {
             player1GameBoardView.isActualOrientationHorizontally = !player1GameBoardView.isActualOrientationHorizontally;
         }
+
+        public void UpdateShips()
+        {
+            int submarineCount = 0;
+            int destroyerCount = 0;
+            int cruiserCount = 0;
+            int battleshipCount = 0;
+            foreach (var ship in shipList)
+            {
+                switch (ship.shipType)
+                {
+                    case "Submarine":
+                        submarineCount++;
+                        break;
+
+                    case "Destroyer":
+                        destroyerCount++;
+                        break;
+                    case "Cruiser":
+                        cruiserCount++;
+                        break;
+                    case "Battleship":
+                        battleshipCount++;
+                        break;
+                }
+            }
+            buttonBattleship.Text = battleshipCount.ToString();
+            buttonCruiser.Text = cruiserCount.ToString();
+            buttonDestroyer.Text = destroyerCount.ToString();
+            buttonSubmarine.Text = submarineCount.ToString();
+        }
     }
 }
