@@ -10,8 +10,10 @@ namespace Battleship
         private List<Ship> shipList;
         private GameBoardView player1GameBoardView;
         private BattleshipGame game;
+        private int fieldSize;
         public SetShipsScreen(int fieldSize)
         {
+            this.fieldSize = fieldSize;
             InitializeComponent();
 
             game = new BattleshipGame();
@@ -42,7 +44,7 @@ namespace Battleship
             c.Text = "Automatisch";
             c.Location = new Point(30, 400);
             c.Size = new Size(110, 40);
-            c.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
+            c.Click += new System.EventHandler(StartBacktracking);
             this.Controls.Add(c);
 
             BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
@@ -133,6 +135,13 @@ namespace Battleship
             buttonCruiser.Text = cruiserCount.ToString();
             buttonDestroyer.Text = destroyerCount.ToString();
             buttonSubmarine.Text = submarineCount.ToString();
+        }
+        private void StartBacktracking(object sender, EventArgs e)
+        {
+            player1GameBoardView.ClearBoard(sender, e);
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
+            btbs.Backtracking(shipList);
+            btbs.MapperFieldToSeaSquares(player1GameBoardView);
         }
     }
 }
