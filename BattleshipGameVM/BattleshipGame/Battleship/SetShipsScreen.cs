@@ -1,11 +1,13 @@
 ﻿using Battleship.Controller;
 using Battleship.Model;
+using Battleship.Model.ShipModel;
 using Battleship.View;
 
 namespace Battleship
 {
     public partial class SetShipsScreen : Form
     {
+        private List<Ship> shipList;
         private GameBoardView player1GameBoardView;
         private BattleshipGame game;
         public SetShipsScreen(int fieldSize)
@@ -43,6 +45,10 @@ namespace Battleship
             c.Click += new System.EventHandler(player1GameBoardView.StartBacktracking);
             this.Controls.Add(c);
 
+            BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
+            shipList = btbs.SetNormalCountShips();
+            player1GameBoardView.shipList = shipList;
+            player1GameBoardView.shipScreen = this;
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //Application.Run(this);
@@ -66,27 +72,36 @@ namespace Battleship
 
         private void buttonBattleship_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonCruiser_Click(object sender, EventArgs e)
-        {
-
+            Ship battleship = new Battleship.Model.ShipModel.Battleship();
+            player1GameBoardView.actualShip = battleship;
         }
 
         private void buttonDestroyer_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonSubmarine_Click(object sender, EventArgs e)
-        {
-
+            Ship destroyer = new Destroyer();
+            player1GameBoardView.actualShip = destroyer;
         }
 
         private void SetShipsScreen_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonCruiser_Click_1(object sender, EventArgs e)
+        {
+            Ship cruiser = new Cruiser();
+            player1GameBoardView.actualShip = cruiser;
+        }
+
+        private void buttonSubmarine_Click_1(object sender, EventArgs e)
+        {
+            Ship submarine = new Submarine();
+            player1GameBoardView.actualShip = submarine;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            player1GameBoardView.isActualOrientationHorizontally = !player1GameBoardView.isActualOrientationHorizontally;
         }
     }
 }

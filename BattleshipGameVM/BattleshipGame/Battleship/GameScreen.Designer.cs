@@ -34,7 +34,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "GameScreen";
             Text = "BattleShipVM GameScreen";
-            Load += GameScreen_Load;
+            //Load += GameScreen_Load;
             ResumeLayout(false);
         }
 

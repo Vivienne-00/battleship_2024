@@ -13,13 +13,14 @@ namespace Battleship.View
         private int fieldSize;
         private Form form;
         int cellWidth;
-        Ship actualShip = new Submarine();
+        public Ship actualShip = new Submarine();
         List<SeaSquare> actualSelectedSeaSquaresList = new List<SeaSquare>();
         List<SeaSquareState> oldSelectedSeaSquareStates = new List<SeaSquareState>();
-        bool isActualOrientationHorizontally = true;
-
+        public bool isActualOrientationHorizontally = true;
+        public List<Ship> shipList;
         private SeaSquare[,] internalBoard;
 
+        public SetShipsScreen shipScreen;
         private Random rand = new Random();
         //private GameBoard gameBoard;
         public GameBoardView(GameBoard gameBoard, int xPos, int yPos, int boardLength, Form form)
@@ -462,6 +463,7 @@ namespace Battleship.View
             {
                 sq.SetSquareState(SeaSquareState.Occupied);
             }
+            // TODO Schiffe von der Liste wegnehmen
         }
 
         private void SetFoamAroundShip(SeaSquare sq)
