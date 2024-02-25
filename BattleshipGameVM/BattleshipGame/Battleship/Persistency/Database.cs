@@ -208,12 +208,12 @@ namespace Battleship.Persistency
             sqlite_cmd.CommandText = $"SELECT {language} FROM Translation WHERE '{word}' = German;";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
-            int highScore = -1;
+            String translation = "";
             while (sqlite_datareader.Read())
             {
-                highScore = sqlite_datareader.GetInt32(0);
+                translation = sqlite_datareader.GetString(0);
             }
-            return highScore;
+            return translation;
         }
 
         private String GetLanguageFromEnum()
