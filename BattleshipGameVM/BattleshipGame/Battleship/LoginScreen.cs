@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Battleship.Persistency;
+using Newtonsoft.Json;
 
 namespace Battleship
 {
@@ -20,6 +21,22 @@ namespace Battleship
         public LoginScreen()
         {
             InitializeComponent();
+            Database s = Database.GetInstance();
+            //Database.InsertData(s.GetConnection());
+            //Database.InsertData(s.GetConnection());
+            //Database.InsertData(s.GetConnection());
+            //Database.InsertData(s.GetConnection());
+            //Database.InsertData(s.GetConnection());
+            //Database.InsertData(s.GetConnection());
+            //s.DeleteTable();
+            //s.DeleteTable();
+            //s.DeleteTable();
+            //s.DeleteTable();
+            //s.DeleteTable();
+
+            //s.GetConnection();
+            Database.ReadData(s.GetConnection());
+
         }
 
         private void LoginScreen_Load(object sender, EventArgs e)
