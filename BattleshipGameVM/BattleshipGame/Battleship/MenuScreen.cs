@@ -1,10 +1,22 @@
-﻿namespace Battleship
+﻿using Battleship.Persistency;
+
+namespace Battleship
 {
     public partial class MenuScreen : Form
     {
         public MenuScreen()
         {
             InitializeComponent();
+            Database db = Database.GetInstance();
+            int highscore = db.GetHighScore();
+            String userName = Database.actualUser;
+
+            LblUserName.Text = userName;
+            LblHighscore.Text = Convert.ToString(highscore);
+            buttonGameModeComputer.Text = db.GetTranslation("Computer");
+            buttonGameModeHuman.Text = db.GetTranslation("Mensch");
+            labelGameMode.Text = db.GetTranslation("Spielmodus");
+
         }
 
         private void buttonGameModeHuman_Click(object sender, EventArgs e)
@@ -37,7 +49,7 @@
             this.Close();
         }
 
-        private void labelGameMode_Click(object sender, EventArgs e)
+        private void MenuScreen_Load(object sender, EventArgs e)
         {
 
         }

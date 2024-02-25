@@ -7,6 +7,7 @@
             this.ShipLength = 3;
             this.shipType = "Destroyer";
             this.ShipColor = Color.DarkBlue;
+            this.ShipImage = Properties.Resources.ship;
         }
     }
 }

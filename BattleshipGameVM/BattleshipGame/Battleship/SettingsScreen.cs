@@ -1,30 +1,42 @@
-﻿namespace Battleship
+﻿using Battleship.Persistency;
+
+namespace Battleship
 {
     public partial class SettingsScreen : Form
     {
+        Database db;
         public SettingsScreen()
         {
             InitializeComponent();
+            db = Database.GetInstance();
+            UpdateScreen();
         }
 
         private void buttonEnglish_Click(object sender, EventArgs e)
         {
-            //Benötigt noch die restlichen Textlabels des Spiels
+            Database.actualLanguage = Languages.English;
+            UpdateScreen();
         }
 
         private void buttonGerman_Click(object sender, EventArgs e)
         {
-            //Benötigt noch die restlichen Textlabels des Spiels
+            Database.actualLanguage = Languages.German;
+            UpdateScreen();
         }
 
         private void buttonSpanish_Click(object sender, EventArgs e)
         {
-            //Benötigt noch die restlichen Textlabels des Spiels
+            Database.actualLanguage = Languages.Spanish;
+            UpdateScreen();
         }
 
-        private void buttonJapanese_Click(object sender, EventArgs e)
+        private void UpdateScreen()
         {
-            //Benötigt noch die restlichen Textlabels des Spiels
+            buttonEnglish.Text = db.GetTranslation("Englisch");
+            buttonGerman.Text = db.GetTranslation("Deutsch");
+            buttonSpanish.Text = db.GetTranslation("Spanisch");
+            buttonResetHighscore.Text = db.GetTranslation("Highscore löschen");
+            buttonMenuScreen.Text = db.GetTranslation("Zurück");
         }
 
         private void buttonMenuScreen_Click(object sender, EventArgs e)
@@ -35,6 +47,11 @@
             this.Hide();
             menuScreen.ShowDialog();
             this.Close();
+        }
+
+        private void buttonResetHighscore_Click(object sender, EventArgs e)
+        {
+            db.SetHighScore(0);
         }
     }
 }

@@ -13,13 +13,14 @@ namespace Battleship.View
         private int fieldSize;
         private Form form;
         int cellWidth;
-        Ship actualShip = new Submarine();
+        public Ship actualShip = new Submarine();
         List<SeaSquare> actualSelectedSeaSquaresList = new List<SeaSquare>();
         List<SeaSquareState> oldSelectedSeaSquareStates = new List<SeaSquareState>();
-        bool isActualOrientationHorizontally = true;
+        public bool isActualOrientationHorizontally = true;
+        public List<Ship> shipList;
+        public SeaSquare[,] internalBoard;
 
-        private SeaSquare[,] internalBoard;
-
+        public SetShipsScreen shipScreen;
         private Random rand = new Random();
         //private GameBoard gameBoard;
         public GameBoardView(GameBoard gameBoard, int xPos, int yPos, int boardLength, Form form)
@@ -29,7 +30,7 @@ namespace Battleship.View
             this.internalBoard = gameBoard.GetBoard();
             this.form = form;
             int margin = 4;
-
+            //shipList = new List<Ship>();
 
             cellWidth = boardLength / this.fieldSize;
             for (int row = 0; row < this.fieldSize; row++)
@@ -77,13 +78,13 @@ namespace Battleship.View
 
             timer1.Tick += new System.EventHandler(OnTimerEvent);
             //this.Focus();
-
+            this.internalBoard = gameBoard.GetBoard();
 
             ResetField();
             //StartThreadedBacktracking();
         }
 
-        private void SetAllSeaSquaresActivated(bool activate)
+        public void SetAllSeaSquaresActivated(bool activate)
         {
             foreach (SeaSquare sq in this.internalBoard)
             {
@@ -435,7 +436,22 @@ namespace Battleship.View
         /// </summary>
         private void SetShipsToSelectedSquares()
         {
+            bool canSet = false;
+            if (shipList == null) return;
+            foreach (var ship in shipList)
+            {
+                if (ship.shipType.Equals(actualShip.shipType))
+                {
+                    canSet = true;
+                    break;
+                }
+            }
+            if (!canSet)
+            {
+                return;
+            }
             int partIndex = 0;
+
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
             {
                 if (sq.seaSquareState == SeaSquareState.Selected)
@@ -443,12 +459,20 @@ namespace Battleship.View
                     if (!sq.IsOccupiedByShipSquare())
                     {
                         //Console.WriteLine("set ship here");
-                        Ship ship = new Cruiser();
-                        ShipSquare sp = new ShipSquare(partIndex, ship);
+                        //Ship ship = new Cruiser();
+                        ShipSquare sp = new ShipSquare(partIndex, actualShip);
                         sq.ShipSquare = sp;
                         partIndex++;
                     }
                 }
+                else
+                {
+                    canSet = false;
+                }
+            }
+            if (!canSet)
+            {
+                return;
             }
 
             foreach (SeaSquare sq in actualSelectedSeaSquaresList)
@@ -462,6 +486,19 @@ namespace Battleship.View
             {
                 sq.SetSquareState(SeaSquareState.Occupied);
             }
+            // TODO Schiffe von der Liste wegnehmen
+            foreach (var ship in shipList)
+            {
+                if (ship.shipType.Equals(actualShip.shipType))
+                {
+                    shipList.Remove(ship);
+                    if (shipScreen != null) shipScreen.UpdateShips();
+
+                    break;
+                }
+            }
+            Console.WriteLine("Schiffliste = " + shipList.Count);
+            ResetField();
         }
 
         private void SetFoamAroundShip(SeaSquare sq)

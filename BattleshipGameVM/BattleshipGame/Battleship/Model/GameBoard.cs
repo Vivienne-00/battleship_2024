@@ -12,6 +12,10 @@
             this.BoardName = BoardName;
         }
 
+        public void SetBoard(SeaSquare[,] internalBoard)
+        {
+            this.internalBoard = internalBoard;
+        }
         public SeaSquare[,] GetBoard()
         {
             return internalBoard;

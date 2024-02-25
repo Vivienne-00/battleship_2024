@@ -34,7 +34,6 @@
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
-            buttonJapanese = new Button();
             SuspendLayout();
             // 
             // buttonEnter
@@ -55,7 +54,7 @@
             // 
             textBoxUserName.Font = new Font("Segoe UI", 20F);
             textBoxUserName.Location = new Point(263, 287);
-            textBoxUserName.Name = "textBoxBenutzername";
+            textBoxUserName.Name = "textBoxUserName";
             textBoxUserName.Size = new Size(466, 52);
             textBoxUserName.TabIndex = 1;
             textBoxUserName.TextChanged += textBoxUserName_TextChanged;
@@ -65,7 +64,7 @@
             labelUserName.AutoSize = true;
             labelUserName.Font = new Font("Segoe UI", 20F);
             labelUserName.Location = new Point(263, 232);
-            labelUserName.Name = "labelBenutzername";
+            labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(235, 46);
             labelUserName.TabIndex = 2;
             labelUserName.Text = "Benutzername";
@@ -80,7 +79,7 @@
             buttonEnglish.TabIndex = 3;
             buttonEnglish.Text = "Englisch";
             buttonEnglish.UseVisualStyleBackColor = true;
-            buttonSpanish.Click += buttonEnglish_Click;
+            buttonEnglish.Click += buttonEnglish_Click_1;
             // 
             // buttonGerman
             // 
@@ -102,25 +101,13 @@
             buttonSpanish.TabIndex = 5;
             buttonSpanish.Text = "Spanisch";
             buttonSpanish.UseVisualStyleBackColor = true;
-            buttonSpanish.Click += buttonSpanish_Click;
-            // 
-            // buttonJapanese
-            // 
-            buttonJapanese.Font = new Font("Segoe UI", 18F);
-            buttonJapanese.Location = new Point(750, 29);
-            buttonJapanese.Name = "buttonJapanese";
-            buttonJapanese.Size = new Size(160, 62);
-            buttonJapanese.TabIndex = 6;
-            buttonJapanese.Text = "Japanisch";
-            buttonJapanese.UseVisualStyleBackColor = true;
-            buttonSpanish.Click += buttonJapanese_Click;
+            buttonSpanish.Click += buttonSpanish_Click_1;
             // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(969, 595);
-            Controls.Add(buttonJapanese);
             Controls.Add(buttonSpanish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonEnglish);
@@ -143,6 +130,5 @@
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
-        private Button buttonJapanese;
     }
 }

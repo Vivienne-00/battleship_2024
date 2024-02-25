@@ -1,6 +1,7 @@
 using Battleship.Controller;
 using Battleship.Model;
 using Battleship.Model.ShipModel;
+using Battleship.Persistency;
 using Battleship.View;
 
 namespace Battleship
@@ -12,10 +13,15 @@ namespace Battleship
         private GameBoardView player2GameBoardView;
         private BattleshipGame game;
 
-        public GameScreen(int fieldSize)
+
+        public GameScreen(int fieldSize, BacktrackingBattleShip btbs)
         {
             InitializeComponent();
             this.fieldSize = fieldSize;
+            Database db = Database.GetInstance();
+
+            labelEnemy.Text = db.GetTranslation("Gegner");
+            labelEnemy.Location = new Point(410, 30);
 
             this.game = new BattleshipGame();
             var controller = new BattleshipGameController(game);
@@ -23,12 +29,12 @@ namespace Battleship
             //Form form = new GameScreen();
             this.Size = new Size(800, 600);
 
-            this.game.Player1Board = new GameBoard(fieldSize, "EMC");
+            this.game.Player1Board = new GameBoard(fieldSize, "Player1");
             this.game.Player2Board = new GameBoard(fieldSize, "MV");
 
-            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 30, 350, this);
+            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 80, 350, this);
             this.player1GameBoardView.SetController(controller);
-            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 410, 30, 350, this);
+            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 410, 80, 350, this);
             this.player2GameBoardView.SetController(controller);
             var gameStatusView = new GameStatusView(controller);
 
@@ -55,18 +61,15 @@ namespace Battleship
             //btbs.PrintHistory();
             //btbs.MapperFieldToSeaSquares(player1GameBoardView);
 
-            Button c = new Button();
-            c.Text = "New Backtracking";
-            c.Location = new Point(30, 450);
-            c.Size = new Size(120, 40);
-            c.Click += new System.EventHandler(StartBacktracking);
-            this.Controls.Add(c);
+            player1GameBoardView.shipList = btbs.SetNormalCountShips();
+            btbs.MapperFieldToSeaSquares(player1GameBoardView);
+            BacktrackingBattleShip btbs2 = GetBackTracking();
+            player2GameBoardView.shipList = btbs2.SetNormalCountShips();
+            btbs2.MapperFieldToSeaSquares(this.player2GameBoardView);
+            player2GameBoardView.shipScreen = null;
 
-
-
-            BacktrackingBattleShip btbs = GetBackTracking();
-            btbs.MapperFieldToSeaSquares(this.player2GameBoardView);
-
+            player1GameBoardView.SetAllSeaSquaresActivated(false);
+            player2GameBoardView.SetAllSeaSquaresActivated(false);
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //Application.Run(this);
@@ -92,5 +95,6 @@ namespace Battleship
             //btbs.PrintHistory();
             return btbs;
         }
+
     }
 }
