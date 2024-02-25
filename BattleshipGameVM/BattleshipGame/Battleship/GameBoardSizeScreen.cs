@@ -1,10 +1,16 @@
-﻿namespace Battleship
+﻿using Battleship.Persistency;
+using System.Data.Entity;
+
+namespace Battleship
 {
     public partial class GameBoardSizeScreen : Form
     {
         public GameBoardSizeScreen()
         {
             InitializeComponent();
+            Database db = Database.GetInstance();
+
+            labelGameBoardSize.Text = db.GetTranslation("Bitte Spielfeldgrösse auswählen");
         }
 
         private void labelGameBoardSize_Click(object sender, EventArgs e)

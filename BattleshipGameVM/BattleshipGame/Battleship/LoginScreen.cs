@@ -16,13 +16,6 @@ namespace Battleship
 
         }
 
-        private void buttonEnglish_Click(object sender, EventArgs e)
-        {
-            //Benötigt noch die restlichen Textlabels des Spiels
-            Database.actualLanguage = Languages.English;
-            UpdateScreen();
-        }
-
         private void buttonGerman_Click(object sender, EventArgs e)
         {
             //Benötigt noch die restlichen Textlabels des Spiels
@@ -30,16 +23,13 @@ namespace Battleship
             UpdateScreen();
         }
 
-        private void buttonSpanish_Click(object sender, EventArgs e)
-        {
-            //Benötigt noch die restlichen Textlabels des Spiels
-            Database.actualLanguage = Languages.Spanish;
-            UpdateScreen();
-        }
-
         private void UpdateScreen()
         {
             buttonEnglish.Text = db.GetTranslation("Englisch");
+            buttonGerman.Text = db.GetTranslation("Deutsch");
+            buttonSpanish.Text = db.GetTranslation("Spanisch");
+            labelUserName.Text = db.GetTranslation("Benutzername");
+            buttonEnter.Text = db.GetTranslation("Eingabe");
         }
 
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
@@ -62,6 +52,18 @@ namespace Battleship
             this.Hide();
             menuScreen.ShowDialog();
             this.Close();
+        }
+
+        private void buttonEnglish_Click_1(object sender, EventArgs e)
+        {
+            Database.actualLanguage = Languages.English;
+            UpdateScreen();
+        }
+
+        private void buttonSpanish_Click_1(object sender, EventArgs e)
+        {
+            Database.actualLanguage = Languages.Spanish;
+            UpdateScreen();
         }
     }
 }

@@ -17,6 +17,9 @@ namespace Battleship
         {
             InitializeComponent();
             this.fieldSize = fieldSize;
+            Database db = Database.GetInstance();
+
+            labelEnemy.Text = db.GetTranslation("Gegner");
 
             this.game = new BattleshipGame();
             var controller = new BattleshipGameController(game);
@@ -97,5 +100,6 @@ namespace Battleship
             //btbs.PrintHistory();
             return btbs;
         }
+
     }
 }

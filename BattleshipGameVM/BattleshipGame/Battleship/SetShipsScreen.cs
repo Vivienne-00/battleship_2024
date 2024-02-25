@@ -1,7 +1,9 @@
 ﻿using Battleship.Controller;
 using Battleship.Model;
 using Battleship.Model.ShipModel;
+using Battleship.Persistency;
 using Battleship.View;
+using System.Data.Entity;
 
 namespace Battleship
 {
@@ -16,6 +18,11 @@ namespace Battleship
         {
             this.fieldSize = fieldSize;
             InitializeComponent();
+            Database db = Database.GetInstance();
+
+            buttonStartGame.Text = db.GetTranslation("Start");
+            buttonQuitGame.Text = db.GetTranslation("Beenden");
+            labelSetShips.Text = db.GetTranslation("Bitte setze alle Schiffe auf das Feld");
 
             game = new BattleshipGame();
             var controller = new BattleshipGameController(game);
@@ -71,7 +78,7 @@ namespace Battleship
             }
             else
             {
-                Console.WriteLine("Bitte alle Schiffe auf das Spielfeld setzen.");
+                labelSetShips.ForeColor = Color.Red;
             }
         }
         private void buttonQuitGame_Click(object sender, EventArgs e)
@@ -168,5 +175,6 @@ namespace Battleship
             UpdateShips();
 
         }
+
     }
 }

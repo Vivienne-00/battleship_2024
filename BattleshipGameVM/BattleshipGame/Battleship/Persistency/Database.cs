@@ -106,6 +106,66 @@ namespace Battleship.Persistency
             cmd8 = conn.CreateCommand();
             cmd8.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Computer', 'Computer', 'Computadora'); ";
             cmd8.ExecuteNonQuery();
+            SQLiteCommand cmd9;
+            cmd9 = conn.CreateCommand();
+            cmd9.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Schwierigkeitsstufe', 'Difficulty Level', 'Grado de dificultad'); ";
+            cmd9.ExecuteNonQuery();
+            SQLiteCommand cmd10;
+            cmd10 = conn.CreateCommand();
+            cmd10.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Einfach', 'Easy', 'Facil'); ";
+            cmd10.ExecuteNonQuery();
+            SQLiteCommand cmd11;
+            cmd11 = conn.CreateCommand();
+            cmd11.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Mittel', 'Normal', 'Normal'); ";
+            cmd11.ExecuteNonQuery();
+            SQLiteCommand cmd12;
+            cmd12 = conn.CreateCommand();
+            cmd12.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Schwierig', 'Difficult', 'Dificil'); ";
+            cmd12.ExecuteNonQuery();
+            SQLiteCommand cmd13;
+            cmd13 = conn.CreateCommand();
+            cmd13.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Bitte Spielfeldgrösse auswählen', 'Please select the Boardsize', 'Por favor elija el tamaño'); ";
+            cmd13.ExecuteNonQuery();
+            SQLiteCommand cmd14;
+            cmd14 = conn.CreateCommand();
+            cmd14.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Automatisch', 'Random', 'Automatico'); ";
+            cmd14.ExecuteNonQuery();
+            SQLiteCommand cmd15;
+            cmd15 = conn.CreateCommand();
+            cmd15.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Zurücksetzen', 'Reset', 'Borrar'); ";
+            cmd15.ExecuteNonQuery();
+            SQLiteCommand cmd16;
+            cmd16 = conn.CreateCommand();
+            cmd16.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Start', 'Start', 'Comenzar'); ";
+            cmd16.ExecuteNonQuery();
+            SQLiteCommand cmd17;
+            cmd17 = conn.CreateCommand();
+            cmd17.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Beenden', 'Exit', 'Salir'); ";
+            cmd17.ExecuteNonQuery();
+            SQLiteCommand cmd18;
+            cmd18 = conn.CreateCommand();
+            cmd18.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Bitte setze alle Schiffe auf das Feld', 'Please set all ships on the Board', 'Por favor coloque todos los barcos en el tablero'); ";
+            cmd18.ExecuteNonQuery();
+            SQLiteCommand cmd19;
+            cmd19 = conn.CreateCommand();
+            cmd19.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Gegner', 'Opponent', 'Oponente'); ";
+            cmd19.ExecuteNonQuery();
+            SQLiteCommand cmd20;
+            cmd20 = conn.CreateCommand();
+            cmd20.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Sieg', 'Victory', 'Victoria'); ";
+            cmd20.ExecuteNonQuery();
+            SQLiteCommand cmd21;
+            cmd21 = conn.CreateCommand();
+            cmd21.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Niederlage', 'Defeat', 'Derrota'); ";
+            cmd21.ExecuteNonQuery();
+            SQLiteCommand cmd22;
+            cmd22 = conn.CreateCommand();
+            cmd22.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Neues Spiel', 'New Game', 'Nuevo juego'); ";
+            cmd22.ExecuteNonQuery();
+            SQLiteCommand cmd23;
+            cmd23 = conn.CreateCommand();
+            cmd23.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Highscore löschen', 'Reset Highscore', 'Borrar Highscore'); ";
+            cmd23.ExecuteNonQuery();
 
             //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
             //sqlite_cmd.ExecuteNonQuery();
@@ -205,7 +265,7 @@ namespace Battleship.Persistency
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = sqlite_conn.CreateCommand();
             String language = GetLanguageFromEnum();
-            sqlite_cmd.CommandText = $"SELECT {language} FROM Translation WHERE '{word}' = German;";
+            sqlite_cmd.CommandText = $"SELECT {language} FROM Translations WHERE '{word}' = German;";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
             String translation = "";
@@ -213,6 +273,7 @@ namespace Battleship.Persistency
             {
                 translation = sqlite_datareader.GetString(0);
             }
+            Console.WriteLine(translation);
             return translation;
         }
 

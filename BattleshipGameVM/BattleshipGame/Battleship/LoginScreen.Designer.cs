@@ -79,6 +79,7 @@
             buttonEnglish.TabIndex = 3;
             buttonEnglish.Text = "Englisch";
             buttonEnglish.UseVisualStyleBackColor = true;
+            buttonEnglish.Click += buttonEnglish_Click_1;
             // 
             // buttonGerman
             // 
@@ -100,6 +101,7 @@
             buttonSpanish.TabIndex = 5;
             buttonSpanish.Text = "Spanisch";
             buttonSpanish.UseVisualStyleBackColor = true;
+            buttonSpanish.Click += buttonSpanish_Click_1;
             // 
             // LoginScreen
             // 

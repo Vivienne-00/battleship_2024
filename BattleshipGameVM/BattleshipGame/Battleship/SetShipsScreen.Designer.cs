@@ -36,6 +36,7 @@
             buttonSubmarine = new Button();
             button4 = new Button();
             button1 = new Button();
+            labelSetShips = new Label();
             SuspendLayout();
             // 
             // buttonStartGame
@@ -123,11 +124,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // labelSetShips
+            // 
+            labelSetShips.AutoSize = true;
+            labelSetShips.Font = new Font("Segoe UI", 16F);
+            labelSetShips.Location = new Point(401, 99);
+            labelSetShips.Name = "labelSetShips";
+            labelSetShips.Size = new Size(421, 37);
+            labelSetShips.TabIndex = 15;
+            labelSetShips.Text = "Bitte setze alle Schiffe auf das Feld";
+            // 
             // SetShipsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(872, 553);
+            Controls.Add(labelSetShips);
             Controls.Add(button1);
             Controls.Add(buttonCruiser);
             Controls.Add(buttonSubmarine);
@@ -139,6 +151,7 @@
             Text = "SetShipsScreen";
             Load += SetShipsScreen_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -151,5 +164,6 @@
         private Button button4;
         private Button buttonCruiser;
         private Button button1;
+        private Label labelSetShips;
     }
 }

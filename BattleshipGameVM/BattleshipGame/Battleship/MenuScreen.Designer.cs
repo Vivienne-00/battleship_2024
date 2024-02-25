@@ -71,7 +71,6 @@
             labelGameMode.Size = new Size(194, 46);
             labelGameMode.TabIndex = 7;
             labelGameMode.Text = "Spielmodus";
-            labelGameMode.Click += labelGameMode_Click;
             // 
             // buttonSettings
             // 
@@ -126,6 +125,7 @@
             Controls.Add(buttonGameModeHuman);
             Name = "MenuScreen";
             Text = "MenuScreen";
+            Load += MenuScreen_Load;
             ResumeLayout(false);
             PerformLayout();
         }

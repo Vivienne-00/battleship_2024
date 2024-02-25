@@ -13,6 +13,10 @@ namespace Battleship
 
             LblUserName.Text = userName;
             LblHighscore.Text = Convert.ToString(highscore);
+            buttonGameModeComputer.Text = db.GetTranslation("Computer");
+            buttonGameModeHuman.Text = db.GetTranslation("Mensch");
+            labelGameMode.Text = db.GetTranslation("Spielmodus");
+
         }
 
         private void buttonGameModeHuman_Click(object sender, EventArgs e)
@@ -45,12 +49,7 @@ namespace Battleship
             this.Close();
         }
 
-        private void labelGameMode_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void MenuScreen_Load(object sender, EventArgs e)
         {
 
         }

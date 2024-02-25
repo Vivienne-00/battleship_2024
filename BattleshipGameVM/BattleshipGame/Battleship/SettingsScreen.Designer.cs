@@ -31,14 +31,14 @@
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
-            buttonJapanese = new Button();
             buttonMenuScreen = new Button();
+            buttonResetHighscore = new Button();
             SuspendLayout();
             // 
             // buttonEnglish
             // 
             buttonEnglish.Font = new Font("Segoe UI", 18F);
-            buttonEnglish.Location = new Point(29, 74);
+            buttonEnglish.Location = new Point(151, 63);
             buttonEnglish.Name = "buttonEnglish";
             buttonEnglish.Size = new Size(160, 62);
             buttonEnglish.TabIndex = 3;
@@ -48,7 +48,7 @@
             // buttonGerman
             // 
             buttonGerman.Font = new Font("Segoe UI", 18F);
-            buttonGerman.Location = new Point(263, 74);
+            buttonGerman.Location = new Point(388, 63);
             buttonGerman.Name = "buttonGerman";
             buttonGerman.Size = new Size(160, 62);
             buttonGerman.TabIndex = 4;
@@ -59,23 +59,13 @@
             // buttonSpanish
             // 
             buttonSpanish.Font = new Font("Segoe UI", 18F);
-            buttonSpanish.Location = new Point(505, 74);
+            buttonSpanish.Location = new Point(627, 63);
             buttonSpanish.Name = "buttonSpanish";
             buttonSpanish.Size = new Size(160, 62);
             buttonSpanish.TabIndex = 5;
             buttonSpanish.Text = "Spanisch";
             buttonSpanish.UseVisualStyleBackColor = true;
-            buttonSpanish.Click += buttonJapanese_Click;
-            // 
-            // buttonJapanese
-            // 
-            buttonJapanese.Font = new Font("Segoe UI", 18F);
-            buttonJapanese.Location = new Point(739, 74);
-            buttonJapanese.Name = "buttonJapanese";
-            buttonJapanese.Size = new Size(160, 62);
-            buttonJapanese.TabIndex = 6;
-            buttonJapanese.Text = "Japanisch";
-            buttonJapanese.UseVisualStyleBackColor = true;
+            buttonSpanish.Click += buttonSpanish_Click;
             // 
             // buttonMenuScreen
             // 
@@ -88,16 +78,26 @@
             buttonMenuScreen.UseVisualStyleBackColor = true;
             buttonMenuScreen.Click += buttonMenuScreen_Click;
             // 
+            // buttonResetHighscore
+            // 
+            buttonResetHighscore.Font = new Font("Segoe UI", 18F);
+            buttonResetHighscore.Location = new Point(315, 245);
+            buttonResetHighscore.Name = "buttonResetHighscore";
+            buttonResetHighscore.Size = new Size(310, 62);
+            buttonResetHighscore.TabIndex = 8;
+            buttonResetHighscore.Text = "Highscore löschen";
+            buttonResetHighscore.UseVisualStyleBackColor = true;
+            // 
             // SettingsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 501);
+            Controls.Add(buttonResetHighscore);
             Controls.Add(buttonMenuScreen);
             Controls.Add(buttonEnglish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonSpanish);
-            Controls.Add(buttonJapanese);
             Name = "SettingsScreen";
             Text = "SettingsScreen";
             ResumeLayout(false);
@@ -108,7 +108,7 @@
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
-        private Button buttonJapanese;
         private Button buttonMenuScreen;
+        private Button buttonResetHighscore;
     }
 }
