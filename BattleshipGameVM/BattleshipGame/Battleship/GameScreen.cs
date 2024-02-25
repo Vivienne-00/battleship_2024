@@ -12,7 +12,8 @@ namespace Battleship
         private GameBoardView player2GameBoardView;
         private BattleshipGame game;
 
-        public GameScreen(int fieldSize)
+
+        public GameScreen(int fieldSize, GameBoardView player1GameBoardView)
         {
             InitializeComponent();
             this.fieldSize = fieldSize;
@@ -23,7 +24,8 @@ namespace Battleship
             //Form form = new GameScreen();
             this.Size = new Size(800, 600);
 
-            this.game.Player1Board = new GameBoard(fieldSize, "EMC");
+            this.game.Player1Board = new GameBoard(fieldSize, "Player1");
+            this.game.Player1Board.SetBoard(player1GameBoardView.internalBoard);
             this.game.Player2Board = new GameBoard(fieldSize, "MV");
 
             this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 30, 350, this);
@@ -65,7 +67,9 @@ namespace Battleship
 
 
             BacktrackingBattleShip btbs = GetBackTracking();
+            player2GameBoardView.shipList = btbs.SetNormalCountShips();
             btbs.MapperFieldToSeaSquares(this.player2GameBoardView);
+            player2GameBoardView.shipScreen = null;
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

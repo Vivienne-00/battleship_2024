@@ -30,7 +30,7 @@ namespace Battleship.View
             this.internalBoard = gameBoard.GetBoard();
             this.form = form;
             int margin = 4;
-
+            //shipList = new List<Ship>();
 
             cellWidth = boardLength / this.fieldSize;
             for (int row = 0; row < this.fieldSize; row++)
@@ -78,7 +78,7 @@ namespace Battleship.View
 
             timer1.Tick += new System.EventHandler(OnTimerEvent);
             //this.Focus();
-
+            this.internalBoard = gameBoard.GetBoard();
 
             ResetField();
             //StartThreadedBacktracking();
@@ -437,6 +437,7 @@ namespace Battleship.View
         private void SetShipsToSelectedSquares()
         {
             bool canSet = false;
+            if (shipList == null) return;
             foreach (var ship in shipList)
             {
                 if (ship.shipType.Equals(actualShip.shipType))
@@ -491,7 +492,8 @@ namespace Battleship.View
                 if (ship.shipType.Equals(actualShip.shipType))
                 {
                     shipList.Remove(ship);
-                    shipScreen.UpdateShips();
+                    if (shipScreen != null) shipScreen.UpdateShips();
+
                     break;
                 }
             }

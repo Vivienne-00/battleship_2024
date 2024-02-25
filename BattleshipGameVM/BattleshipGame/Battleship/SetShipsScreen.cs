@@ -59,9 +59,20 @@ namespace Battleship
 
         private void buttonStartGame_Click(object sender, EventArgs e)
         {
-
+            if (shipList.Count == 0 || shipList == null)
+            {
+                GameScreen gameScreen = new GameScreen(fieldSize, player1GameBoardView);
+                gameScreen.StartPosition = FormStartPosition.Manual;
+                gameScreen.Location = new Point(0, 0);
+                this.Hide();
+                gameScreen.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                Console.WriteLine("Bitte alle Schiffe auf das Spielfeld setzen.");
+            }
         }
-
         private void buttonQuitGame_Click(object sender, EventArgs e)
         {
             MenuScreen menuScreen = new MenuScreen();
