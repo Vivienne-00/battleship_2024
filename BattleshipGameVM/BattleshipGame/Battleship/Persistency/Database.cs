@@ -9,6 +9,7 @@ namespace Battleship.Persistency
         private static SQLiteConnection sqlite_conn;
 
         public static String actualUser = "";
+        public static Languages actualLanguage = Languages.German;
         public static Database GetInstance()
         {
             if (database == null)
@@ -71,8 +72,41 @@ namespace Battleship.Persistency
         {
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Willkommen', 'Welcome', 'Bienvenido'); "; //, 'いらっしゃいませ'
+            sqlite_cmd.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Willkommen', 'Welcome', 'Bienvenido'); ";
             sqlite_cmd.ExecuteNonQuery();
+            SQLiteCommand cmd1;
+            cmd1 = conn.CreateCommand();
+            cmd1.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Englisch', 'English', 'Ingles'); ";
+            cmd1.ExecuteNonQuery();
+            SQLiteCommand cmd2;
+            cmd2 = conn.CreateCommand();
+            cmd2.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Deutsch', 'German', 'Aleman'); ";
+            cmd2.ExecuteNonQuery();
+            SQLiteCommand cmd3;
+            cmd3 = conn.CreateCommand();
+            cmd3.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Spanisch', 'Spanish', 'Español'); ";
+            cmd3.ExecuteNonQuery();
+            SQLiteCommand cmd4;
+            cmd4 = conn.CreateCommand();
+            cmd4.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Benutzername', 'Username', 'Usuario'); ";
+            cmd4.ExecuteNonQuery();
+            SQLiteCommand cmd5;
+            cmd5 = conn.CreateCommand();
+            cmd5.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Eingabe', 'Enter', 'Ingresar'); ";
+            cmd5.ExecuteNonQuery();
+            SQLiteCommand cmd6;
+            cmd6 = conn.CreateCommand();
+            cmd6.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Spielmodus', 'Game Mode', 'Modo de juego'); ";
+            cmd6.ExecuteNonQuery();
+            SQLiteCommand cmd7;
+            cmd7 = conn.CreateCommand();
+            cmd7.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Mensch', 'Human', 'Humano'); ";
+            cmd7.ExecuteNonQuery();
+            SQLiteCommand cmd8;
+            cmd8 = conn.CreateCommand();
+            cmd8.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Computer', 'Computer', 'Computadora'); ";
+            cmd8.ExecuteNonQuery();
+
             //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
             //sqlite_cmd.ExecuteNonQuery();
             //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test2 Text2 ', 3); ";
@@ -163,6 +197,41 @@ namespace Battleship.Persistency
                 highScore = sqlite_datareader.GetInt32(0);
             }
             return highScore;
+        }
+
+        public String GetTranslation(String word)
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            String language = GetLanguageFromEnum();
+            sqlite_cmd.CommandText = $"SELECT {language} FROM Translation WHERE '{word}' = German;";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            int highScore = -1;
+            while (sqlite_datareader.Read())
+            {
+                highScore = sqlite_datareader.GetInt32(0);
+            }
+            return highScore;
+        }
+
+        private String GetLanguageFromEnum()
+        {
+            String language = "German";
+            switch (actualLanguage)
+            {
+                case Languages.English:
+                    language = "English";
+                    break;
+                case Languages.Spanish:
+                    language = "Spanish";
+                    break;
+                case Languages.German:
+                    language = "German";
+                    break;
+            }
+            return language;
         }
 
         public void SetHighScore(int newHighscore)
