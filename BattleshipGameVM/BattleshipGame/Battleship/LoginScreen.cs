@@ -4,10 +4,11 @@ namespace Battleship
 {
     public partial class LoginScreen : Form
     {
-
+        Database db;
         public LoginScreen()
         {
             InitializeComponent();
+            db = Database.GetInstance();
         }
 
         private void LoginScreen_Load(object sender, EventArgs e)
@@ -38,7 +39,7 @@ namespace Battleship
 
         private void UpdateScreen()
         {
-
+            buttonEnglish.Text = db.GetTranslation("Englisch");
         }
 
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
