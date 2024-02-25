@@ -1,10 +1,13 @@
-﻿namespace Battleship
+﻿using Battleship.Persistency;
+
+namespace Battleship
 {
     public partial class SplashScreen : Form
     {
         public SplashScreen()
         {
             InitializeComponent();
+            Database s = Database.GetInstance();
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)

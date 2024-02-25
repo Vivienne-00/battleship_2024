@@ -7,6 +7,8 @@ namespace Battleship.Persistency
         private Database() { }
         private static Database database;
         private static SQLiteConnection sqlite_conn;
+
+        public static String actualUser = "";
         public static Database GetInstance()
         {
             if (database == null)
@@ -20,8 +22,10 @@ namespace Battleship.Persistency
                 {
                     sqlite_conn.Open();
                     CreateDataBase();
-                    InsertData(sqlite_conn);
+                    if (CheckForTranslationTable() == 0) { InsertData(sqlite_conn); }
                     ReadData(sqlite_conn);
+                    GetTableNames();
+
                     Console.WriteLine("Opened connection");
                 }
                 catch (Exception ex)
@@ -32,11 +36,30 @@ namespace Battleship.Persistency
             return database;
         }
 
+
+        private static int CheckForTranslationTable()
+        {
+            int result = 0;
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "SELECT COUNT(German) as Count FROM Translations;";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                //int myreader = sqlite_datareader.GetInt32(0);
+                String s = "" + sqlite_datareader["Count"];
+                result = Convert.ToInt32(s);
+                //Console.WriteLine(s);
+            }
+            return result;
+        }
         private static void CreateDataBase()
         {
             SQLiteCommand sqlite_cmd;
-            string Createsql = "CREATE TABLE IF NOT EXISTS SampleTable (Col1 VARCHAR(20), Col2 INT)";
-            string Createsql1 = "CREATE TABLE IF NOT EXISTS SampleTable1 (Col1 VARCHAR(20), Col2 INT)";
+            string Createsql = "CREATE TABLE IF NOT EXISTS UserData (ID INTEGER PRIMARY KEY,    Username TEXT NOT NULL,   Highscore INTEGER NOT NULL);";
+            string Createsql1 = "CREATE TABLE IF NOT EXISTS Translations (TranslationID INTEGER PRIMARY KEY,  German TEXT NOT NULL, English TEXT NOT NULL, Spanish TEXT NOT NULL);"; //, Japanese TEXT NOT NULL);";
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = Createsql;
             sqlite_cmd.ExecuteNonQuery();
@@ -48,38 +71,38 @@ namespace Battleship.Persistency
         {
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable(Col1, Col2) VALUES('Test Text ', 1); ";
+            sqlite_cmd.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Willkommen', 'Welcome', 'Bienvenido'); "; //, 'いらっしゃいませ'
             sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
-            sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable(Col1, Col2) VALUES('Test2 Text2 ', 3); ";
-            sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable1(Col1, Col2) VALUES('Test3 Text3 ', 3); ";
-            sqlite_cmd.ExecuteNonQuery();
+            //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
+            //sqlite_cmd.ExecuteNonQuery();
+            //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test2 Text2 ', 3); ";
+            //sqlite_cmd.ExecuteNonQuery();
+            //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test3 Text3 ', 3); ";
+            //sqlite_cmd.ExecuteNonQuery();
         }
         public static void ReadData(SQLiteConnection conn)
         {
             SQLiteDataReader sqlite_datareader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "SELECT * FROM SampleTable";
+            sqlite_cmd.CommandText = "SELECT * FROM Translations;";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
             while (sqlite_datareader.Read())
             {
-                string myreader = sqlite_datareader.GetString(0);
-                Console.WriteLine(myreader);
+                int myreader = sqlite_datareader.GetInt32(0);
+                String s = "" + sqlite_datareader["German"] + " " + sqlite_datareader["English"] + " " + sqlite_datareader["Spanish"];
+                Console.WriteLine(myreader + s);
             }
-            conn.Close();
+            //conn.Close();
         }
 
-        public SQLiteConnection GetConnection()
+        public static SQLiteConnection GetTableNames()
         {
-            sqlite_conn.Open();
             SQLiteDataReader sqlite_datareader;
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = sqlite_conn.CreateCommand();
-            sqlite_cmd.CommandText = "SELECT name FROM  sqlite_schema WHERE      type ='table' AND     name NOT LIKE 'sqlite_%';";
+            sqlite_cmd.CommandText = "SELECT name FROM  sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';";
             sqlite_datareader = sqlite_cmd.ExecuteReader();
             while (sqlite_datareader.Read())
             {
@@ -90,12 +113,67 @@ namespace Battleship.Persistency
 
         public void DeleteTable()
         {
-            sqlite_conn.Open();
+            //sqlite_conn.Open();
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "DROP TABLE IF EXISTS SampleTable;";
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
+        }
+
+
+        public void InsertUser(String user)
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = $"SELECT COUNT(*) as Count FROM UserData WHERE '{user}' = Username;";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            bool userExists = false;
+            while (sqlite_datareader.Read())
+            {
+                int count = sqlite_datareader.GetInt32(0);
+                //String s = "" + sqlite_datareader["Count"];
+                if (count != 0) userExists = true;
+                //Console.WriteLine(myreader + s);
+            }
+
+            if (!userExists)
+            {
+                SQLiteCommand sqlite_cmd2;
+                sqlite_cmd2 = sqlite_conn.CreateCommand();
+                sqlite_cmd2.CommandText = $"INSERT INTO UserData(Username, Highscore) VALUES('{user}', 0); "; //, 'いらっしゃいませ'
+                sqlite_cmd2.ExecuteNonQuery();
+            }
+            actualUser = user;
+        }
+
+        public int GetHighScore()
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = $"SELECT Highscore FROM UserData WHERE '{actualUser}' = Username;";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            int highScore = -1;
+            while (sqlite_datareader.Read())
+            {
+                highScore = sqlite_datareader.GetInt32(0);
+            }
+            return highScore;
+        }
+
+        public void SetHighScore(int newHighscore)
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = $"UPDATE UserData SET Highscore = {newHighscore} WHERE '{actualUser}' = Username;";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Battleship.Persistency;
-using Newtonsoft.Json;
 
 namespace Battleship
 {
@@ -21,22 +20,6 @@ namespace Battleship
         public LoginScreen()
         {
             InitializeComponent();
-            Database s = Database.GetInstance();
-            //Database.InsertData(s.GetConnection());
-            //Database.InsertData(s.GetConnection());
-            //Database.InsertData(s.GetConnection());
-            //Database.InsertData(s.GetConnection());
-            //Database.InsertData(s.GetConnection());
-            //Database.InsertData(s.GetConnection());
-            //s.DeleteTable();
-            //s.DeleteTable();
-            //s.DeleteTable();
-            //s.DeleteTable();
-            //s.DeleteTable();
-
-            //s.GetConnection();
-            Database.ReadData(s.GetConnection());
-
         }
 
         private void LoginScreen_Load(object sender, EventArgs e)
@@ -78,11 +61,16 @@ namespace Battleship
         {
             //userData.Highscore = game.Highscore;
 
-            string json = JsonConvert.SerializeObject(userData);
-            Console.WriteLine(json);
+            //string json = JsonConvert.SerializeObject(userData);
+            //Console.WriteLine(json);
             // string filePath = "user_data.json";
             // File.WriteAllText(filePath, json);
             // MessageBox.Show("Data saved to " + filePath);
+            Database db = Database.GetInstance();
+            db.InsertUser(textBoxUserName.Text);
+
+
+            db.SetHighScore(123);
 
             MenuScreen menuScreen = new MenuScreen();
             menuScreen.StartPosition = FormStartPosition.Manual;

@@ -32,6 +32,9 @@
             buttonGameModeComputer = new Button();
             labelGameMode = new Label();
             buttonSettings = new Button();
+            LblUserName = new Label();
+            label2 = new Label();
+            LblHighscore = new Label();
             SuspendLayout();
             // 
             // buttonGameModeHuman
@@ -79,11 +82,44 @@
             buttonSettings.UseVisualStyleBackColor = true;
             buttonSettings.Click += buttonSettings_Click;
             // 
+            // LblUserName
+            // 
+            LblUserName.AutoSize = true;
+            LblUserName.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblUserName.Location = new Point(32, 18);
+            LblUserName.Name = "LblUserName";
+            LblUserName.Size = new Size(142, 60);
+            LblUserName.TabIndex = 9;
+            LblUserName.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(32, 87);
+            label2.Name = "label2";
+            label2.Size = new Size(231, 60);
+            label2.TabIndex = 10;
+            label2.Text = "Highscore:";
+            // 
+            // LblHighscore
+            // 
+            LblHighscore.AutoSize = true;
+            LblHighscore.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblHighscore.Location = new Point(269, 87);
+            LblHighscore.Name = "LblHighscore";
+            LblHighscore.Size = new Size(49, 60);
+            LblHighscore.TabIndex = 11;
+            LblHighscore.Text = "  ";
+            // 
             // MenuScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(951, 548);
+            Controls.Add(LblHighscore);
+            Controls.Add(label2);
+            Controls.Add(LblUserName);
             Controls.Add(buttonSettings);
             Controls.Add(labelGameMode);
             Controls.Add(buttonGameModeComputer);
@@ -100,5 +136,8 @@
         private Button buttonGameModeComputer;
         private Label labelGameMode;
         private Button buttonSettings;
+        private Label LblUserName;
+        private Label label2;
+        private Label LblHighscore;
     }
 }
