@@ -10,7 +10,8 @@
         public int ShipLength { get; set; }
         public string shipType { get; protected set; }
         private List<ShipSquare> shipParts = new List<ShipSquare>();
-        public int DamagedParts { get; }
+        public int DamagedParts { get; set; } = 0;
+        private bool shipIsSunken = false;
         public Color ShipColor { get; protected set; }
         public Image ShipImage { get; protected set; }
         /// <summary>
@@ -18,7 +19,25 @@
         /// </summary>
         public void DrawMe(SeaSquare s)
         {
-            s.BackgroundImage = ShipImage;
+            if (shipIsSunken)
+            {
+                s.BackgroundImage = Properties.Resources.shipSunken;
+                return;
+            }
+            if (s.ShipSquare.IsDamaged)
+            {
+                // TODO change Damagedship Image
+                s.BackgroundImage = Properties.Resources.shipDamage;
+            }
+            else if (s.ShipSquare.IsEnemyShip)
+            {
+                s.BackgroundImage = Properties.Resources.wave;
+            }
+            else
+            {
+                s.BackgroundImage = ShipImage;
+            }
+
             s.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
@@ -35,17 +54,20 @@
             }
         }
 
-        public bool IsShipSunken()
-        {
-            return DamagedParts == ShipLength;
-        }
-
         public void ShootShipPart(int partNumber)
         {
             shipParts[partNumber].IsDamaged = true;
         }
 
 
+        public void HitShip()
+        {
+            DamagedParts++;
+            if (DamagedParts == ShipLength)
+            {
+                shipIsSunken = true;
+            }
+        }
 
     }
 }

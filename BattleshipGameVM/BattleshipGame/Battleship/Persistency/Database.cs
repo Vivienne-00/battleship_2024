@@ -8,8 +8,10 @@ namespace Battleship.Persistency
         private static Database database;
         private static SQLiteConnection sqlite_conn;
 
+
         public static String actualUser = "";
         public static Languages actualLanguage = Languages.German;
+        public static int actualScore = 0;
         public static Database GetInstance()
         {
             if (database == null)

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿
+using Battleship.Persistency;
+using System.Diagnostics;
 
 namespace Battleship.Model.StateMachine
 {
@@ -8,22 +10,32 @@ namespace Battleship.Model.StateMachine
         {
             base.EnterState(game);
             Debug.WriteLine("Enter Players1TurnState");
+            game.Player1Board.gameBoardView.SetAllSeaSquaresActivated(false);
+            game.Player2Board.gameBoardView.SetAllSeaSquaresActivated(true);
         }
 
         public override void HandleInput(BattleshipGame game, Coordinate coordinate)
         {
+            // TODO Schiessen
+
             // Input behandeln (Getroffen, ja/nein)
 
             // entsprechend State ändern
 
-            if (coordinate.X == 2 && coordinate.Y == 2)
+            Console.WriteLine("Shooooooooooot now ");
+
+            if (game.Player2Board.gameBoardView.HitShip(coordinate))
             {
                 // Treffer
                 game.TransitionToState(new Players1TurnState());
             }
             else
-            {
+            {// Kein Treffer
+                Database.actualScore++;
+                game.Player1Board.gameBoardView.UpdateScore();
+                game.Player2Board.gameBoardView.SetToFailedHit(coordinate);
                 game.TransitionToState(new Players2TurnState());
+
                 //game.Highscore++;
             }
         }

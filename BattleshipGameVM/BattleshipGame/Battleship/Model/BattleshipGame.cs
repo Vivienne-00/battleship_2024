@@ -1,4 +1,5 @@
 ﻿using Battleship.Model.StateMachine;
+using Battleship.Model.Strategy;
 using System.Diagnostics;
 
 namespace Battleship.Model
@@ -9,6 +10,8 @@ namespace Battleship.Model
         public GameBoard Player1Board { get; set; }
         public GameBoard Player2Board { get; set; }
         public Form ActualForm { get; set; }
+
+        public PlayerStrategyBase playerStrategy { get; set; }
 
         private int highscore = 0;
 

@@ -31,11 +31,11 @@ namespace Battleship
 
         private void buttonGameModeComputer_Click(object sender, EventArgs e)
         {
-            GameBoardSizeScreen gameBoardSizeScreen = new GameBoardSizeScreen();
-            gameBoardSizeScreen.StartPosition = FormStartPosition.Manual;
-            gameBoardSizeScreen.Location = new Point(0, 0);
+            ComputerScreen computerScreen = new ComputerScreen();
+            computerScreen.StartPosition = FormStartPosition.Manual;
+            computerScreen.Location = new Point(0, 0);
             this.Hide();
-            gameBoardSizeScreen.ShowDialog();
+            computerScreen.ShowDialog();
             this.Close();
         }
 
