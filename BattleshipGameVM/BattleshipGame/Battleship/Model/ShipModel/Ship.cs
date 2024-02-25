@@ -21,13 +21,13 @@
         {
             if (shipIsSunken)
             {
-                s.BackgroundImage = ShipImage;
+                s.BackgroundImage = Properties.Resources.shipSunken;
                 return;
             }
             if (s.ShipSquare.IsDamaged)
             {
                 // TODO change Damagedship Image
-                s.BackgroundImage = Properties.Resources.seaInvalid;
+                s.BackgroundImage = Properties.Resources.shipDamage;
             }
             else if (s.ShipSquare.IsEnemyShip)
             {

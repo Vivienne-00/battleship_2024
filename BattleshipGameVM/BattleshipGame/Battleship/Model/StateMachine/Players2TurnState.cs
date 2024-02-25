@@ -8,6 +8,9 @@ namespace Battleship.Model.StateMachine
         {
             base.EnterState(game);
             Debug.WriteLine("Enter Players2TurnState");
+            game.Player2Board.gameBoardView.SetAllSeaSquaresActivated(false);
+            Coordinate coord = game.playerStrategy.TryGetNextShot();
+            HandleInput(game, coord);
         }
 
         public override void HandleInput(BattleshipGame game, Coordinate coordinate)
@@ -16,13 +19,15 @@ namespace Battleship.Model.StateMachine
 
             // entsprechend State ändern
             Console.WriteLine("Player 2 is shoooting");
-            if (coordinate.X == 2 && coordinate.Y == 2)
+            if (game.Player1Board.gameBoardView.HitShip(coordinate))
             {
                 // Treffer
                 game.TransitionToState(new Players2TurnState());
             }
             else
             {
+                game.Player2Board.gameBoardView.computerScore++;
+                game.Player2Board.gameBoardView.UpdateScore();
                 game.TransitionToState(new Players1TurnState());
 
             }

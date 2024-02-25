@@ -24,6 +24,7 @@ namespace Battleship.View
         public SetShipsScreen shipScreen;
         private Random rand = new Random();
         Label lblActualScore;
+        public int computerScore;
         //private GameBoard gameBoard;
         public GameBoardView(GameBoard gameBoard, int xPos, int yPos, int boardLength, Form form)
         {

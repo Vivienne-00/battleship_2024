@@ -1,6 +1,7 @@
 using Battleship.Controller;
 using Battleship.Model;
 using Battleship.Model.ShipModel;
+using Battleship.Model.Strategy;
 using Battleship.Persistency;
 using Battleship.View;
 
@@ -25,6 +26,7 @@ namespace Battleship
             labelEnemy.Location = new Point(410, 30);
 
             this.game = new BattleshipGame();
+            this.game.playerStrategy = new StupidPlayerStrategy(fieldSize);
             var controller = new BattleshipGameController(game);
 
             //Form form = new GameScreen();
@@ -33,10 +35,12 @@ namespace Battleship
             this.game.Player1Board = new GameBoard(fieldSize, "Player1");
             this.game.Player2Board = new GameBoard(fieldSize, "MV");
 
+
             this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 80, 350, this);
             this.player1GameBoardView.SetController(controller);
             this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 580, 80, 350, this);
             this.player2GameBoardView.SetController(controller);
+            this.player2GameBoardView.computerScore = 0;
             var gameStatusView = new GameStatusView(controller);
 
             this.game.Player1Board.gameBoardView = this.player1GameBoardView;

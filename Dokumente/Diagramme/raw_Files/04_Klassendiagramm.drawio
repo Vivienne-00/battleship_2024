@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-02-21T00:01:28.654Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="0Womj4M4t-xYBv4n4rBg" version="23.1.5" type="device">
+<mxfile host="Electron" modified="2024-02-25T21:40:04.474Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="9KzFUlroBfVvjDWzHO5y" version="23.1.5" type="device">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="6176" dy="2841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4347" dy="1799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -421,6 +421,23 @@
         </mxCell>
         <mxCell id="hiXoxj4MKoGSjxRxVKnr-182" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;labelBackgroundColor=none;endArrow=diamondThin;endFill=0;endSize=25;startArrow=open;startFill=0;targetPerimeterSpacing=0;startSize=16;sketch=1;curveFitting=1;jiggle=2;strokeColor=#E07A5F;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="hiXoxj4MKoGSjxRxVKnr-147" target="hiXoxj4MKoGSjxRxVKnr-138" edge="1">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OCJ4dl_P1Oz_DZcIUgUK-0" value="&lt;&lt;enumeration&gt;&gt;&#xa;Languages" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;labelBackgroundColor=none;sketch=1;curveFitting=1;jiggle=2;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-2100" y="680" width="290" height="140" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OCJ4dl_P1Oz_DZcIUgUK-1" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;labelBackgroundColor=none;rounded=0;sketch=1;curveFitting=1;jiggle=2;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="OCJ4dl_P1Oz_DZcIUgUK-0">
+          <mxGeometry y="40" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="OCJ4dl_P1Oz_DZcIUgUK-2" value="German" style="text;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;labelBackgroundColor=none;rounded=0;sketch=1;curveFitting=1;jiggle=2;fontColor=#393C56;" vertex="1" parent="OCJ4dl_P1Oz_DZcIUgUK-0">
+          <mxGeometry y="48" width="290" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="OCJ4dl_P1Oz_DZcIUgUK-3" value="English" style="text;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;labelBackgroundColor=none;rounded=0;sketch=1;curveFitting=1;jiggle=2;fontColor=#393C56;" vertex="1" parent="OCJ4dl_P1Oz_DZcIUgUK-0">
+          <mxGeometry y="74" width="290" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="OCJ4dl_P1Oz_DZcIUgUK-4" value="Spanish" style="text;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;labelBackgroundColor=none;rounded=0;sketch=1;curveFitting=1;jiggle=2;fontColor=#393C56;" vertex="1" parent="OCJ4dl_P1Oz_DZcIUgUK-0">
+          <mxGeometry y="100" width="290" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
