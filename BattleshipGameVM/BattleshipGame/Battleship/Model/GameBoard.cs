@@ -1,10 +1,13 @@
-﻿namespace Battleship.Model
+﻿using Battleship.View;
+
+namespace Battleship.Model
 {
     public class GameBoard
     {
         private int fieldSize;
         private SeaSquare[,] internalBoard;
         public String BoardName { get; }
+        public GameBoardView gameBoardView;
         public GameBoard(int fieldSize, String BoardName)
         {
             this.fieldSize = fieldSize;
@@ -16,6 +19,8 @@
         {
             this.internalBoard = internalBoard;
         }
+
+
         public SeaSquare[,] GetBoard()
         {
             return internalBoard;
