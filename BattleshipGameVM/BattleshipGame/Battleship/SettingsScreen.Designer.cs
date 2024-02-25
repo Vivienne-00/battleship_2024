@@ -88,6 +88,7 @@
             buttonResetHighscore.TabIndex = 8;
             buttonResetHighscore.Text = "Highscore löschen";
             buttonResetHighscore.UseVisualStyleBackColor = true;
+            buttonResetHighscore.Click += buttonResetHighscore_Click;
             // 
             // SettingsScreen
             // 

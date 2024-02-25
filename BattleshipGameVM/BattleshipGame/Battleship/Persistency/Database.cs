@@ -166,6 +166,10 @@ namespace Battleship.Persistency
             cmd23 = conn.CreateCommand();
             cmd23.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Highscore löschen', 'Reset Highscore', 'Borrar Highscore'); ";
             cmd23.ExecuteNonQuery();
+            SQLiteCommand cmd24;
+            cmd24 = conn.CreateCommand();
+            cmd24.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Zurück', 'Return', 'Volver'); ";
+            cmd24.ExecuteNonQuery();
 
             //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
             //sqlite_cmd.ExecuteNonQuery();
@@ -303,7 +307,6 @@ namespace Battleship.Persistency
             sqlite_cmd.CommandText = $"UPDATE UserData SET Highscore = {newHighscore} WHERE '{actualUser}' = Username;";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
-
         }
     }
 }

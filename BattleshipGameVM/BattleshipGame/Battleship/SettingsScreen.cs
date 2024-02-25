@@ -9,11 +9,7 @@ namespace Battleship
         {
             InitializeComponent();
             db = Database.GetInstance();
-
-            buttonEnglish.Text = db.GetTranslation("Englisch");
-            buttonGerman.Text = db.GetTranslation("Deutsch");
-            buttonSpanish.Text = db.GetTranslation("Spanisch");
-            buttonResetHighscore.Text = db.GetTranslation("Highscore löschen");
+            UpdateScreen();
         }
 
         private void buttonEnglish_Click(object sender, EventArgs e)
@@ -40,6 +36,7 @@ namespace Battleship
             buttonGerman.Text = db.GetTranslation("Deutsch");
             buttonSpanish.Text = db.GetTranslation("Spanisch");
             buttonResetHighscore.Text = db.GetTranslation("Highscore löschen");
+            buttonMenuScreen.Text = db.GetTranslation("Zurück");
         }
 
         private void buttonMenuScreen_Click(object sender, EventArgs e)
@@ -50,6 +47,11 @@ namespace Battleship
             this.Hide();
             menuScreen.ShowDialog();
             this.Close();
+        }
+
+        private void buttonResetHighscore_Click(object sender, EventArgs e)
+        {
+            db.SetHighScore(0);
         }
     }
 }

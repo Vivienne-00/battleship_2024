@@ -46,6 +46,7 @@ namespace Battleship
             Database db = Database.GetInstance();
             db.InsertUser(textBoxUserName.Text);
 
+
             MenuScreen menuScreen = new MenuScreen();
             menuScreen.StartPosition = FormStartPosition.Manual;
             menuScreen.Location = new Point(0, 0);

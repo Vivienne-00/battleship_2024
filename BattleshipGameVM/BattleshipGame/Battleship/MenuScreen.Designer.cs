@@ -61,6 +61,7 @@
             buttonGameModeComputer.TabIndex = 6;
             buttonGameModeComputer.Text = "Computer";
             buttonGameModeComputer.UseVisualStyleBackColor = false;
+            buttonGameModeComputer.Click += buttonGameModeComputer_Click;
             // 
             // labelGameMode
             // 

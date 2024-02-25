@@ -68,7 +68,7 @@
             // buttonBattleship
             // 
             buttonBattleship.BackColor = Color.Gray;
-            buttonBattleship.Location = new Point(682, 151);
+            buttonBattleship.Location = new Point(682, 169);
             buttonBattleship.Name = "buttonBattleship";
             buttonBattleship.Size = new Size(35, 175);
             buttonBattleship.TabIndex = 8;
@@ -78,7 +78,7 @@
             // buttonDestroyer
             // 
             buttonDestroyer.BackColor = Color.Gray;
-            buttonDestroyer.Location = new Point(810, 151);
+            buttonDestroyer.Location = new Point(810, 169);
             buttonDestroyer.Name = "buttonDestroyer";
             buttonDestroyer.Size = new Size(35, 105);
             buttonDestroyer.TabIndex = 9;
@@ -88,7 +88,7 @@
             // buttonCruiser
             // 
             buttonCruiser.BackColor = Color.Gray;
-            buttonCruiser.Location = new Point(746, 151);
+            buttonCruiser.Location = new Point(746, 169);
             buttonCruiser.Name = "buttonCruiser";
             buttonCruiser.Size = new Size(35, 140);
             buttonCruiser.TabIndex = 13;
@@ -98,7 +98,7 @@
             // buttonSubmarine
             // 
             buttonSubmarine.BackColor = Color.Gray;
-            buttonSubmarine.Location = new Point(683, 358);
+            buttonSubmarine.Location = new Point(683, 376);
             buttonSubmarine.Name = "buttonSubmarine";
             buttonSubmarine.Size = new Size(35, 70);
             buttonSubmarine.TabIndex = 10;
@@ -117,7 +117,7 @@
             button1.BackgroundImage = Properties.Resources.rotate;
             button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.Font = new Font("Segoe UI", 30F);
-            button1.Location = new Point(803, 378);
+            button1.Location = new Point(803, 396);
             button1.Name = "button1";
             button1.Size = new Size(50, 50);
             button1.TabIndex = 14;
@@ -129,7 +129,7 @@
             labelSetShips.AutoSize = true;
             labelSetShips.BackColor = Color.Transparent;
             labelSetShips.Font = new Font("Segoe UI", 16F);
-            labelSetShips.Location = new Point(401, 99);
+            labelSetShips.Location = new Point(424, 92);
             labelSetShips.Name = "labelSetShips";
             labelSetShips.Size = new Size(421, 37);
             labelSetShips.TabIndex = 15;
