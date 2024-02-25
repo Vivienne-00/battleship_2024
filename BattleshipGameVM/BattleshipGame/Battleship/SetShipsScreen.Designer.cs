@@ -127,18 +127,20 @@
             // labelSetShips
             // 
             labelSetShips.AutoSize = true;
+            labelSetShips.BackColor = Color.Transparent;
             labelSetShips.Font = new Font("Segoe UI", 16F);
             labelSetShips.Location = new Point(401, 99);
             labelSetShips.Name = "labelSetShips";
             labelSetShips.Size = new Size(421, 37);
             labelSetShips.TabIndex = 15;
             labelSetShips.Text = "Bitte setze alle Schiffe auf das Feld";
+            labelSetShips.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SetShipsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(872, 553);
+            ClientSize = new Size(882, 553);
             Controls.Add(labelSetShips);
             Controls.Add(button1);
             Controls.Add(buttonCruiser);

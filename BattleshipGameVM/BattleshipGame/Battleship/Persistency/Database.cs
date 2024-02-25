@@ -144,7 +144,7 @@ namespace Battleship.Persistency
             cmd17.ExecuteNonQuery();
             SQLiteCommand cmd18;
             cmd18 = conn.CreateCommand();
-            cmd18.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Bitte setze alle Schiffe auf das Feld', 'Please set all ships on the Board', 'Por favor coloque todos los barcos en el tablero'); ";
+            cmd18.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Bitte setze alle Schiffe auf das Feld', 'Please set all ships on the Board', 'Por favor coloque todos los barcos\n en el tablero'); ";
             cmd18.ExecuteNonQuery();
             SQLiteCommand cmd19;
             cmd19 = conn.CreateCommand();

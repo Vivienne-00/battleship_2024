@@ -1,6 +1,7 @@
 using Battleship.Controller;
 using Battleship.Model;
 using Battleship.Model.ShipModel;
+using Battleship.Persistency;
 using Battleship.View;
 
 namespace Battleship
@@ -20,6 +21,7 @@ namespace Battleship
             Database db = Database.GetInstance();
 
             labelEnemy.Text = db.GetTranslation("Gegner");
+            labelEnemy.Location = new Point(410, 30);
 
             this.game = new BattleshipGame();
             var controller = new BattleshipGameController(game);
@@ -30,9 +32,9 @@ namespace Battleship
             this.game.Player1Board = new GameBoard(fieldSize, "Player1");
             this.game.Player2Board = new GameBoard(fieldSize, "MV");
 
-            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 30, 350, this);
+            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 80, 350, this);
             this.player1GameBoardView.SetController(controller);
-            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 410, 30, 350, this);
+            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 410, 80, 350, this);
             this.player2GameBoardView.SetController(controller);
             var gameStatusView = new GameStatusView(controller);
 
@@ -58,13 +60,6 @@ namespace Battleship
             //Console.WriteLine("");
             //btbs.PrintHistory();
             //btbs.MapperFieldToSeaSquares(player1GameBoardView);
-
-            Button c = new Button();
-            c.Text = "New Backtracking";
-            c.Location = new Point(30, 450);
-            c.Size = new Size(120, 40);
-            c.Click += new System.EventHandler(StartBacktracking);
-            this.Controls.Add(c);
 
             player1GameBoardView.shipList = btbs.SetNormalCountShips();
             btbs.MapperFieldToSeaSquares(player1GameBoardView);

@@ -31,7 +31,7 @@
             // 
             labelEnemy.AutoSize = true;
             labelEnemy.Font = new Font("Segoe UI", 16F);
-            labelEnemy.Location = new Point(805, 20);
+            labelEnemy.Location = new Point(577, 9);
             labelEnemy.Name = "labelEnemy";
             labelEnemy.Size = new Size(104, 37);
             labelEnemy.TabIndex = 16;

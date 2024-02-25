@@ -3,7 +3,6 @@ using Battleship.Model;
 using Battleship.Model.ShipModel;
 using Battleship.Persistency;
 using Battleship.View;
-using System.Data.Entity;
 
 namespace Battleship
 {
@@ -42,14 +41,14 @@ namespace Battleship
             //controller.InitializeGame();
 
             Button buttonResetShips = new Button();
-            buttonResetShips.Text = "Zurücksetzen";
+            buttonResetShips.Text = db.GetTranslation("Zurücksetzen");
             buttonResetShips.Location = new Point(30, 450);
             buttonResetShips.Size = new Size(110, 40);
             buttonResetShips.Click += new System.EventHandler(ResetPlacingShips);
             this.Controls.Add(buttonResetShips);
 
             Button c = new Button();
-            c.Text = "Automatisch";
+            c.Text = db.GetTranslation("Automatisch");
             c.Location = new Point(30, 400);
             c.Size = new Size(110, 40);
             c.Click += new System.EventHandler(StartBacktracking);

@@ -1,5 +1,4 @@
 ﻿using Battleship.Persistency;
-using System.Data.Entity;
 
 namespace Battleship
 {

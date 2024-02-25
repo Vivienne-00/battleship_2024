@@ -44,6 +44,7 @@
             buttonEnglish.TabIndex = 3;
             buttonEnglish.Text = "Englisch";
             buttonEnglish.UseVisualStyleBackColor = true;
+            buttonEnglish.Click += buttonEnglish_Click;
             // 
             // buttonGerman
             // 
