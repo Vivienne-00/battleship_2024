@@ -11,6 +11,7 @@ namespace Battleship
         private GameBoardView player1GameBoardView;
         private BattleshipGame game;
         private int fieldSize;
+        private BacktrackingBattleShip btbs;
         public SetShipsScreen(int fieldSize)
         {
             this.fieldSize = fieldSize;
@@ -61,7 +62,7 @@ namespace Battleship
         {
             if (shipList.Count == 0 || shipList == null)
             {
-                GameScreen gameScreen = new GameScreen(fieldSize, player1GameBoardView);
+                GameScreen gameScreen = new GameScreen(fieldSize, btbs);
                 gameScreen.StartPosition = FormStartPosition.Manual;
                 gameScreen.Location = new Point(0, 0);
                 this.Hide();
@@ -151,7 +152,7 @@ namespace Battleship
         {
             //player1GameBoardView.ClearBoard(sender, e);
             if (shipList.Count == 0) ResetPlacingShips(sender, e);
-            BacktrackingBattleShip btbs = new BacktrackingBattleShip(fieldSize);
+            btbs = new BacktrackingBattleShip(fieldSize);
             btbs.MapperSeaSquaresToField(player1GameBoardView);
             btbs.Backtracking(shipList);
             btbs.MapperFieldToSeaSquares(player1GameBoardView);

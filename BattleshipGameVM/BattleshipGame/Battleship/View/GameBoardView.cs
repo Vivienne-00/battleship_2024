@@ -84,7 +84,7 @@ namespace Battleship.View
             //StartThreadedBacktracking();
         }
 
-        private void SetAllSeaSquaresActivated(bool activate)
+        public void SetAllSeaSquaresActivated(bool activate)
         {
             foreach (SeaSquare sq in this.internalBoard)
             {
