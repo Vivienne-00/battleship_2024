@@ -33,6 +33,7 @@ namespace Battleship.Model.StateMachine
             {// Kein Treffer
                 Database.actualScore++;
                 game.Player1Board.gameBoardView.UpdateScore();
+                game.Player2Board.gameBoardView.SetToFailedHit(coordinate);
                 game.TransitionToState(new Players2TurnState());
 
                 //game.Highscore++;

@@ -28,6 +28,8 @@ namespace Battleship.Model.StateMachine
             {
                 game.Player2Board.gameBoardView.computerScore++;
                 game.Player2Board.gameBoardView.UpdateScore();
+
+                game.Player1Board.gameBoardView.SetToFailedHit(coordinate);
                 game.TransitionToState(new Players1TurnState());
 
             }

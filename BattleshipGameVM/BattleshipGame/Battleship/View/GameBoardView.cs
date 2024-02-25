@@ -131,6 +131,11 @@ namespace Battleship.View
             controller.HandlePlayerInput(sq.position);
         }
 
+        public void SetToFailedHit(Coordinate coordinate)
+        {
+            internalBoard[coordinate.X, coordinate.Y].SetSquareState(SeaSquareState.Failed);
+        }
+
         public bool HitShip(Coordinate coordinate)
         {
             bool isAHit = false;

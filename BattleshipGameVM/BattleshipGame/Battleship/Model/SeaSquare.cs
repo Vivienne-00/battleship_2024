@@ -35,6 +35,9 @@
                 case SeaSquareState.Foam:
                     this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.foam));
                     break;
+                case SeaSquareState.Failed:
+                    this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.failedShot));
+                    break;
                 default:
                     this.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.sea));
                     break;

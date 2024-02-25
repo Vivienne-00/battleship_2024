@@ -63,6 +63,16 @@ namespace Battleship.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap failedShot {
+            get {
+                object obj = ResourceManager.GetObject("failedShot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap foam {
             get {
                 object obj = ResourceManager.GetObject("foam", resourceCulture);
@@ -156,6 +166,16 @@ namespace Battleship.Properties {
         internal static System.Drawing.Bitmap wave {
             get {
                 object obj = ResourceManager.GetObject("wave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zahnrad {
+            get {
+                object obj = ResourceManager.GetObject("zahnrad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

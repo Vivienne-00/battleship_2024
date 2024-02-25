@@ -75,6 +75,8 @@
             // 
             // buttonSettings
             // 
+            buttonSettings.BackgroundImage = Properties.Resources.zahnrad;
+            buttonSettings.BackgroundImageLayout = ImageLayout.Zoom;
             buttonSettings.Location = new Point(831, 12);
             buttonSettings.Name = "buttonSettings";
             buttonSettings.Size = new Size(95, 95);
