@@ -58,7 +58,9 @@ namespace Battleship.View
             lblActualScore = new Label();
             lblActualScore.Text = "Halllooooo";
 
-            lblActualScore.Location = new Point(boardLength + xPos, boardLength + yPos + 50);
+            lblActualScore.Location = new Point(boardLength + xPos - 60, boardLength + yPos + 20);
+            lblActualScore.Size = new Size(60, 40);
+            lblActualScore.Font = new Font("Segoe UI", 15);
             this.form.Controls.Add(lblActualScore);
             lblActualScore.Text = Convert.ToString(Database.actualScore);
             /*

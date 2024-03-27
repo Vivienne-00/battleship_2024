@@ -90,11 +90,11 @@
             // 
             LblUserName.AutoSize = true;
             LblUserName.BackColor = Color.Transparent;
-            LblUserName.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblUserName.Font = new Font("Segoe UI", 23F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblUserName.ForeColor = Color.White;
             LblUserName.Location = new Point(32, 18);
             LblUserName.Name = "LblUserName";
-            LblUserName.Size = new Size(142, 60);
+            LblUserName.Size = new Size(124, 52);
             LblUserName.TabIndex = 9;
             LblUserName.Text = "label1";
             // 
@@ -102,11 +102,11 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 23F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
             label2.Location = new Point(32, 87);
             label2.Name = "label2";
-            label2.Size = new Size(231, 60);
+            label2.Size = new Size(204, 52);
             label2.TabIndex = 10;
             label2.Text = "Highscore:";
             // 

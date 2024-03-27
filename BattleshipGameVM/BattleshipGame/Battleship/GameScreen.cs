@@ -23,22 +23,22 @@ namespace Battleship
             Database db = Database.GetInstance();
 
             labelEnemy.Text = db.GetTranslation("Gegner");
-            labelEnemy.Location = new Point(410, 30);
+            labelEnemy.Location = new Point(910, 30);
 
             this.game = new BattleshipGame();
             this.game.playerStrategy = new StupidPlayerStrategy(fieldSize);
             var controller = new BattleshipGameController(game);
 
             //Form form = new GameScreen();
-            this.Size = new Size(1000, 600);
+            this.Size = new Size(1800, 1000);
 
             this.game.Player1Board = new GameBoard(fieldSize, "Player1");
             this.game.Player2Board = new GameBoard(fieldSize, "MV");
 
 
-            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 80, 350, this);
+            this.player1GameBoardView = new GameBoardView(this.game.Player1Board, 30, 80, 780, this);
             this.player1GameBoardView.SetController(controller);
-            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 580, 80, 350, this);
+            this.player2GameBoardView = new GameBoardView(this.game.Player2Board, 910, 80, 780, this);
             this.player2GameBoardView.SetController(controller);
             this.player2GameBoardView.computerScore = 0;
             var gameStatusView = new GameStatusView(controller);
