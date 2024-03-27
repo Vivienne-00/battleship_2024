@@ -10,6 +10,7 @@ Portfolio Auftrag Schiffe versenken
 ---
 ## ToDo
 > - [ToDos](https://github.com/EMCninja3/DTP_Battleship/issues/7#issue-2070782625)
+> - [ToDos Datenbanken](https://github.com/EMCninja3/DTP_Battleship/issues/58)
 ---
 
 > [!IMPORTANT]
@@ -26,6 +27,7 @@ Portfolio Auftrag Schiffe versenken
 > - [C# JSON](https://csharp-hilfe.de/csharp-json/)
 > - [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
 > - [Datenbank SQLite](https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+> - [Salted Hashes](https://auth0.com/blog/adding-salt-to-hashing-a-better-way-to-store-passwords/)
 
 
 
