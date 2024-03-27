@@ -66,12 +66,14 @@
             // labelGameMode
             // 
             labelGameMode.AutoSize = true;
-            labelGameMode.Font = new Font("Segoe UI", 20F);
-            labelGameMode.Location = new Point(378, 209);
+            labelGameMode.BackColor = Color.Transparent;
+            labelGameMode.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelGameMode.Location = new Point(370, 209);
             labelGameMode.Name = "labelGameMode";
-            labelGameMode.Size = new Size(194, 46);
+            labelGameMode.Size = new Size(207, 46);
             labelGameMode.TabIndex = 7;
             labelGameMode.Text = "Spielmodus";
+            labelGameMode.Click += labelGameMode_Click;
             // 
             // buttonSettings
             // 
@@ -87,7 +89,9 @@
             // LblUserName
             // 
             LblUserName.AutoSize = true;
+            LblUserName.BackColor = Color.Transparent;
             LblUserName.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblUserName.ForeColor = Color.White;
             LblUserName.Location = new Point(32, 18);
             LblUserName.Name = "LblUserName";
             LblUserName.Size = new Size(142, 60);
@@ -97,7 +101,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(32, 87);
             label2.Name = "label2";
             label2.Size = new Size(231, 60);
@@ -107,6 +113,7 @@
             // LblHighscore
             // 
             LblHighscore.AutoSize = true;
+            LblHighscore.BackColor = Color.Transparent;
             LblHighscore.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblHighscore.Location = new Point(269, 87);
             LblHighscore.Name = "LblHighscore";
@@ -118,6 +125,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(951, 548);
             Controls.Add(LblHighscore);
             Controls.Add(label2);

@@ -94,6 +94,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(933, 501);
             Controls.Add(buttonResetHighscore);
             Controls.Add(buttonMenuScreen);

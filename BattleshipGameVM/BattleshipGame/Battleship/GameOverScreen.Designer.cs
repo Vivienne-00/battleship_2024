@@ -37,6 +37,7 @@
             // labelVictory
             // 
             labelVictory.AutoSize = true;
+            labelVictory.BackColor = Color.Transparent;
             labelVictory.Font = new Font("Segoe UI", 40F);
             labelVictory.Location = new Point(374, 166);
             labelVictory.Name = "labelVictory";
@@ -47,6 +48,7 @@
             // labelDefeat
             // 
             labelDefeat.AutoSize = true;
+            labelDefeat.BackColor = Color.Transparent;
             labelDefeat.Font = new Font("Segoe UI", 40F);
             labelDefeat.Location = new Point(277, 181);
             labelDefeat.Name = "labelDefeat";
@@ -84,6 +86,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(951, 548);
             Controls.Add(buttonExit);
             Controls.Add(buttonNewGame);

@@ -33,7 +33,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(249, 391);
+            button1.Location = new Point(295, 423);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(344, 145);
@@ -46,6 +46,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGSplashScreen;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(914, 600);
             Controls.Add(button1);
             Margin = new Padding(3, 4, 3, 4);

@@ -76,10 +76,11 @@
             // labelDifficulty
             // 
             labelDifficulty.AutoSize = true;
-            labelDifficulty.Font = new Font("Segoe UI", 20F);
-            labelDifficulty.Location = new Point(332, 117);
+            labelDifficulty.BackColor = Color.Transparent;
+            labelDifficulty.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelDifficulty.Location = new Point(315, 121);
             labelDifficulty.Name = "labelDifficulty";
-            labelDifficulty.Size = new Size(307, 46);
+            labelDifficulty.Size = new Size(330, 46);
             labelDifficulty.TabIndex = 9;
             labelDifficulty.Text = "Schwierigkeitsstufe";
             labelDifficulty.Click += labelGameBoardSize_Click;
@@ -88,6 +89,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(951, 548);
             Controls.Add(labelDifficulty);
             Controls.Add(buttonDifficult);

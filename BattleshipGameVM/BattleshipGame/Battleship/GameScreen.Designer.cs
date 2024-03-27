@@ -30,6 +30,7 @@
             // labelEnemy
             // 
             labelEnemy.AutoSize = true;
+            labelEnemy.BackColor = Color.Transparent;
             labelEnemy.Font = new Font("Segoe UI", 16F);
             labelEnemy.Location = new Point(577, 9);
             labelEnemy.Name = "labelEnemy";
@@ -41,6 +42,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BGdefault;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1253, 847);
             Controls.Add(labelEnemy);
             Margin = new Padding(3, 4, 3, 4);

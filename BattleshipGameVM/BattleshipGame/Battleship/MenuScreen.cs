@@ -53,5 +53,10 @@ namespace Battleship
         {
 
         }
+
+        private void labelGameMode_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
