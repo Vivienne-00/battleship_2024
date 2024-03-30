@@ -66,5 +66,10 @@ namespace Battleship
             Database.actualLanguage = Languages.Spanish;
             UpdateScreen();
         }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
