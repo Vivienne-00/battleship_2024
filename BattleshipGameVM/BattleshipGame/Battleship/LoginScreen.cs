@@ -29,6 +29,7 @@ namespace Battleship
             buttonGerman.Text = db.GetTranslation("Deutsch");
             buttonSpanish.Text = db.GetTranslation("Spanisch");
             labelUserName.Text = db.GetTranslation("Benutzername");
+            labelPassword.Text = db.GetTranslation("Passwort");
             buttonEnter.Text = db.GetTranslation("Eingabe");
         }
 
@@ -68,6 +69,11 @@ namespace Battleship
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelPassword_Click(object sender, EventArgs e)
         {
 
         }

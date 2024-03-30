@@ -34,7 +34,7 @@
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
-            label1 = new Label();
+            labelPassword = new Label();
             textBoxPassword = new TextBox();
             SuspendLayout();
             // 
@@ -106,16 +106,17 @@
             buttonSpanish.UseVisualStyleBackColor = true;
             buttonSpanish.Click += buttonSpanish_Click_1;
             // 
-            // label1
+            // labelPassword
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(263, 301);
-            label1.Name = "label1";
-            label1.Size = new Size(152, 46);
-            label1.TabIndex = 6;
-            label1.Text = "Passwort";
+            labelPassword.AutoSize = true;
+            labelPassword.BackColor = Color.Transparent;
+            labelPassword.Font = new Font("Segoe UI", 20F);
+            labelPassword.Location = new Point(263, 301);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(152, 46);
+            labelPassword.TabIndex = 6;
+            labelPassword.Text = "Passwort";
+            labelPassword.Click += labelPassword_Click;
             // 
             // textBoxPassword
             // 
@@ -132,9 +133,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(969, 595);
+            ClientSize = new Size(972, 598);
             Controls.Add(textBoxPassword);
-            Controls.Add(label1);
+            Controls.Add(labelPassword);
             Controls.Add(buttonSpanish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonEnglish);
@@ -157,7 +158,7 @@
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
-        private Label label1;
+        private Label labelPassword;
         private TextBox textBoxPassword;
     }
 }
