@@ -10,6 +10,7 @@ namespace Battleship
             Database db = Database.GetInstance();
 
             labelBirthYear.Text = db.GetTranslation("Bitte Geburtsjahr eingeben");
+            buttonEnter.Text = db.GetTranslation("Eingabe");
         }
 
         private void labelUserName_Click(object sender, EventArgs e)
@@ -24,7 +25,12 @@ namespace Battleship
 
         private void buttonEnter_Click(object sender, EventArgs e)
         {
-
+            MenuScreen menuScreen = new MenuScreen();
+            menuScreen.StartPosition = FormStartPosition.Manual;
+            menuScreen.Location = new Point(0, 0);
+            this.Hide();
+            menuScreen.ShowDialog();
+            this.Close();
         }
     }
 }

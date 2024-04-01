@@ -34,8 +34,8 @@
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
-            labelPassword = new Label();
             textBoxPassword = new TextBox();
+            labelPassword = new Label();
             SuspendLayout();
             // 
             // buttonEnter
@@ -48,7 +48,7 @@
             buttonEnter.Name = "buttonEnter";
             buttonEnter.Size = new Size(195, 74);
             buttonEnter.TabIndex = 0;
-            buttonEnter.Text = "Enter";
+            buttonEnter.Text = "Eingabe";
             buttonEnter.UseVisualStyleBackColor = false;
             buttonEnter.Click += buttonNext_Click;
             // 
@@ -106,18 +106,6 @@
             buttonSpanish.UseVisualStyleBackColor = true;
             buttonSpanish.Click += buttonSpanish_Click_1;
             // 
-            // labelPassword
-            // 
-            labelPassword.AutoSize = true;
-            labelPassword.BackColor = Color.Transparent;
-            labelPassword.Font = new Font("Segoe UI", 20F);
-            labelPassword.Location = new Point(263, 301);
-            labelPassword.Name = "labelPassword";
-            labelPassword.Size = new Size(152, 46);
-            labelPassword.TabIndex = 6;
-            labelPassword.Text = "Passwort";
-            labelPassword.Click += labelPassword_Click;
-            // 
             // textBoxPassword
             // 
             textBoxPassword.Font = new Font("Segoe UI", 20F);
@@ -127,6 +115,17 @@
             textBoxPassword.TabIndex = 7;
             textBoxPassword.TextChanged += textBoxPassword_TextChanged;
             // 
+            // labelPassword
+            // 
+            labelPassword.AutoSize = true;
+            labelPassword.BackColor = Color.Transparent;
+            labelPassword.Font = new Font("Segoe UI", 20F);
+            labelPassword.Location = new Point(263, 302);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(152, 46);
+            labelPassword.TabIndex = 8;
+            labelPassword.Text = "Passwort";
+            // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -134,8 +133,8 @@
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(972, 598);
-            Controls.Add(textBoxPassword);
             Controls.Add(labelPassword);
+            Controls.Add(textBoxPassword);
             Controls.Add(buttonSpanish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonEnglish);
@@ -158,7 +157,7 @@
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
-        private Label labelPassword;
         private TextBox textBoxPassword;
+        private Label labelPassword;
     }
 }

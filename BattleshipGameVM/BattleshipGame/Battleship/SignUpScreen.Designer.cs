@@ -64,7 +64,7 @@
             buttonEnter.Name = "buttonEnter";
             buttonEnter.Size = new Size(195, 74);
             buttonEnter.TabIndex = 5;
-            buttonEnter.Text = "Enter";
+            buttonEnter.Text = "Eingabe";
             buttonEnter.UseVisualStyleBackColor = false;
             buttonEnter.Click += buttonEnter_Click;
             // 

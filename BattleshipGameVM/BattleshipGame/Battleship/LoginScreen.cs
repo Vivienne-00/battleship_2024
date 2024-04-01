@@ -47,12 +47,12 @@ namespace Battleship
             Database db = Database.GetInstance();
             db.InsertUser(textBoxUserName.Text);
 
-
-            MenuScreen menuScreen = new MenuScreen();
-            menuScreen.StartPosition = FormStartPosition.Manual;
-            menuScreen.Location = new Point(0, 0);
+            //Funktion für das überprüfen der Datenbank muss noch implementiert werden
+            SignUpScreen signUpScreen = new SignUpScreen();
+            signUpScreen.StartPosition = FormStartPosition.Manual;
+            signUpScreen.Location = new Point(0, 0);
             this.Hide();
-            menuScreen.ShowDialog();
+            signUpScreen.ShowDialog();
             this.Close();
         }
 
@@ -69,11 +69,6 @@ namespace Battleship
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelPassword_Click(object sender, EventArgs e)
         {
 
         }
