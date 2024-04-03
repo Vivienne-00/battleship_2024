@@ -172,6 +172,14 @@ namespace Battleship.Persistency
             cmd24 = conn.CreateCommand();
             cmd24.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Zurück', 'Return', 'Volver'); ";
             cmd24.ExecuteNonQuery();
+            SQLiteCommand cmd25;
+            cmd25 = conn.CreateCommand();
+            cmd25.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Passwort', 'Password', 'Contraseña'); ";
+            cmd25.ExecuteNonQuery();
+            SQLiteCommand cmd26;
+            cmd26 = conn.CreateCommand();
+            cmd26.CommandText = "INSERT INTO Translations(German, English, Spanish) VALUES('Bitte Geburtsjahr eingeben', 'Please enter year of birth', 'Introduzca el año de nacimiento'); ";
+            cmd26.ExecuteNonQuery();
 
             //sqlite_cmd.CommandText = "INSERT INTO Translations(Col1, Col2) VALUES('Test1 Text1 ', 2); ";
             //sqlite_cmd.ExecuteNonQuery();

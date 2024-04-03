@@ -34,6 +34,8 @@
             buttonEnglish = new Button();
             buttonGerman = new Button();
             buttonSpanish = new Button();
+            textBoxPassword = new TextBox();
+            labelPassword = new Label();
             SuspendLayout();
             // 
             // buttonEnter
@@ -46,14 +48,14 @@
             buttonEnter.Name = "buttonEnter";
             buttonEnter.Size = new Size(195, 74);
             buttonEnter.TabIndex = 0;
-            buttonEnter.Text = "Enter";
+            buttonEnter.Text = "Eingabe";
             buttonEnter.UseVisualStyleBackColor = false;
             buttonEnter.Click += buttonNext_Click;
             // 
             // textBoxUserName
             // 
             textBoxUserName.Font = new Font("Segoe UI", 20F);
-            textBoxUserName.Location = new Point(263, 287);
+            textBoxUserName.Location = new Point(263, 231);
             textBoxUserName.Name = "textBoxUserName";
             textBoxUserName.Size = new Size(466, 52);
             textBoxUserName.TabIndex = 1;
@@ -62,8 +64,9 @@
             // labelUserName
             // 
             labelUserName.AutoSize = true;
+            labelUserName.BackColor = Color.Transparent;
             labelUserName.Font = new Font("Segoe UI", 20F);
-            labelUserName.Location = new Point(263, 232);
+            labelUserName.Location = new Point(263, 182);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(235, 46);
             labelUserName.TabIndex = 2;
@@ -73,7 +76,7 @@
             // buttonEnglish
             // 
             buttonEnglish.Font = new Font("Segoe UI", 18F);
-            buttonEnglish.Location = new Point(32, 29);
+            buttonEnglish.Location = new Point(119, 29);
             buttonEnglish.Name = "buttonEnglish";
             buttonEnglish.Size = new Size(160, 62);
             buttonEnglish.TabIndex = 3;
@@ -84,7 +87,7 @@
             // buttonGerman
             // 
             buttonGerman.Font = new Font("Segoe UI", 18F);
-            buttonGerman.Location = new Point(263, 29);
+            buttonGerman.Location = new Point(418, 29);
             buttonGerman.Name = "buttonGerman";
             buttonGerman.Size = new Size(160, 62);
             buttonGerman.TabIndex = 4;
@@ -95,7 +98,7 @@
             // buttonSpanish
             // 
             buttonSpanish.Font = new Font("Segoe UI", 18F);
-            buttonSpanish.Location = new Point(510, 29);
+            buttonSpanish.Location = new Point(715, 29);
             buttonSpanish.Name = "buttonSpanish";
             buttonSpanish.Size = new Size(160, 62);
             buttonSpanish.TabIndex = 5;
@@ -103,13 +106,35 @@
             buttonSpanish.UseVisualStyleBackColor = true;
             buttonSpanish.Click += buttonSpanish_Click_1;
             // 
+            // textBoxPassword
+            // 
+            textBoxPassword.Font = new Font("Segoe UI", 20F);
+            textBoxPassword.Location = new Point(263, 350);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.Size = new Size(466, 52);
+            textBoxPassword.TabIndex = 7;
+            textBoxPassword.TextChanged += textBoxPassword_TextChanged;
+            // 
+            // labelPassword
+            // 
+            labelPassword.AutoSize = true;
+            labelPassword.BackColor = Color.Transparent;
+            labelPassword.Font = new Font("Segoe UI", 20F);
+            labelPassword.Location = new Point(263, 302);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(152, 46);
+            labelPassword.TabIndex = 8;
+            labelPassword.Text = "Passwort";
+            // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(969, 595);
+            ClientSize = new Size(972, 598);
+            Controls.Add(labelPassword);
+            Controls.Add(textBoxPassword);
             Controls.Add(buttonSpanish);
             Controls.Add(buttonGerman);
             Controls.Add(buttonEnglish);
@@ -132,5 +157,7 @@
         private Button buttonEnglish;
         private Button buttonGerman;
         private Button buttonSpanish;
+        private TextBox textBoxPassword;
+        private Label labelPassword;
     }
 }
