@@ -1,7 +1,67 @@
-﻿using System.Data.SQLite;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Data.SQLite;
 
 namespace Battleship.Persistency
 {
+    public class BattleshipContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Gameparticipation> Gameparticipations { get; set; }
+
+        public string DbPath { get; }
+
+        public BattleshipContext()
+        {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            DbPath = System.IO.Path.Join(path, "battleship.db");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite($"Data Source={DbPath}");
+    }
+
+    public class User
+    {
+        public int BenutzerID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Salt { get; set; }
+        public enum Accesslevel { get; set; }
+        public bool Active { get; set; }
+        public int Birthyear { get; set; }
+
+        public List<Gameparticipation> Gameparticipations { get; } = new List<Gameparticipation>();
+    }
+
+    public class Game
+    {
+        public int GameID { get; set; }
+        public DateTime ZeitpunktDesSpielendes { get; set; }
+        public int NumberOfRounds { get; set; }
+        public int WinnerID { get; set; }
+        public int Score { get; set; }
+        public bool Active { get; set; }
+
+
+        public User Winner { get; set; }
+        public List<Gameparticipation> Gameparticipations { get; } = new List<Gameparticipation>();
+    }
+
+    public class Gameparticipation
+    {
+        public int GameparticipationID { get; set; }
+        public int GameID { get; set; }
+        public int UserID1 { get; set; }
+        public int UserID2 { get; set; }
+
+
+        public Game Game { get; set; }
+        public User User1 { get; set; }
+        public User User2 { get; set; }
+    }
+
     public sealed class Database
     {
         private Database() { }
