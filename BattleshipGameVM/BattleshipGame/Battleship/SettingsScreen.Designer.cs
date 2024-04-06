@@ -33,6 +33,7 @@
             buttonSpanish = new Button();
             buttonMenuScreen = new Button();
             buttonResetHighscore = new Button();
+            buttonChangeUser = new Button();
             SuspendLayout();
             // 
             // buttonEnglish
@@ -90,6 +91,17 @@
             buttonResetHighscore.UseVisualStyleBackColor = true;
             buttonResetHighscore.Click += buttonResetHighscore_Click;
             // 
+            // buttonChangeUser
+            // 
+            buttonChangeUser.Font = new Font("Segoe UI", 18F);
+            buttonChangeUser.Location = new Point(239, 272);
+            buttonChangeUser.Name = "buttonChangeUser";
+            buttonChangeUser.Size = new Size(464, 62);
+            buttonChangeUser.TabIndex = 9;
+            buttonChangeUser.Text = "Benutzer bearbeiten";
+            buttonChangeUser.UseVisualStyleBackColor = true;
+            buttonChangeUser.Click += buttonChangeUser_Click;
+            // 
             // SettingsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -97,6 +109,7 @@
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(933, 501);
+            Controls.Add(buttonChangeUser);
             Controls.Add(buttonResetHighscore);
             Controls.Add(buttonMenuScreen);
             Controls.Add(buttonEnglish);
@@ -114,5 +127,6 @@
         private Button buttonSpanish;
         private Button buttonMenuScreen;
         private Button buttonResetHighscore;
+        private Button buttonChangeUser;
     }
 }

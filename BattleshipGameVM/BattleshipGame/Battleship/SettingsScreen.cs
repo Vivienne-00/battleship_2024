@@ -76,5 +76,23 @@ namespace Battleship
             }*/
 
         }
+
+        private void buttonChangeUser_Click(object sender, EventArgs e)
+        {
+            using var efcDB = new BattleshipContext();
+            //var currentUser = efcDB.Users.Find(Username);
+
+            // Prüft, ob der Benutzer den Zugriffslevel Admin hat
+            // if (currentUser != null && currentUser.AccessLevel == "Admin")
+            //{
+            buttonResetHighscore.Enabled = true;
+            UserManagementForm form = new UserManagementForm();
+            form.ShowDialog();
+            /*}
+            else
+            {
+                buttonResetHighscore.Enabled = false;
+            }*/
+        }
     }
 }
