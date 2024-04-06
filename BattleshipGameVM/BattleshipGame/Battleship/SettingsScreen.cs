@@ -51,7 +51,30 @@ namespace Battleship
 
         private void buttonResetHighscore_Click(object sender, EventArgs e)
         {
-            db.SetHighScore(0);
+            using var efcDB = new BattleshipContext();
+            //var currentUser = efcDB.Users.Find(Username);
+
+            // Prüft, ob der Benutzer den Zugriffslevel Admin hat
+            // if (currentUser != null && currentUser.AccessLevel == "Admin")
+            //{
+            buttonResetHighscore.Enabled = true;
+
+            var activeGames = efcDB.Games.Where(g => g.Active).ToList();
+
+            foreach (var game in activeGames)
+            {
+                game.Active = false;
+            }
+
+            efcDB.SaveChanges();
+
+            MessageBox.Show($"{activeGames.Count} Spiele wurden deaktiviert.");
+            /*}
+            else
+            {
+                buttonResetHighscore.Enabled = false;
+            }*/
+
         }
     }
 }

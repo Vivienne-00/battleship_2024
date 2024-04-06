@@ -82,11 +82,11 @@
             // buttonResetHighscore
             // 
             buttonResetHighscore.Font = new Font("Segoe UI", 18F);
-            buttonResetHighscore.Location = new Point(315, 245);
+            buttonResetHighscore.Location = new Point(239, 165);
             buttonResetHighscore.Name = "buttonResetHighscore";
-            buttonResetHighscore.Size = new Size(310, 62);
+            buttonResetHighscore.Size = new Size(464, 62);
             buttonResetHighscore.TabIndex = 8;
-            buttonResetHighscore.Text = "Highscore löschen";
+            buttonResetHighscore.Text = "High-Score-Liste löschen";
             buttonResetHighscore.UseVisualStyleBackColor = true;
             buttonResetHighscore.Click += buttonResetHighscore_Click;
             // 
