@@ -66,7 +66,7 @@ namespace Battleship
 			// Prüft, ob der Benutzer den Zugriffslevel Admin hat
 			// if (currentUser != null && currentUser.AccessLevel == "Admin")
 			//{
-			buttonResetHighscore.Enabled = true;
+			//buttonResetHighscore.Enabled = true;
 
 			var activeGames = efcDB.Games.Where(g => g.Active).ToList();
 
