@@ -35,7 +35,7 @@
             LblUserName = new Label();
             label2 = new Label();
             LblHighscore = new Label();
-            button1 = new Button();
+            buttonShowList = new Button();
             SuspendLayout();
             // 
             // buttonGameModeHuman
@@ -122,18 +122,18 @@
             LblHighscore.TabIndex = 11;
             LblHighscore.Text = "  ";
             // 
-            // button1
+            // buttonShowList
             // 
-            button1.BackColor = Color.FromArgb(180, 210, 255);
-            button1.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
-            button1.Font = new Font("Segoe UI", 20F);
-            button1.Location = new Point(32, 87);
-            button1.Name = "button1";
-            button1.Size = new Size(281, 85);
-            button1.TabIndex = 12;
-            button1.Text = "High-Score-Liste";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buttonShowList.BackColor = Color.FromArgb(180, 210, 255);
+            buttonShowList.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
+            buttonShowList.Font = new Font("Segoe UI", 20F);
+            buttonShowList.Location = new Point(32, 87);
+            buttonShowList.Name = "buttonShowList";
+            buttonShowList.Size = new Size(281, 85);
+            buttonShowList.TabIndex = 12;
+            buttonShowList.Text = "High-Score-Liste";
+            buttonShowList.UseVisualStyleBackColor = false;
+            buttonShowList.Click += buttonShowList_Click;
             // 
             // MenuScreen
             // 
@@ -142,7 +142,7 @@
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(951, 548);
-            Controls.Add(button1);
+            Controls.Add(buttonShowList);
             Controls.Add(LblHighscore);
             Controls.Add(label2);
             Controls.Add(LblUserName);
@@ -166,6 +166,6 @@
         private Label LblUserName;
         private Label label2;
         private Label LblHighscore;
-        private Button button1;
+        private Button buttonShowList;
     }
 }

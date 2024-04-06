@@ -79,7 +79,10 @@ namespace Battleship
             });
             efcDB.SaveChanges();
 
-            var getGameId = efcDB.Games.Last(g => g.Active);
+            var getGameId = efcDB.Games
+                      .Where(g => g.Active)
+                      .OrderByDescending(g => g.GameId)
+                      .FirstOrDefault();
 
             Console.WriteLine("Inserting a new Gameparticipation");
             efcDB.Add(new Gameparticipation

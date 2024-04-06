@@ -21,7 +21,10 @@ namespace Battleship
             // Create
             Console.WriteLine("Add additional information for the game");
             var rnd = new Random();
-            var gameToUpdate = efcDB.Games.Last(g => g.Active);
+            var gameToUpdate = efcDB.Games
+                      .Where(g => g.Active)
+                      .OrderByDescending(g => g.GameId)
+                      .FirstOrDefault();
 
             // Migrate the Game entity with additional details after the game is over
             gameToUpdate.TimeOfGameOver = DateTime.Now;
