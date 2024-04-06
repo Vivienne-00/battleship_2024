@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Battleship.Model;
+using Microsoft.EntityFrameworkCore;
 using System.Data.SQLite;
 
 namespace Battleship.Persistency
@@ -31,6 +32,7 @@ namespace Battleship.Persistency
 
 
 		public static String actualUser = "";
+		public static ComputerDifficulty computerDificulty;
 		public static Languages actualLanguage = Languages.German;
 		public static int actualScore = 0;
 		public static Database GetInstance()

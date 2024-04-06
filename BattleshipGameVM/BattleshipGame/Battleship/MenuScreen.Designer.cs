@@ -35,11 +35,13 @@
             LblUserName = new Label();
             label2 = new Label();
             LblHighscore = new Label();
+            buttonShowList = new Button();
             SuspendLayout();
             // 
             // buttonGameModeHuman
             // 
-            buttonGameModeHuman.BackColor = Color.FromArgb(180, 210, 255);
+            buttonGameModeHuman.BackColor = Color.Silver;
+            buttonGameModeHuman.Enabled = false;
             buttonGameModeHuman.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
             buttonGameModeHuman.Font = new Font("Segoe UI", 20F);
             buttonGameModeHuman.Location = new Point(336, 276);
@@ -106,9 +108,8 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(32, 87);
             label2.Name = "label2";
-            label2.Size = new Size(204, 52);
+            label2.Size = new Size(0, 52);
             label2.TabIndex = 10;
-            label2.Text = "Highscore:";
             // 
             // LblHighscore
             // 
@@ -121,6 +122,19 @@
             LblHighscore.TabIndex = 11;
             LblHighscore.Text = "  ";
             // 
+            // buttonShowList
+            // 
+            buttonShowList.BackColor = Color.FromArgb(180, 210, 255);
+            buttonShowList.FlatAppearance.BorderColor = Color.FromArgb(180, 210, 255);
+            buttonShowList.Font = new Font("Segoe UI", 20F);
+            buttonShowList.Location = new Point(32, 87);
+            buttonShowList.Name = "buttonShowList";
+            buttonShowList.Size = new Size(281, 85);
+            buttonShowList.TabIndex = 12;
+            buttonShowList.Text = "High-Score-Liste";
+            buttonShowList.UseVisualStyleBackColor = false;
+            buttonShowList.Click += buttonShowList_Click;
+            // 
             // MenuScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -128,6 +142,7 @@
             BackgroundImage = Properties.Resources.BGdefault;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(951, 548);
+            Controls.Add(buttonShowList);
             Controls.Add(LblHighscore);
             Controls.Add(label2);
             Controls.Add(LblUserName);
@@ -151,5 +166,6 @@
         private Label LblUserName;
         private Label label2;
         private Label LblHighscore;
+        private Button buttonShowList;
     }
 }
