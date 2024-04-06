@@ -4,8 +4,7 @@ namespace Battleship
 {
     public partial class GameOverScreen : Form
     {
-        private int fieldSize;
-        public GameOverScreen(int fieldSize)
+        public GameOverScreen()
         {
             InitializeComponent();
             Database db = Database.GetInstance();
@@ -14,16 +13,34 @@ namespace Battleship
             labelDefeat.Text = db.GetTranslation("Niederlage");
             buttonNewGame.Text = db.GetTranslation("Neues Spiel");
             buttonExit.Text = db.GetTranslation("Beenden");
-            this.fieldSize = fieldSize;
+
+
+            using var efcDB = new BattleshipContext();
+            Console.WriteLine($"Database path: {efcDB.DbPath}.");
+
+            // Create
+            Console.WriteLine("Add additional information for the game");
+            var rnd = new Random();
+            var gameToUpdate = efcDB.Games.Last(g => g.Active);
+
+            // Migrate the Game entity with additional details after the game is over
+            gameToUpdate.TimeOfGameOver = DateTime.Now;
+            gameToUpdate.NumberOfRounds = rnd.Next(1, 100);
+            gameToUpdate.WinnerID = rnd.Next();
+            gameToUpdate.Score = rnd.Next(1, 100);
+
+            efcDB.SaveChanges();
+
+            MessageBox.Show("Game ended successfully!");
         }
 
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
-            SetShipsScreen setShipsScreen = new SetShipsScreen(fieldSize);
-            setShipsScreen.StartPosition = FormStartPosition.Manual;
-            setShipsScreen.Location = new Point(0, 0);
+            GameBoardSizeScreen gameBoardSizeScreen = new GameBoardSizeScreen();
+            gameBoardSizeScreen.StartPosition = FormStartPosition.Manual;
+            gameBoardSizeScreen.Location = new Point(0, 0);
             this.Hide();
-            setShipsScreen.ShowDialog();
+            gameBoardSizeScreen.ShowDialog();
             this.Close();
 
         }

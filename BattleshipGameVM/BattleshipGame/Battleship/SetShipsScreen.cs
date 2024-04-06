@@ -66,7 +66,40 @@ namespace Battleship
 
         private void buttonStartGame_Click(object sender, EventArgs e)
         {
-            if (shipList.Count == 0 || shipList == null)
+
+            using var efcDB = new BattleshipContext();
+            Console.WriteLine($"Database path: {efcDB.DbPath}.");
+
+            // Create
+            Console.WriteLine("Inserting a new Game");
+            var rnd = new Random();
+            efcDB.Add(new Game
+            {
+                Active = true,
+            });
+            efcDB.SaveChanges();
+
+            var getGameId = efcDB.Games.Last(g => g.Active);
+
+            Console.WriteLine("Inserting a new Gameparticipation");
+            efcDB.Add(new Gameparticipation
+            {
+                GameID = getGameId.GameId,
+                UserID1 = rnd.Next(1, 1000),
+                UserID2 = rnd.Next(1, 1000)
+            });
+            efcDB.SaveChanges();
+
+            Console.WriteLine("Lets Start the new Game!");
+
+            GameOverScreen gameOverScreen = new GameOverScreen();
+            gameOverScreen.StartPosition = FormStartPosition.Manual;
+            gameOverScreen.Location = new Point(0, 0);
+            this.Hide();
+            gameOverScreen.ShowDialog();
+            this.Close();
+
+            /*if (shipList.Count == 0 || shipList == null)
             {
                 GameScreen gameScreen = new GameScreen(fieldSize, btbs);
                 gameScreen.StartPosition = FormStartPosition.Manual;
@@ -78,7 +111,7 @@ namespace Battleship
             else
             {
                 labelSetShips.ForeColor = Color.Red;
-            }
+            }*/
         }
         private void buttonQuitGame_Click(object sender, EventArgs e)
         {
