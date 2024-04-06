@@ -38,9 +38,10 @@ namespace Battleship
             }
         }
 
-        private void AddUser()
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            //Funktion muss noch hinzugefügt werden
+            AddUserForm addUserForm = new AddUserForm();
+            var dialogResult = addUserForm.ShowDialog();
         }
 
         private void buttonEditUser_Click(object sender, EventArgs e)
