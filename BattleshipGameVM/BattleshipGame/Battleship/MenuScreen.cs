@@ -8,11 +8,9 @@ namespace Battleship
         {
             InitializeComponent();
             Database db = Database.GetInstance();
-            int highscore = db.GetHighScore();
             String userName = Database.actualUser;
 
             LblUserName.Text = userName;
-            LblHighscore.Text = Convert.ToString(highscore);
             buttonGameModeComputer.Text = db.GetTranslation("Computer");
             buttonGameModeHuman.Text = db.GetTranslation("Mensch");
             labelGameMode.Text = db.GetTranslation("Spielmodus");
@@ -21,12 +19,7 @@ namespace Battleship
 
         private void buttonGameModeHuman_Click(object sender, EventArgs e)
         {
-            GameBoardSizeScreen gameBoardSizeScreen = new GameBoardSizeScreen();
-            gameBoardSizeScreen.StartPosition = FormStartPosition.Manual;
-            gameBoardSizeScreen.Location = new Point(0, 0);
-            this.Hide();
-            gameBoardSizeScreen.ShowDialog();
-            this.Close();
+
         }
 
         private void buttonGameModeComputer_Click(object sender, EventArgs e)
@@ -55,6 +48,11 @@ namespace Battleship
         }
 
         private void labelGameMode_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
