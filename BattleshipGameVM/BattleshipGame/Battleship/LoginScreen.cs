@@ -17,7 +17,7 @@ namespace Battleship
 			this.Focus();
 			db = Database.GetInstance();
 			//DeleteAllUsers(); // TODO: wieder auskommentieren
-
+			//DeleteAllGames();
 			using var efcDB = new BattleshipContext();
 			Console.WriteLine($"Database path: {efcDB.DbPath}.");
 
@@ -50,11 +50,15 @@ namespace Battleship
 		private void AddInitialAdmin()
 		{
 			using var efcDB = new BattleshipContext();
-			Console.WriteLine($"Database path: {efcDB.DbPath}.");
+			//Console.WriteLine($"Database path: {efcDB.DbPath}.");
 
 			// Create
 			Console.WriteLine("Inserting a new Admin");
 			SaveUserWithHashAndSalt("admin", "admin", true);
+			SaveUserWithHashAndSalt("EasyComputer", "EasyComputer", false);
+			SaveUserWithHashAndSalt("NormalComputer", "NormalComputer", false);
+			SaveUserWithHashAndSalt("HeavyComputer", "HeavyComputer", false);
+
 		}
 
 		private void DeleteAllUsers()
@@ -64,6 +68,17 @@ namespace Battleship
 			foreach (var user in users)
 			{
 				efcDB.Users.Remove(user);
+			}
+			efcDB.SaveChanges();
+		}
+
+		private void DeleteAllGames()
+		{
+			using var efcDB = new BattleshipContext();
+			var games = efcDB.Games;
+			foreach (var game in games)
+			{
+				efcDB.Games.Remove(game);
 			}
 			efcDB.SaveChanges();
 		}
