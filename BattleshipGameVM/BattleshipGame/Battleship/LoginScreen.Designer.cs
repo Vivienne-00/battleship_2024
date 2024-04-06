@@ -48,7 +48,7 @@
 			buttonEnter.Margin = new Padding(3, 4, 3, 4);
 			buttonEnter.Name = "buttonEnter";
 			buttonEnter.Size = new Size(195, 74);
-			buttonEnter.TabIndex = 0;
+			buttonEnter.TabIndex = 3;
 			buttonEnter.Text = "Eingabe";
 			buttonEnter.UseVisualStyleBackColor = false;
 			buttonEnter.Click += buttonNext_Click;
@@ -70,7 +70,7 @@
 			labelUserName.Location = new Point(263, 182);
 			labelUserName.Name = "labelUserName";
 			labelUserName.Size = new Size(235, 46);
-			labelUserName.TabIndex = 2;
+			labelUserName.TabIndex = 77;
 			labelUserName.Text = "Benutzername";
 			labelUserName.Click += labelUserName_Click;
 			// 
@@ -80,7 +80,8 @@
 			buttonEnglish.Location = new Point(119, 29);
 			buttonEnglish.Name = "buttonEnglish";
 			buttonEnglish.Size = new Size(160, 62);
-			buttonEnglish.TabIndex = 3;
+			buttonEnglish.TabIndex = 55;
+			buttonEnglish.TabStop = false;
 			buttonEnglish.Text = "Englisch";
 			buttonEnglish.UseVisualStyleBackColor = true;
 			buttonEnglish.Click += buttonEnglish_Click_1;
@@ -91,7 +92,8 @@
 			buttonGerman.Location = new Point(418, 29);
 			buttonGerman.Name = "buttonGerman";
 			buttonGerman.Size = new Size(160, 62);
-			buttonGerman.TabIndex = 4;
+			buttonGerman.TabIndex = 56;
+			buttonGerman.TabStop = false;
 			buttonGerman.Text = "Deutsch";
 			buttonGerman.UseVisualStyleBackColor = true;
 			buttonGerman.Click += buttonGerman_Click;
@@ -102,7 +104,8 @@
 			buttonSpanish.Location = new Point(715, 29);
 			buttonSpanish.Name = "buttonSpanish";
 			buttonSpanish.Size = new Size(160, 62);
-			buttonSpanish.TabIndex = 5;
+			buttonSpanish.TabIndex = 57;
+			buttonSpanish.TabStop = false;
 			buttonSpanish.Text = "Spanisch";
 			buttonSpanish.UseVisualStyleBackColor = true;
 			buttonSpanish.Click += buttonSpanish_Click_1;
@@ -112,8 +115,9 @@
 			textBoxPassword.Font = new Font("Segoe UI", 20F);
 			textBoxPassword.Location = new Point(263, 350);
 			textBoxPassword.Name = "textBoxPassword";
+			textBoxPassword.PasswordChar = '*';
 			textBoxPassword.Size = new Size(466, 52);
-			textBoxPassword.TabIndex = 7;
+			textBoxPassword.TabIndex = 2;
 			textBoxPassword.TextChanged += textBoxPassword_TextChanged;
 			// 
 			// labelPassword
@@ -124,7 +128,7 @@
 			labelPassword.Location = new Point(263, 302);
 			labelPassword.Name = "labelPassword";
 			labelPassword.Size = new Size(152, 46);
-			labelPassword.TabIndex = 8;
+			labelPassword.TabIndex = 78;
 			labelPassword.Text = "Passwort";
 			// 
 			// LblError

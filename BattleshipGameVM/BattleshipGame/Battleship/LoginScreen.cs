@@ -14,6 +14,7 @@ namespace Battleship
 		public LoginScreen()
 		{
 			InitializeComponent();
+			this.Focus();
 			db = Database.GetInstance();
 			//DeleteAllUsers(); // TODO: wieder auskommentieren
 
@@ -35,14 +36,15 @@ namespace Battleship
 		}
 		private bool CheckForExistingUser(String userName)
 		{
-			using var efcDB = new BattleshipContext();
-			var users = efcDB.Users
-				.Select(u => u.Username == userName);
-			if (users.Any())
+			using (var efcDB = new BattleshipContext())
 			{
+				var users = efcDB.Users
+				.Where(u => u.Username == userName);
+				if (users.Count() == 0) return false;
+				Console.WriteLine("" + users.First().Username + users.First().Password);
 				return true;
+
 			}
-			return false;
 		}
 
 		private void AddInitialAdmin()
@@ -134,9 +136,8 @@ namespace Battleship
 				LblError.ForeColor = Color.Red;
 				return;
 			}
-			db = Database.GetInstance();
-			db.InsertUser(userName);
-			// TODO: Check for Birthyear
+
+			Database.actualUser = userName;
 			if (CheckIfBirthyearIsFilled(userName))
 			{
 				MenuScreen menuScreen = new MenuScreen();

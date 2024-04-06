@@ -1,30 +1,37 @@
-﻿using Battleship.Persistency;
-
-namespace Battleship
+﻿namespace Battleship
 {
-    public partial class SplashScreen : Form
-    {
-        public SplashScreen()
-        {
-            InitializeComponent();
-            Database s = Database.GetInstance();
-        }
+	public partial class SplashScreen : Form
+	{
+		public SplashScreen()
+		{
+			InitializeComponent();
+			//Database s = Database.GetInstance();
 
-        private void SplashScreen_Load(object sender, EventArgs e)
-        {
+		}
 
-        }
+		private void SplashScreen_Load(object sender, EventArgs e)
+		{
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+		}
 
-            LoginScreen loginScreen = new LoginScreen();
-            loginScreen.StartPosition = FormStartPosition.Manual;
-            loginScreen.Location = new Point(0, 0);
-            this.Hide();
-            loginScreen.ShowDialog();
-            this.Close();
-            //this.Size = new Size(10, 10);
-        }
-    }
+		private void ChangeWindow()
+		{
+			LoginScreen loginScreen = new LoginScreen();
+			loginScreen.StartPosition = FormStartPosition.Manual;
+			loginScreen.Location = new Point(0, 0);
+			this.Hide();
+			loginScreen.ShowDialog();
+			this.Close();
+		}
+
+		private void SplashScreen_Shown(object sender, EventArgs e)
+		{
+			int dateTime = DateTime.Now.Second;
+			while (DateTime.Now.Second - dateTime < 2)
+			{
+				//Console.WriteLine(DateTime.Now.Second - dateTime);
+			}
+			ChangeWindow();
+		}
+	}
 }
