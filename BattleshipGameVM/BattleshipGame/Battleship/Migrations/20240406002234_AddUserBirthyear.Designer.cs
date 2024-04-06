@@ -3,6 +3,7 @@ using System;
 using Battleship.Persistency;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Battleship.Migrations
 {
     [DbContext(typeof(BattleshipContext))]
-    partial class BattleshipContextModelSnapshot : ModelSnapshot
+    [Migration("20240406002234_AddUserBirthyear")]
+    partial class AddUserBirthyear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");

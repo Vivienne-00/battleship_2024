@@ -8,8 +8,7 @@
 		public string Salt { get; set; }
 		public Accesslevel Accesslvl { get; set; }
 		public bool Active { get; set; }
-		//public int Birthyear { get; set; }
-		//public List<Gameparticipation> Gameparticipations { get; } = new List<Gameparticipation>();
+		public int Birthyear { get; set; }
 	}
 
 }
