@@ -49,6 +49,7 @@ namespace Battleship
 			{
 				LblError2.Text = "Bist zu alt!\nMach Dich jünger!";
 				LblError2.ForeColor = Color.Red;
+
 				return;
 			}
 
