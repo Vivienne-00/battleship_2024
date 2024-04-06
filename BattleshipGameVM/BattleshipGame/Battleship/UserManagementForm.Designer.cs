@@ -40,6 +40,7 @@
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Benutzer Hinzufügen";
             buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonEditUser
             // 
