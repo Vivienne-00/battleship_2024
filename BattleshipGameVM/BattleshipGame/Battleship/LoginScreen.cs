@@ -181,7 +181,16 @@ namespace Battleship
 			var efcDB = new BattleshipContext();
 			var user = efcDB.Users.Single(u => u.Username == userName);
 			var savedPassword = user.Password;
-			var salt = user.Salt;
+			var salt = user.Salt;7
+     
+     if (!user.Active)
+            {
+                return false;
+            }
+            else
+            {
+                return VerifyPassword(password, savedPassword, FromHexWithConvert(salt));
+            }
 			return VerifyPassword(password, savedPassword, FromHexWithConvert(salt));
 		}
 
